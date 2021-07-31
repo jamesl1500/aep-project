@@ -1,0 +1,160 @@
+@mixin vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.fullWebsiteCoverFill{
+  width: 100%;
+  height: 100%;
+
+  background-image: url(../images/coming_soon.jpg);
+  background-size: cover;
+
+  .cover{
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0,0,0,.6);
+
+    .middleInfo{
+      @include vertical-align();
+      margin: 0% auto;
+
+      .topMessage{
+        float: none;
+        margin: 0% auto;
+
+        .topCompanyLogo{
+          width: 150px;
+          height: 150px;
+
+          margin: 0% auto;
+
+          border-radius: 50%;
+
+          img{
+            width: 100%;
+            height: 150px;
+
+            text-align: center;
+
+            border-radius: 50%;
+
+            margin-left: 5px;
+          }
+        }
+
+        .topTitle{
+
+          h3{
+            font-size: 2.4em;
+            font-weight: 500;
+
+            text-align: center;
+
+            color: white;
+          }
+        }
+
+        .middleDescription{
+
+          p{
+            color: white;
+
+            text-align: center;
+
+            font-size: 1.4em;
+            font-weight: 400;
+          }
+        }
+      }
+
+      .bottomEmailNotification{
+        margin: 0% auto;
+        padding-top: 30px;
+
+        #mc_embed_signup{
+
+          form{
+
+            #mc_embed_signup_scroll{
+              text-align: center;
+
+              a{
+                color: white;
+                border-radius: 3px;
+
+                border: 2px solid white;
+
+                font-size: 1.2em;
+                font-weight: 500;
+
+                background: transparent;
+                padding: 13px;
+
+                margin-right: 15px;
+
+                @media screen and (max-width: 606px){
+                  width: 100%;
+                  display: block;
+
+                  margin-bottom: 20px;
+                }
+              }
+
+              .email{
+                border: none;
+                padding: 13px;
+
+                height: 50px;
+
+                width: 220px;
+
+                border-radius: 3px;
+
+                border-top-right-radius: 0px;
+                border-bottom-right-radius: 0px;
+
+                position: relative;
+                top: -1px;
+
+                outline: none;
+              }
+
+              input[type="submit"]{
+                color: white;
+                border-radius: 3px;
+
+                border: 2px solid #e74c3c;
+
+                height: 50px;
+
+                font-size: 1.2em;
+                font-weight: 500;
+
+                background: #e74c3c;
+                padding: 10px;
+                padding-left: 15px;
+                padding-right: 15px;
+
+                border-top-left-radius: 0px;
+                border-bottom-left-radius: 0px;
+
+                margin-left: -3px;
+
+                @media screen and (max-width: 606px){
+                  margin-left: -4px;
+                }
+
+                outline: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

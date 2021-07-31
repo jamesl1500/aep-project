@@ -1,0 +1,123 @@
+.mainAboutUsWrap{
+
+  .bannerTop{
+    height: 400px;
+
+    background: url('https://images.unsplash.com/photo-1451256656121-9ffc0c898a49?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=');
+    background-size: cover;
+
+    .innerBanner{
+      width: 100%;
+      height: 100%;
+
+      background: rgba(0,0,0,.5);
+
+      h3{
+        margin: 0px;
+        padding: 0px;
+
+        text-align: center;
+
+        font-weight: bold;
+        font-size: 5.4em;
+
+        color: white;
+
+        padding-top: 150px;
+
+      }
+    }
+  }
+
+  .bottomAboutUs{
+    position: relative;
+    top: -50px;
+
+    .topIconMain{
+      margin-bottom: 30px;
+
+      .middleIcon{
+        text-align: center;
+
+        img{
+          width: 140px;
+          height: 140px;
+          border-radius: 50%;
+
+          box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+        }
+      }
+    }
+
+    .middleSectionFirst{
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+      background: white;
+
+      float: none;
+      margin: 0% auto;
+
+      .innerAboutUs{
+        padding: 15px;
+
+        .topSection{
+          padding-bottom: 10px;
+
+          h3{
+            font-size: 2.4em;
+            font-weight: bold;
+
+            color: #333;
+
+
+          }
+        }
+      }
+    }
+
+    .bottomTeamSecond{
+      margin: 0% auto;
+      float: none;
+
+      padding: 0px;
+
+      margin-top: 20px;
+
+      .peopleBox{
+        padding: 15px;
+
+        .innerPeopleBox {
+          padding: 15px;
+
+          background: white;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
+          .topProfileImage{
+            width: 150px;
+            height: 150px;
+
+            margin:0% auto;
+
+            border-radius: 50%;
+
+            img{
+              width: 100%;
+              height: 100%;
+              border-radius: 50%;
+            }
+          }
+        }
+      }
+
+      .peopleBox:first-child{
+        padding-left: 0px;
+        padding-right: 5px;
+      }
+
+      .peopleBox:last-child{
+        padding-right: 0px;
+      }
+    }
+  }
+}

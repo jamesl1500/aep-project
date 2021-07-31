@@ -1,0 +1,24 @@
+body
+    color: $cl-text
+    font-family: $font-base
+    font-size: $font-size-base
+
+p, td, th, ul, ol, blockquote
+    font-size: $font-size-base
+
+h1, h2, h3, h4
+    color: $cl-text-heading
+    font-family: $font-heading
+    font-weight: $headings-font-weight
+
+@media screen
+    body
+        &.has-toolbar
+            margin-top: 75px
+@media print
+    .noprint
+        visibility: hidden
+
+.hide-on-print
+    display: none
+    visibility: hidden

@@ -1,0 +1,7 @@
+build
+composer.lock
+docs
+vendor
+tests/temp
+.idea/
+/.phpunit.result.cache

@@ -1,0 +1,58 @@
+{
+    "name": "konekt/acl",
+    "description": "Concord Module for Permission handling (Laravel 5.5 - 8)",
+    "keywords": [
+        "spatie",
+        "laravel",
+        "permission",
+        "acl",
+        "security",
+        "konekt",
+        "concord"
+    ],
+    "homepage": "https://github.com/artkonekt/acl",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Freek Van der Herten",
+            "email": "freek@spatie.be",
+            "homepage": "https://spatie.be",
+            "role": "Developer"
+        },
+        {
+            "name": "Attila Fulop",
+            "homepage": "https://github.com/fulopattila122"
+        }
+    ],
+    "require": {
+        "php" : "^7.3|^8.0",
+        "illuminate/auth": "~6.0|~7.0|~8.0",
+        "illuminate/container": "~6.0|~7.0|~8.0",
+        "illuminate/contracts": "~6.0|~7.0|~8.0",
+        "illuminate/database": "~6.0|~7.0|~8.0",
+        "konekt/concord": "~1.5"
+    },
+    "require-dev": {
+        "orchestra/testbench": "~4.0|~5.0|~6.0",
+        "phpunit/phpunit" : "8 - 9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Konekt\\Acl\\": "src"
+        },
+        "files": [
+            "src/Support/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Konekt\\Acl\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

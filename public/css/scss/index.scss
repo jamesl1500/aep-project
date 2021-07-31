@@ -1,0 +1,164 @@
+$mainBlack: #262624;
+
+.mainContentIndex{
+  padding: 20px;
+  padding-top: 0px;
+
+  .indexBackgroundImages{
+    box-shadow: 0 37.125px 70px -12.125px rgba(0,0,0,0.5);
+
+    background: url(../images/index/index_background.jpg);
+    background-size: cover;
+    background-position: center;
+
+    height: 500px;
+    width: 100%;
+
+    @media screen and (max-width: 800px)
+    {
+      width: 100%;
+    }
+
+    margin: 0% auto;
+
+    @media screen and (max-width: 400px) {
+      height: 470px;
+    }
+
+    @media screen and (max-width: 500px) {
+      height: 450px;
+    }
+
+
+    .cover{
+      background: rgba(0,0,0,.5);
+
+      height: 100%;
+      width: 100%;
+
+      @media screen and (max-width: 500px) {
+        background: rgba(0,0,0,.7);
+      }
+
+      .container{
+        padding-left: 30px;
+
+        .topInfo{
+          padding-top: 150px;
+
+          @media screen and (max-width: 500px) {
+            padding-top: 55px;
+          }
+
+          p{
+            font-size: 2em;
+            font-weight: 400;
+
+            text-align: left;
+            color: white;
+          }
+        }
+
+        .hor-divider{
+          width: 100px;
+          height: 1px;
+
+          background: white;
+        }
+
+        .bottomInfo{
+
+          .innerBottomInfo{
+
+            a:first-child{
+              margin-right: 15px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .firstIndexSection{
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+    .innerIndexSection{
+
+      .topHead{
+
+        h3{
+          font-size: 2em;
+          font-weight: 500;
+
+          color: $mainBlack;
+
+          text-align: center;
+        }
+      }
+
+      .middleArea{
+        padding-top: 40px;
+        padding-bottom: 40px;
+
+        .innerMiddleArea{
+
+          .productBox{
+
+            .innerProductBox{
+
+              .topProductBox{
+
+                .innerProductImage{
+                  width: 100%;
+                }
+              }
+              .bottomProductBox{
+
+                .innerBottomProductBox{
+                  text-align: center;
+
+                  h3{
+                    font-size: 1.1em;
+
+                    a{
+                      color: $mainBlack;
+
+                      font-weight: 500;
+                    }
+                  }
+
+                  h4{
+                    font-size: 1.2em;
+
+                    a{
+                      color: #aaa;
+                      font-weight: 400;
+                    }
+                  }
+
+                  h5{
+                    font-size: 1.2em;
+
+                    a{
+                      color: $mainBlack;
+                      font-weight: 600;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .bottomArea{
+        text-align: center;
+
+        a{
+
+        }
+      }
+    }
+  }
+}

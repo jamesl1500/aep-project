@@ -1,0 +1,152 @@
+$mainBlack: #262624;
+
+.website{
+  padding-bottom: 100px;
+  height: auto;
+}
+
+.mainProductBanner{
+  width: 100%;
+
+  background: white;
+
+  padding-bottom: 20px;
+
+  .innerProductBanner{
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+    .brand_image{
+      float: none;
+      margin: 0% auto;
+
+      img{
+        text-align: center;
+        width: 100%;
+      }
+    }
+
+    h3{
+      color: $mainBlack;
+      text-align: center;
+
+      font-size: 3.5em;
+      font-weight: bold;
+    }
+
+    h4{
+      color: #aaa;
+      text-align: center;
+
+      font-size: 2em;
+      font-weight: 300;
+
+    }
+  }
+}
+
+.bottomMain{
+  background: white;
+
+  @media screen and (min-width: 500px) {
+    height: 100%;
+  }
+
+    .innerPart{
+    border-top: 1px solid #eee;
+    padding: 0px;
+
+    .leftproducts{
+      margin-top: 20px;
+
+      @media screen and (min-width: 500px) {
+        padding-left: 0px;
+
+      }
+
+        .media{
+        padding-bottom: 30px;
+        padding-top: 15px;
+
+        border-bottom: 1px solid #eee;
+
+        .media-left{
+          width: 100px;
+
+          a{
+
+            img{
+              width: 100px;
+              height: 100px;
+            }
+          }
+        }
+
+        .media-body{
+
+          h4{
+            font-weight: bold;
+
+            color: $mainBlack;
+          }
+        }
+      }
+
+      .media:last-child{
+        border-bottom: 0px;
+      }
+    }
+
+    .rightSummary{
+      margin-top: 20px;
+
+      @media screen and (min-width: 500px) {
+        padding-right: 0px;
+      }
+
+      .card{
+        background: rgba(0,0,0,.03);
+
+        padding: 15px;
+
+        border-radius: 3px;
+
+        .card-header{
+
+          h4{
+            font-weight: bold;
+            color: $mainBlack;
+          }
+        }
+
+        .card-total{
+          background: white;
+          margin-left: -14px;
+          margin-right: -14px;
+
+          padding: 20px;
+
+          margin-bottom: 15px;
+
+          padding-left: 18px;
+
+          border-right: 1px solid rgba(0,0,0,0.03);
+          border-left: 1px solid rgba(0,0,0,0.03);
+
+          h3{
+            padding-top: 0px;
+            margin-top: 0px;
+
+            color: #e74c3c;
+            font-weight: bold;
+          }
+
+          h4{
+            margin-bottom: 0px;
+            padding-bottom: 0px;
+          }
+        }
+      }
+    }
+  }
+}

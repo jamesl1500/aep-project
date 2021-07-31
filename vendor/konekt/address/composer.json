@@ -1,0 +1,44 @@
+{
+    "name": "konekt/address",
+    "description": "Laravel module for handling countries, cities, addresses, people and organizations",
+    "type": "library",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Attila Fulop",
+            "homepage": "https://github.com/fulopattila122"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/artkonekt/address"
+    },
+    "require": {
+        "php": "^7.3 | ^8.0",
+        "doctrine/dbal": "~2.3, !=2.10.3",
+        "konekt/concord": "^1.5.1",
+        "konekt/enum": "~3.0",
+        "konekt/enum-eloquent": "~1.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Konekt\\Address\\": "src",
+            "Konekt\\Address\\Seeds\\": "src/resources/database/seeds"
+        }
+    },
+    "require-dev": {
+        "ext-sqlite3": "*",
+        "orchestra/testbench": "~4.0|~5.0|~6.0",
+        "phpunit/phpunit" : "~8.0|~9.0",
+        "mockery/mockery": "^1.1"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Konekt\\Address\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    }
+}

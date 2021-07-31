@@ -1,46 +1,71 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<?php
+use App\Libraries\HeaderFunctions;
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+// Include the header functions
+$headerFunctions = new HeaderFunctions();
+?>
+<html lang="en">
+<head>
+    <title><?php echo config('app.name'); ?></title>
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <!-- Meta -->
+    <meta charset="UTF-8">
 
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <meta name="description" content="<?php echo config('app.description'); ?>">
+    <meta name="keywords" content="<?php echo config('app.keywords'); ?>">
+    <meta name="author" content="<?php echo config('app.author'); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        @livewireStyles
+    <link rel="shortcut icon" type="image/jpg" href="<?php echo url('images'); ?>/main_logo.jpg" />
 
-        <!-- Scripts -->
-        <script src="{{ mix('js/app.js') }}" defer></script>
-    </head>
-    <body class="font-sans antialiased">
-        <x-jet-banner />
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}" />
 
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+    <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.16/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}" />
+    <?php
+    if(isset($stylesheet) && $stylesheet != ""){
+    ?>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/'.$stylesheet.'.css') }}" />
+    <?php
+    }
+    ?>
+    <!-- Fontawesome -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+</head>
+<body>
+<div class="mainWebsiteHold animated fadeIn">
+    <!-- Main website content -->
+    <div class="websiteBody clearfix">
+        <!-- Header -->
+        @include('templates.header')
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+        <div class="website">
+            @yield('content')
         </div>
 
-        @stack('modals')
+        <!-- FadeIn  Overlay -->
+        <div class="websiteMainOverlay"></div>
 
-        @livewireScripts
-    </body>
+        <!-- Footer -->
+        @include('templates.footer')
+    </div>
+
+    <!-- Sidebar Hold (Smaller screens E.G Tablets Phones Screens) -->
+    @include('templates.sidebar')
+</div>
+
+<!-- Javascript -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="{{ asset('js/main.js') }}"></script>
+
+@yield('scripts')
+
+</body>
 </html>
