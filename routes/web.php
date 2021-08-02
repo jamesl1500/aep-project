@@ -33,7 +33,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 // Store (Must be logged)
-Route::get('/store', [StoreController::class, 'index'])->name('home.index');
+Route::get('/store', [StoreController::class, 'index'])->middleware('auth')->name('home.index');
 
 // Help
 Route::get('/help', [HelpController::class, 'index'])->name('help.index');
@@ -59,6 +59,7 @@ Route::get('/account/admin/manage_admins', [AccountController::class, 'manage_ad
 
 Route::get('/account/admin/manage_products', [AccountController::class, 'manage_products'])->name('account.admin.manage_products');
 Route::get('/account/admin/add_product', [AccountController::class, 'add_product'])->name('account.admin.add_product');
+
 Route::get('/account/admin/product/edit/{product_id}', function($product_id){
     return view('account.admin.products.edit_product',['stylesheet' => "account", 'product_id' => $product_id] );
 });
@@ -86,6 +87,7 @@ Route::post('/account/admin/manage_admin/make', [AccountController::class, 'make
 // Products
 Route::get('/products', [ProductsController::class, 'all_products'])->name("products.all_products");
 Route::get('/products/brands', [ProductsController::class, 'all_brands'])->name('brands.all_brands');
+
 Route::get('/products/brands/{brand}', function($brand){
     return view('products.brands.view_brand',['stylesheet' => "products", 'brand' => $brand] );
 });
@@ -98,6 +100,7 @@ Route::post('/products/edit/removeThumbnail', [ProductsController::class, 'remov
 Route::get('/products/single/{product_id}', function($product_id){
     return view('products.product_view',['stylesheet' => "products", 'product_id' => $product_id] );
 });
+
 Route::post('/products/addToCart', [CartController::class, 'addToCart']);
 
 // About Us
