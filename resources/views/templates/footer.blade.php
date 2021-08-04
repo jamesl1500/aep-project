@@ -23,9 +23,9 @@ $props = DB::table('site_props')->where('id', 1)->get();
         </div>
         <div class="bottomFooterCopyright">
             <div class="innerFooterCopyright">
-                <p style="color: white;font-weight: bold;">777 W.Market St, Akron, OH 44303 | W-S 1:00PM to 7:00PM</p>
-                <p style="color: white;"><?php echo $props[0]->return_policy; ?></p>
-                <h3>Unmovablestore.com &copy 20<?php echo date('y'); ?>; Site built and designed by <a href="https://sitelyftstudios.com/">Sitelyft Studios</a></h3>
+                <p style="color: white;font-weight: bold;"></p>
+                <p style="color: white;"></p>
+                <h3></h3>
             </div>
         </div>
     </div>

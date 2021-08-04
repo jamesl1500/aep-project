@@ -12,7 +12,7 @@ class GateKeeperController extends Controller
     {
         if(Auth::check())
         {
-            echo "Logged";
+            redirect('/store');
         }else{
             return view('auth.login');
         }

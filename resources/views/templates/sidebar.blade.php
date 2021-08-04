@@ -9,7 +9,7 @@ $props = DB::table('site_props')->where('id', 1)->get();
         <div class="sidebarTop">
             <a href="">
                 <img src="<?php echo url('images'); ?>/main_logo.jpg" />
-                <h3>Unmovable Store</h3>
+                <h3>AEP</h3>
             </a>
         </div>
         <?php
@@ -90,17 +90,17 @@ $props = DB::table('site_props')->where('id', 1)->get();
             <div class="footerSocial">
                 <ul>
                     <li>
-                        <a href="<?php echo $props[0]->instagram_link; ?>">
+                        <a href="">
                             <span class="fa-layers fa-fw"><i class="fab fa-instagram"></i></span>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo $props[0]->twitter_link; ?>">
+                        <a href="">
                             <span class="fa-layers fa-fw"><i class="fab fa-twitter"></i></span>
                         </a>
                     </li>
                     <li style="display: none;">
-                        <a href="{{ route('search.index') }}">
+                        <a href="">
                             <span class="fa-layers fa-fw"><i class="fab fa-facebook-f"></i></span>
                         </a>
                     </li>

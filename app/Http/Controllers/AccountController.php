@@ -41,7 +41,7 @@ class AccountController extends Controller
     /* Admin routes */
     public function manage_admins()
     {
-        if(Auth::user()->admin == 1)
+        if(Auth::user()->type == "admin")
         {
             return view('account.admin.manage_admins', ['stylesheet' => $this->stylesheet]);
         }else{
@@ -49,9 +49,19 @@ class AccountController extends Controller
         }
     }
 
+    public function manage_users()
+    {
+        if(Auth::user()->type == "admin")
+        {
+            return view('account.admin.manage_users', ['stylesheet' => $this->stylesheet]);
+        }else{
+            return redirect('/');
+        }
+    }
+
     public function add_category()
     {
-        if(Auth::user()->admin == 1) {
+        if(Auth::user()->type == "admin") {
             return view('account.admin.categories.add_category', ['stylesheet' => $this->stylesheet]);
         }else{
             return redirect('/');
@@ -60,7 +70,7 @@ class AccountController extends Controller
 
     public function add_sub_category()
     {
-        if(Auth::user()->admin == 1)
+        if(Auth::user()->type == "admin")
         {
             return view('account.admin.categories.add_sub_category', ['stylesheet' => $this->stylesheet]);
         }else{
@@ -70,7 +80,7 @@ class AccountController extends Controller
 
     public function manage_categories()
     {
-        if(Auth::user()->admin == 1)
+        if(Auth::user()->type == "admin")
         {
             return view('account.admin.manage_categories', ['stylesheet' => $this->stylesheet]);
         }else{
@@ -80,7 +90,7 @@ class AccountController extends Controller
 
     public function add_brand()
     {
-        if(Auth::user()->admin == 1)
+        if(Auth::user()->type == "admin")
         {
             return view('account.admin.brands.add_brand', ['stylesheet' => $this->stylesheet]);
         }else{
@@ -90,7 +100,7 @@ class AccountController extends Controller
 
     public function manage_brands()
     {
-        if(Auth::user()->admin == 1)
+        if(Auth::user()->type == "admin")
         {
             return view('account.admin.manage_brands', ['stylesheet' => $this->stylesheet]);
         }else{
@@ -100,7 +110,7 @@ class AccountController extends Controller
 
     public function manage_products()
     {
-        if(Auth::user()->admin == 1)
+        if(Auth::user()->type == "admin")
         {
             return view('account.admin.manage_products', ['stylesheet' => $this->stylesheet]);
         }else{
@@ -110,7 +120,7 @@ class AccountController extends Controller
 
     public function manage_orders()
     {
-        if(Auth::user()->admin == 1)
+        if(Auth::user()->type == "admin")
         {
             return view('account.admin.manage_orders', ['stylesheet' => $this->stylesheet]);
         }else{
@@ -120,7 +130,7 @@ class AccountController extends Controller
 
     public function manage_site_properties()
     {
-        if(Auth::user()->admin == 1)
+        if(Auth::user()->type == "admin")
         {
             return view('account.admin.manage_site_properties', ['stylesheet' => $this->stylesheet]);
         }else{
@@ -130,7 +140,7 @@ class AccountController extends Controller
 
     public function edit_order($order_id)
     {
-        if(Auth::user()->admin == 1)
+        if(Auth::user()->type == "admin")
         {
             if (count(OrderingSystem::fetchOrder($order_id)) == 1)
             {
@@ -145,7 +155,7 @@ class AccountController extends Controller
 
     public function add_product()
     {
-        if(Auth::user()->admin == 1)
+        if(Auth::user()->type == "admin")
         {
             return view('account.admin.products.add_product', ['stylesheet' => $this->stylesheet]);
         }else{
@@ -202,7 +212,7 @@ class AccountController extends Controller
             if (Auth::check())
             {
                 // Make sure its an admin
-                if (auth()->user()->admin == 1)
+                if (auth()->user()->type == "admin")
                 {
                     if ($request->category_name != "" && $request->status != "" && $request->special != "" && $request->display_nav != "")
                     {
@@ -242,7 +252,7 @@ class AccountController extends Controller
             if (Auth::check())
             {
                 // Make sure its an admin
-                if (auth()->user()->admin == 1)
+                if (auth()->user()->type == "admin")
                 {
                     if ($request->category_name != "" && $request->status != "" && $request->special != "" && $request->display_nav != "")
                     {
@@ -283,7 +293,7 @@ class AccountController extends Controller
             if (Auth::check())
             {
                 // Make sure its an admin
-                if (auth()->user()->admin == 1)
+                if (auth()->user()->type == "admin")
                 {
                     if ($request->brand_image != "" &&$request->name != "" && $request->status != "" && $request->desc != "")
                     {
@@ -375,7 +385,7 @@ class AccountController extends Controller
         {
             if (Auth::check())
             {
-                if (auth()->user()->admin == 1)
+                if (auth()->user()->type == "admin")
                 {
                     // Check values
                     $request->validate([
@@ -470,7 +480,7 @@ class AccountController extends Controller
         {
             if (Auth::check())
             {
-                if (auth()->user()->admin == 1)
+                if (auth()->user()->type == "admin")
                 {
                     DB::table('site_props')->where('id', 1)->update(['about_us_text' => ''. $request->site_desc . '', 'return_policy' => '' . $request->site_return_policy . '', 'faq_text' => '' . $request->faq_text . '', 'instagram_link' => '' . $request->instagram_link . '', 'twitter_link' => '' . $request->twitter_link . '']);
                     return redirect("account/admin/manage_site_properties")->with('success', 'Site updated!');
@@ -483,7 +493,7 @@ class AccountController extends Controller
     public function revoke_admin(Request $request)
     {
         // Update user
-        DB::table('users')->where('id', '' . $request->id . '')->update(['admin' => '0']);
+        DB::table('users')->where('id', '' . $request->id . '')->update(['type' => 'client']);
 
         echo json_encode(array('code' => '1'));
 
@@ -493,7 +503,7 @@ class AccountController extends Controller
     public function make_admin(Request $request)
     {
         // Update user
-        DB::table('users')->where('id', '' . $request->id . '')->update(['admin' => '1']);
+        DB::table('users')->where('id', '' . $request->id . '')->update(['type' => 'admin']);
 
         echo json_encode(array('code' => '1'));
 

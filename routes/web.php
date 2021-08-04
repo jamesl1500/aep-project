@@ -56,6 +56,7 @@ Route::get('/account/admin/manage_brands', [AccountController::class, 'manage_br
 Route::get('/account/admin/add_brand', [AccountController::class, 'add_brand'])->name('account.admin.add_brand');
 
 Route::get('/account/admin/manage_admins', [AccountController::class, 'manage_admins'])->name('account.admin.manage_adminst');
+Route::get('/account/admin/manage_users', [AccountController::class, 'manage_users'])->name('account.admin.manage_users');
 
 Route::get('/account/admin/manage_products', [AccountController::class, 'manage_products'])->name('account.admin.manage_products');
 Route::get('/account/admin/add_product', [AccountController::class, 'add_product'])->name('account.admin.add_product');

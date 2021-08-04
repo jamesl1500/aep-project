@@ -8,6 +8,7 @@
             </div>
         </div>
         <div class="bottomMainContainer container">
+            <div class="row">
             <div class="leftNavigations col-lg-3">
                 <!-- Main User Settings -->
                 <div class="navigationBlock">
@@ -22,7 +23,7 @@
                 </div>
 
                 <?php
-                if(auth()->user()->admin == 1){
+                if(auth()->user()->type == "admin"){
                 ?>
                         <!-- Main Admin Settings -->
                 <div class="navigationBlock">
@@ -35,6 +36,7 @@
                             <li class="active"><a href="{{ route('account.admin.manage_products') }}">Manage Products</a></li>
                             <li><a href="{{ route('account.admin.manage_orders') }}">Manage Orders</a></li>
                             <li><a href="{{ route('account.admin.manage_site_properties') }}">Manage Site</a></li>
+                            <li><a href="{{ route('account.admin.manage_users') }}">Manage Users</a></li>
                         </ul>
                     </div>
                 </div>
@@ -108,6 +110,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     </div>

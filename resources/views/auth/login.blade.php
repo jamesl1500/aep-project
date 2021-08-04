@@ -1,7 +1,8 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <h1 style="text-align: center;font-size: 2em;font-weight: bold;">AEP</h1>
+            <p style="text-align: center;">Welcome to AEP! If you have an activated account please input your email and password</p>
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
