@@ -7,7 +7,7 @@
         </div>
         <div class="bottomHold">
             <div class="back">
-                <p>All purchases ar final. All orders are shipped via USPS and take 1-3 business days to process. Please feel free to contact us with any concerns at <a href="mailto:unmovablestore@gmail.com">unmovablestore@gmail.com</a></p>
+                <p>Welcome popup test</p>
             </div>
             <div class="bottomButton">
                 <form action="" method="post" id="returnPolicyForm">
