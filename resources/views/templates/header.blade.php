@@ -26,23 +26,16 @@
     </div>
     <div class="mainHeaderInner container">
         <div class="leftResponsiveAction pull-left">
-            <a href="" class="openSidebar"><i class="fas fa-bars"></i></a>
-            <a href="{{ route('search.index') }}"><i class="fas fa-search"></i></a>
+
         </div>
         <div class="leftBranding pull-left col-lg-4 col-md-4">
-            <div class="innerBranding">
-                <a href="<?php echo url('/'); ?>" style="display: none;">
-                    <img src="<?php echo url('images'); ?>/main_logo.jpg" />
-                    <h3><?php echo env('APP_NAME', 'Unmovable'); ?></h3>
-                </a>
-            </div>
+
         </div>
         <div class="rightNavigation pull-right col-lg-8 col-md-8 col-sm-3">
             <div class="middleNavigation hidden-sm hidden-xs">
                 <div class="innerMiddleNav">
                     <div class="innerBranding">
                         <a href="<?php echo url('/'); ?>">
-                            <h3><?php echo env('APP_NAME', 'Unmovable'); ?> Store</h3>
                         </a>
                     </div>
 
