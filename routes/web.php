@@ -7,7 +7,7 @@ use App\Http\Controllers\StoreController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AboutUsController;
-use App\Http\Controllers\gateKeeperController;
+use App\Http\Controllers\GateKeeperController;
 use App\Http\Controllers\JournalController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CartController;
