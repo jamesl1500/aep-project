@@ -9,6 +9,23 @@ use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
+    // Website Name
+    public $wn; 
+
+    // Curent page name
+    public $cpn = "Help";
+
+    // Stylesheet
+    public $ss = "help.css";
+
+    // Constructor
+    public function __construct()
+    {
+
+        // Popular vars
+        $this->wn = env('APP_NAME');
+    }
+
     // Vars
     private $addCartSizeId;
     private $addCartProductSizingId;
@@ -20,10 +37,10 @@ class CartController extends Controller
     {
         if(Auth::check())
         {
-            return view('cart');
+            return view('cart', ['wn' => $this->wn, 'cpn' => $this->cpn, 'ss' => $this->ss]);
         }else{
-            return view('cart');
-            //return redirect("login")->with('error', 'Must be logged in!');
+            //return view('cart');
+            return redirect("login")->with('error', 'Must be logged in!');
         }
     }
 

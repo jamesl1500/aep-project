@@ -11,26 +11,45 @@ use App\Http\Controllers\Controller;
 
 class ProductsController extends Controller
 {
-    public $stylesheet = "products";
+    // Website Name
+    public $wn; 
+
+    // Curent page name
+    public $cpn;
+
+    public $ss = "products.css";
+
+    // Constructor
+    public function __construct()
+    {
+        // Popular vars
+        $this->wn = env('APP_NAME');
+    }
+
     //
     public function all_products(){
-        return view('products.index',['stylesheet' => $this->stylesheet] );
+        $this->cpn = "Products";
+        return view('products.index', ['wn' => $this->wn, 'cpn' => $this->cpn, 'ss' => $this->ss]);
     }
 
     public function view_brand($brand){
-        return view('products.brands.view_brand',['stylesheet' => $this->stylesheet, 'brand' => $brand] );
+        $this->cpn = "Brands";
+        return view('products.brands.view_brand', ['wn' => $this->wn, 'cpn' => $this->cpn, 'ss' => $this->ss, 'brand' => $brand]);
     }
 
     public function all_brands(){
-        return view('products.brands.all_brands',['stylesheet' => $this->stylesheet] );
+        $this->cpn = "Brands";
+        return view('products.brands.all_brands', ['wn' => $this->wn, 'cpn' => $this->cpn, 'ss' => $this->ss]);
     }
 
     public function view_category($category){
-        return view('products.category.view_category',['stylesheet' => $this->stylesheet, 'category' => $category] );
+        $this->cpn = "Categories";
+        return view('products.category.view_category', ['wn' => $this->wn, 'cpn' => $this->cpn, 'ss' => $this->ss, 'category' => $category]);
     }
 
     public function all_category(){
-        return view('products.brands.all_brands',['stylesheet' => $this->stylesheet] );
+        $this->cpn = "Categories";
+        return view('products.brands.all_brands', ['wn' => $this->wn, 'cpn' => $this->cpn, 'ss' => $this->ss]);
     }
     
     public function delete_product()
@@ -53,7 +72,7 @@ class ProductsController extends Controller
         $product = DB::table('products')->where('id',''. $request->pid  .'')->get()[0];
         $image = $product->product_photo;
 
-        if(count($product) != 0)
+        if(!empty($product))
         {
             // Check values
             if(!isset($_FILES['product_image']) && $_FILES['product_image'] == "")

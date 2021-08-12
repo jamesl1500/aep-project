@@ -8,6 +8,158 @@ body{
   //display: none;
 }
 
+// Header
+.header{
+
+  .inner-header{
+
+    .top-header{
+      background: white;
+      
+      .inner-top-header{
+        padding-top: 10px;
+        padding-bottom: 8px;
+
+        .row{
+
+          .branding{
+
+            h3{
+              font-size: 20px;
+              font-weight: 600;
+
+              padding-top: 5px;
+            }
+          }
+
+          .nav-links{
+            padding: 0px;
+            padding-top: 5px;
+
+            ul{
+              padding: 0px;
+              margin: 0px;
+
+              li{
+                display: inline-block;
+                margin-right: 10px;
+
+                a{
+                  color: #A4A4A4;
+                  text-decoration: none;
+                }
+              }
+
+              li.active{
+
+                a{
+                  color: #333;
+                  font-weight: bold;
+                }
+              }
+            }
+          }
+
+          .search-bar{
+
+            .inner-search-bar{
+
+              input{
+                width: 100%;
+                border-radius: 22px;
+
+                border: 1px solid #eee;
+
+                padding: 5px;
+                padding-left: 15px;
+                
+                outline: none;
+              }
+
+              ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+                color: #aaa;
+                opacity: 1; /* Firefox */
+              }
+              
+              :-ms-input-placeholder { /* Internet Explorer 10-11 */
+                color: #aaa;
+              }
+              
+              ::-ms-input-placeholder { /* Microsoft Edge */
+                color: #aaa;
+              }
+            }
+
+          }
+
+          .nav-btns{
+
+          }
+        }
+      }
+    }
+
+    .sub-header{
+      background: #242424;
+
+      .inner-sub-header{
+        padding-top:10px;
+        padding-bottom:10px;
+
+        ul{
+          margin: 0px;
+          padding: 0px;
+
+          li{
+            display: inline-block;
+            margin-right: 30px;
+
+            a{
+              color: white;
+              text-decoration: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.mainProductBanner{
+  height: auto;
+  
+  background: #eee;
+
+  .innerProductBanner{
+      padding-top: 40px;
+      padding-bottom: 40px;
+
+      h3{
+          text-align: center;
+          font-size: 50px;
+          font-weight: 500;
+
+
+      }
+
+      p{
+          text-align: center;
+          font-size: 24px;
+      }
+
+      form{
+
+          input{
+              outline: none;
+          }
+      }
+  }
+}
+
+.websiteContent{
+  margin-top: 19px;
+}
+
 .href{
   margin-top: 1em;
   padding: .4em 2em .20em;

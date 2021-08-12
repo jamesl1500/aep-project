@@ -10,32 +10,43 @@ use App\Libraries\OrderingSystem;
 
 class AccountController extends Controller
 {
-    public $stylesheet = "account";
+    // Website Name
+    public $wn; 
 
-    //
+    // Curent page name
+    public $cpn = "Account Settings";
+
+    // Stylesheet
+    public $ss = "account.css";
+
+    // Constructor
     public function __construct()
     {
         $this->middleware('auth');
+
+        // Popular vars
+        $this->wn = env('APP_NAME');
     }
 
     public function index()
     {
-        return view('account.index', ['stylesheet' => $this->stylesheet]);
+        
+        return view('account.index', ['wn' => $this->wn, 'cpn' => $this->cpn, 'ss' => $this->ss]);
     }
 
     public function order_history()
     {
-        return view('account.order_history', ['stylesheet' => $this->stylesheet]);
+        return view('account.order_history', ['wn' => $this->wn, 'cpn' => $this->cpn, 'ss' => $this->ss]);
     }
 
     public function account_addresses()
     {
-        return view('account.account_addresses', ['stylesheet' => $this->stylesheet]);
+        return view('account.account_addresses', ['wn' => $this->wn, 'cpn' => $this->cpn, 'ss' => $this->ss]);
     }
 
     public function add_new_address()
     {
-        return view('account.addresses.add_address', ['stylesheet' => $this->stylesheet]);
+        return view('account.addresses.add_address', ['wn' => $this->wn, 'cpn' => $this->cpn, 'ss' => $this->ss]);
     }
 
     /* Admin routes */
@@ -43,7 +54,7 @@ class AccountController extends Controller
     {
         if(Auth::user()->type == "admin")
         {
-            return view('account.admin.manage_admins', ['stylesheet' => $this->stylesheet]);
+            return view('account.admin.manage_admins', ['wn' => $this->wn, 'cpn' => $this->cpn, 'ss' => $this->ss]);
         }else{
             return redirect('/');
         }
@@ -53,7 +64,7 @@ class AccountController extends Controller
     {
         if(Auth::user()->type == "admin")
         {
-            return view('account.admin.manage_users', ['stylesheet' => $this->stylesheet]);
+            return view('account.admin.manage_users', ['wn' => $this->wn, 'cpn' => $this->cpn, 'ss' => $this->ss]);
         }else{
             return redirect('/');
         }
@@ -62,7 +73,7 @@ class AccountController extends Controller
     public function add_category()
     {
         if(Auth::user()->type == "admin") {
-            return view('account.admin.categories.add_category', ['stylesheet' => $this->stylesheet]);
+            return view('account.admin.categories.add_category', ['wn' => $this->wn, 'cpn' => $this->cpn, 'ss' => $this->ss]);
         }else{
             return redirect('/');
         }
@@ -72,7 +83,7 @@ class AccountController extends Controller
     {
         if(Auth::user()->type == "admin")
         {
-            return view('account.admin.categories.add_sub_category', ['stylesheet' => $this->stylesheet]);
+            return view('account.admin.categories.add_sub_category', ['wn' => $this->wn, 'cpn' => $this->cpn, 'ss' => $this->ss]);
         }else{
             return redirect('/');
         }
@@ -82,7 +93,7 @@ class AccountController extends Controller
     {
         if(Auth::user()->type == "admin")
         {
-            return view('account.admin.manage_categories', ['stylesheet' => $this->stylesheet]);
+            return view('account.admin.manage_categories', ['wn' => $this->wn, 'cpn' => $this->cpn, 'ss' => $this->ss]);
         }else{
             return redirect('/');
         }
@@ -92,7 +103,7 @@ class AccountController extends Controller
     {
         if(Auth::user()->type == "admin")
         {
-            return view('account.admin.brands.add_brand', ['stylesheet' => $this->stylesheet]);
+            return view('account.admin.brands.add_brand', ['wn' => $this->wn, 'cpn' => $this->cpn, 'ss' => $this->ss]);
         }else{
             return redirect('/');
         }
@@ -102,7 +113,7 @@ class AccountController extends Controller
     {
         if(Auth::user()->type == "admin")
         {
-            return view('account.admin.manage_brands', ['stylesheet' => $this->stylesheet]);
+            return view('account.admin.manage_brands', ['wn' => $this->wn, 'cpn' => $this->cpn, 'ss' => $this->ss]);
         }else{
             return redirect('/');
         }
@@ -112,7 +123,7 @@ class AccountController extends Controller
     {
         if(Auth::user()->type == "admin")
         {
-            return view('account.admin.manage_products', ['stylesheet' => $this->stylesheet]);
+            return view('account.admin.manage_products', ['wn' => $this->wn, 'cpn' => $this->cpn, 'ss' => $this->ss]);
         }else{
             return redirect('/');
         }
@@ -122,7 +133,7 @@ class AccountController extends Controller
     {
         if(Auth::user()->type == "admin")
         {
-            return view('account.admin.manage_orders', ['stylesheet' => $this->stylesheet]);
+            return view('account.admin.manage_orders', ['wn' => $this->wn, 'cpn' => $this->cpn, 'ss' => $this->ss]);
         }else{
             return redirect('/');
         }
@@ -132,7 +143,7 @@ class AccountController extends Controller
     {
         if(Auth::user()->type == "admin")
         {
-            return view('account.admin.manage_site_properties', ['stylesheet' => $this->stylesheet]);
+            return view('account.admin.manage_site_properties', ['wn' => $this->wn, 'cpn' => $this->cpn, 'ss' => $this->ss]);
         }else{
             return redirect('/');
         }
@@ -144,7 +155,7 @@ class AccountController extends Controller
         {
             if (count(OrderingSystem::fetchOrder($order_id)) == 1)
             {
-                return view('account.admin.orders.edit_order', ['stylesheet' => $this->stylesheet, 'order_id' => $order_id]);
+                return view('account.admin.orders.edit_order', ['wn' => $this->wn, 'cpn' => $this->cpn, 'ss' => $this->ss, 'order_id' => $order_id]);
             } else {
                 return redirect('/');
             }
@@ -157,7 +168,7 @@ class AccountController extends Controller
     {
         if(Auth::user()->type == "admin")
         {
-            return view('account.admin.products.add_product', ['stylesheet' => $this->stylesheet]);
+            return view('account.admin.products.add_product', ['wn' => $this->wn, 'cpn' => $this->cpn, 'ss' => $this->ss]);
         }else{
             return redirect('/');
         }

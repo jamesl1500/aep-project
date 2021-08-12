@@ -1,3 +1,9 @@
+<?php
+
+use App\Libraries\HeaderFunctions;
+
+$headerFunctions = new HeaderFunctions();
+?>
 <header class="header primary-header solid-header">
     <div class="inner-header">
         <div class="top-header">
@@ -8,18 +14,20 @@
                     </div>
                     <div class="nav-links col col-lg-2">
                         <ul>
-                            <li class="active"><a href="">Home</a></li>
-                            <li><a href="">Brand</a></li>
-                            <li><a href="">Support</a></li>
+                            <li <?php if($cpn == "Store"){?>class="active"<?php } ?>><a href="{{ route('home.index') }}">Home</a></li>
+                            <li <?php if($cpn == "Brands"){?>class="active"<?php } ?>><a href="{{ route('brands.all_brands') }}">Brand</a></li>
+                            <li <?php if($cpn == "Help"){?>class="active"<?php } ?>><a href="{{ route('help.index') }}">Support</a></li>
                         </ul>
                     </div>
-                    <div class="search-bar col col-lg-5">
+                    <div class="search-bar col col-lg-6">
                         <div class="inner-search-bar">
                             <input type="search" name="search" placeholder="Search" />
                         </div>
                     </div>
-                    <div class="nav-btns col col-lg-3">
-
+                    <div class="nav-btns col col-lg-2">
+                        <a href="{{ route('cart.index') }}"><i class="fas fa-shopping-cart"></i></a>
+                        <a href="{{ route('account.index') }}">Account</a>
+                        <a href="{{ route('logout.index') }}">Logout</a>
                     </div>
                 </div>
             </div>
@@ -27,12 +35,22 @@
         <div class="sub-header">
             <div class="inner-sub-header container">
                 <ul>
-                    <li><a href="">Category 1</a></li>
-                    <li><a href="">Category 2</a></li>
-                    <li><a href="">Category 3</a></li>
-                    <li><a href="">Category 4</a></li>
-                    <li><a href="">Category 5</a></li>
-                    <li><a href="">Category 6</a></li>
+                    <?php
+                        $categories = $headerFunctions->returnCategories();
+
+                        // Display categories
+                        foreach($categories as $category)
+                        {
+                            // Make sure its a nav link
+                            if($category['display_nav'] == 1)
+                            {
+                            ?>
+                                <li><a href="/products/category/<?php echo $category['id']; ?>"><?php echo $category['name']; ?></a></li>
+                            <?php
+                            }
+                        }
+                    ?>
+                    <li style="float: right;"><a href="{{ route('brands.all_brands') }}">See All</a></li>
                 </ul>
             </div>
         </div>

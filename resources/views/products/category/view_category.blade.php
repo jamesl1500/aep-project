@@ -15,9 +15,12 @@ if(count($category_info) == 0)
     }
 }
 ?>
-@extends('layouts.app')
+@section('cpn', $cpn )
+@section('wn', $wn )
 
-@section('content')
+@extends('layouts.store')
+
+@section('website_content')
     <div class="mainProductBanner">
         <div class="innerProductBanner container" style="padding-bottom: 30px">
             <!-- <div class="brand_image col-lg-2">

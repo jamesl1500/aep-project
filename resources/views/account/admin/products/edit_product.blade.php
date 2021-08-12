@@ -5,9 +5,12 @@ if(Auth::check() && count($product) == 0){
     header('location: /');
 }
 ?>
-@extends('layouts.app')
+@section('cpn', $cpn )
+@section('wn', $wn )
 
-@section('content')
+@extends('layouts.store')
+
+@section('website_content')
     <div class="accountMainContainer">
         <div class="bannerMainTop admin">
             <div class="innerBanner">

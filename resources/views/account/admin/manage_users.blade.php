@@ -1,9 +1,9 @@
-<?php
+@section('cpn', $cpn )
+@section('wn', $wn )
 
-?>
-@extends('layouts.app')
+@extends('layouts.store')
 
-@section('content')
+@section('website_content')
     <style>
         .modal-backdrop{
             display: none !important;

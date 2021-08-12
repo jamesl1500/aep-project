@@ -4,13 +4,16 @@ $stylesheet = "products";
 // Validate this brand
 $brand_info = DB::table('brands')->where('name',''. $brand .'')->get()[0];
 
-if(count($brand_info) == 0){
+if(!empty($brand_info)){
     header('location: /');
 }
 ?>
-@extends('layouts.app')
+@section('cpn', $cpn ?? '' )
+@section('wn', $wn ?? '' )
 
-@section('content')
+@extends('layouts.store')
+
+@section('website_content')
     <div class="mainProductBanner">
         <div class="innerProductBanner container">
             <div class="brand_image col-lg-2">

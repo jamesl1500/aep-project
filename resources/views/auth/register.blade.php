@@ -1,7 +1,8 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <h1 style="text-align: center;font-size: 2em;font-weight: bold;">AEP</h1>
+            <p style="text-align: center;">Register for a new account below, then we will activate it manually for you</p>
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />

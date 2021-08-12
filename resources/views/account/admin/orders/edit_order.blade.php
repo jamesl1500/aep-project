@@ -14,9 +14,12 @@ $products = json_decode($order[0]->order_products, true);
 $transaction = OrderingSystem::fetchOrderPaymentInfo($order[0]->order_transaction_id);
 
 ?>
-@extends('layouts.app')
+@section('cpn', $cpn )
+@section('wn', $wn )
 
-@section('content')
+@extends('layouts.store')
+
+@section('website_content')
     <style>
         .modal-backdrop{
             display: none !important;

@@ -1,6 +1,9 @@
-@extends('layouts.app')
+@section('cpn', $cpn )
+@section('wn', $wn )
 
-@section('content')
+@extends('layouts.store')
+
+@section('website_content')
     <div class="accountMainContainer">
         <div class="bannerMainTop">
             <div class="innerBanner">
@@ -8,6 +11,7 @@
             </div>
         </div>
         <div class="bottomMainContainer container">
+            <div class="row">
             <div class="leftNavigations col-lg-3">
                 <!-- Main User Settings -->
                 <div class="navigationBlock">
@@ -22,7 +26,7 @@
                 </div>
 
                 <?php
-                if(auth()->user()->admin == 1){
+                if(auth()->user()->type == "admin"){
                 ?>
                         <!-- Main Admin Settings -->
                 <div class="navigationBlock">
@@ -108,6 +112,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     </div>

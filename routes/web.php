@@ -13,6 +13,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\HelpController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,10 +37,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::get('/store', [StoreController::class, 'index'])->middleware('auth')->name('home.index');
 
 // Help
-Route::get('/help', [HelpController::class, 'index'])->name('help.index');
+Route::get('/help', [HelpController::class, 'index'])->middleware('auth')->name('help.index');
 
 // Journal
-Route::get('/journal', [JournalController::class, 'index'])->name('journal.index');
+Route::get('/journal', [JournalController::class, 'index'])->middleware('auth')->name('journal.index');
 
 // Account
 Route::get('/account', [AccountController::class, 'index'])->name('account.index');
@@ -62,7 +63,7 @@ Route::get('/account/admin/manage_products', [AccountController::class, 'manage_
 Route::get('/account/admin/add_product', [AccountController::class, 'add_product'])->name('account.admin.add_product');
 
 Route::get('/account/admin/product/edit/{product_id}', function($product_id){
-    return view('account.admin.products.edit_product',['stylesheet' => "account", 'product_id' => $product_id] );
+    return view('account.admin.products.edit_product', ['wn' => env("APP_NAME"), 'cpn' => 'Account Settings', 'ss' => 'account.css', 'product_id' => $product_id] );
 });
 
 Route::get('/account/admin/manage_orders', [AccountController::class, 'manage_orders'])->name('account.admin.manage_orders');
@@ -86,52 +87,56 @@ Route::post('/account/admin/manage_admin/revoke', [AccountController::class, 're
 Route::post('/account/admin/manage_admin/make', [AccountController::class, 'make_admin'])->name('account.admin.manage_site_properties.make_admin');
 
 // Products
-Route::get('/products', [ProductsController::class, 'all_products'])->name("products.all_products");
-Route::get('/products/brands', [ProductsController::class, 'all_brands'])->name('brands.all_brands');
+Route::get('/products', [ProductsController::class, 'all_products'])->middleware('auth')->name("products.all_products");
+Route::get('/products/brands', [ProductsController::class, 'all_brands'])->middleware('auth')->name('brands.all_brands');
 
 Route::get('/products/brands/{brand}', function($brand){
-    return view('products.brands.view_brand',['stylesheet' => "products", 'brand' => $brand] );
-});
-Route::get('/products/category/{category}', [ProductsController::class, 'view_category']);
+    return view('products.brands.view_brand',['wn' => env("APP_NAME"), 'cpn' => "Brands", 'ss' => "product.css", 'stylesheet' => "products", 'brand' => $brand] );
+})->middleware('auth');
+Route::get('/products/category/{category}', [ProductsController::class, 'view_category'])->middleware('auth');
 
 Route::post('/products/delete', [ProductsController::class, 'delete_product']);
 Route::post('/products/edit', [ProductsController::class, 'edit_product']);
 Route::post('/products/edit/removeThumbnail', [ProductsController::class, 'removeThumbnail']);
 
 Route::get('/products/single/{product_id}', function($product_id){
-    return view('products.product_view',['stylesheet' => "products", 'product_id' => $product_id] );
+    return view('products.product_view', ['wn' => $this->wn, 'cpn' => $this->cpn, 'ss' => $this->ss, 'product_id' => $product_id] );
 });
 
 Route::post('/products/addToCart', [CartController::class, 'addToCart']);
 
 // About Us
-Route::get('/about_us', [AboutUsController::class, 'index'])->name('about.index');
+Route::get('/about_us', [AboutUsController::class, 'index'])->middleware('auth')->name('about.index');
 
 // Return policy
-Route::post('/exitReturnPolicy', [AboutUsController::class, 'exitReturnPolicy']);
+Route::post('/exitReturnPolicy', [AboutUsController::class, 'exitReturnPolicy'])->middleware('auth');
 
 // Cart
-Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::get('/cart', [CartController::class, 'index'])->middleware('auth')->name('cart.index');
 Route::post('/cart/removeProduct', [CartController::class, 'removeProduct'])->name('cart.removeProduct');
 Route::post('/cart/emptyCart', [CartController::class, 'emptyCart'])->name('cart.emptyCart');
 
 // Checkout
-Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
-Route::get('/checkout/token', [BraintreeController::class, 'token'])->name('braintree.token');
+Route::get('/checkout', [CheckoutController::class, 'index'])->middleware('auth')->name('checkout.index');
+Route::get('/checkout/token', [BraintreeController::class, 'token'])->middleware('auth')->name('braintree.token');
 
 // Ordering
 Route::post('/ordering/create', [OrderController::class, 'create'])->name('order.create');
-Route::get('/order/{order_id}', [OrderController::class, 'summary']);
+Route::get('/order/{order_id}', [OrderController::class, 'summary'])->middleware('auth');
 
 Route::post('/ordering/edit/markAsShipped', [OrderController::class, 'markAsShipped'])->name('order.edit.markAsShipped');
 Route::post('/ordering/edit/changeStatus', [OrderController::class, 'changeStatus'])->name('order.edit.changeStatus');
 Route::post('/ordering/edit/refundOrder', [OrderController::class, 'refundOrder'])->name('order.edit.refundOrder');
 
 // Search
-Route::get('/search', [SearchController::class, 'index'])->name('search.index');
+Route::get('/search', [SearchController::class, 'index'])->middleware('auth')->name('search.index');
 
 // Calculate
-Route::post('/shipping/calculate', [CheckoutController::class, 'shipping'])->name('shipping.calculate');
+Route::post('/shipping/calculate', [CheckoutController::class, 'shipping'])->middleware('auth')->name('shipping.calculate');
 
 // Contact form
-Route::post('/contact/send', [ContactController::class, 'send'] )->name('contact.send');
+Route::post('/contact/send', [ContactController::class, 'send'] )->middleware('auth')->name('contact.send');
+
+Route::get('/logout', function(){
+
+})->name('logout.index');
