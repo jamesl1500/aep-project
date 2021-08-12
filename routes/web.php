@@ -27,6 +27,7 @@ use App\Http\Controllers\HelpController;
 */
 
 // Auth
+Route::get('/', [GateKeeperController::class, 'index'])->name('gatekeeper.index');
 Route::get('/gatekeeper', [GateKeeperController::class, 'index'])->name('gatekeeper.index');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
