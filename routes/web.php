@@ -30,9 +30,7 @@ use App\Http\Controllers\HelpController;
 Route::get('/', [GateKeeperController::class, 'index'])->name('gatekeeper.index');
 Route::get('/gatekeeper', [GateKeeperController::class, 'index'])->name('gatekeeper.index');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [StoreController::class, 'index'])->name('dashboard');
 
 // Store (Must be logged)
 Route::get('/store', [StoreController::class, 'index'])->middleware('auth')->name('home.index');
