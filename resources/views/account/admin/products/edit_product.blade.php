@@ -129,11 +129,11 @@ if(Auth::check() && count($product) == 0){
                                                     <input type="text" name="product_price" id="product_price" placeholder="Product Price" value="<?php echo $product[0]->product_price; ?>">
                                                 </div>
                                                 <div class="inputMain">
-                                                    <h3>Product Gender</h3>
+                                                    <h3>Product Type</h3>
                                                     <select name="product_gender" id="product_gender">
-                                                        <option>Select a gender</option>
+                                                        <option>Select a type</option>
                                                         <?php
-                                                            $genders = array("male", "female", "unisex");
+                                                            $genders = array("Unit Only", "Bundle", "Unit & Battery");
 
                                                             foreach($genders as $gender)
                                                             {

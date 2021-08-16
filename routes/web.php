@@ -92,7 +92,7 @@ Route::get('/products', [ProductsController::class, 'all_products'])->middleware
 Route::get('/products/brands', [ProductsController::class, 'all_brands'])->middleware('auth')->name('brands.all_brands');
 
 Route::get('/products/brands/{brand}', function($brand){
-    return view('products.brands.view_brand',['wn' => env("APP_NAME"), 'cpn' => "Brands", 'ss' => "product.css", 'stylesheet' => "products", 'brand' => $brand] );
+    return view('products.brands.view_brand',['wn' => env("APP_NAME"), 'cpn' => "Brands", 'ss' => "products.css", 'stylesheet' => "products", 'brand' => $brand] );
 })->middleware('auth');
 Route::get('/products/category/{category}', [ProductsController::class, 'view_category'])->middleware('auth');
 
@@ -101,7 +101,7 @@ Route::post('/products/edit', [ProductsController::class, 'edit_product']);
 Route::post('/products/edit/removeThumbnail', [ProductsController::class, 'removeThumbnail']);
 
 Route::get('/products/single/{product_id}', function($product_id){
-    return view('products.product_view', ['wn' => $this->wn, 'cpn' => $this->cpn, 'ss' => $this->ss, 'product_id' => $product_id] );
+    return view('products.product_view', ['wn' => env("APP_NAME"), 'cpn' =>'', 'ss' => "products.css", 'product_id' => $product_id] );
 });
 
 Route::post('/products/addToCart', [CartController::class, 'addToCart']);

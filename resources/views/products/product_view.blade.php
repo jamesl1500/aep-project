@@ -10,9 +10,12 @@ if(count($product) == 0){
     header('location: /');
 }
 ?>
-@extends('layouts.app')
+@section('cpn', $product[0]->product_title)
+@section('wn', $wn )
 
-@section('content')
+@extends('layouts.store')
+
+@section('website_content')
 <div class="productViewContainer container">
     @if (session('success'))
         <div class="alert alert-success">
@@ -25,8 +28,12 @@ if(count($product) == 0){
         </div><br />
     @endif
 
-    <div class="topSection clearfix">
-        <div class="leftCont col-lg-7 clearfix">
+    <div class="breadCrumbs">
+        <a style="color: #333;text-decoration: none;" href="{{  route('home.index') }}">Home</a> / <a style="color: #333;text-decoration: none;" href="<?php echo url('/'); ?>/products/category/<?php echo $category[0]->id; ?>"><?php echo $category[0]->name; ?></a>
+    </div>
+
+    <div class="topSection row clearfix">
+        <div class="leftCont col-lg-5 clearfix">
             <img class="primaryImage" src="<?php echo url("/"); ?>/images/<?php echo $product[0]->product_photo; ?>" />
             <br /><br />
             <div class="thumbnails row">
@@ -51,25 +58,45 @@ if(count($product) == 0){
                 ?>
             </div>
         </div>
-        <div class="rightCont col-lg-5 clearfix">
+        <div class="rightCont col-lg-7 clearfix">
             <div class="topEverythingTitle">
                 <h3><?php echo $product[0]->product_title; ?></h3>
-                <h4><a href="<?php url('/'); ?>/products/brands/<?php echo $brand[0]->name; ?>"><?php echo $brand[0]->name; ?></a></h4>
-            </div><div class="hori-divider"></div>
+                <h4><a href="<?php url('/'); ?>/products/brands/<?php echo $brand[0]->name; ?>"><?php echo $brand[0]->name; ?></a> &middot; #sku1234</h4>
+            </div>
             <div class="bottomDetails">
+                <div class="descriptionMain">
+                    <h3></h3>
+                    <div class="mainDescription">
+                        <p><?php echo $product[0]->product_desc; ?></p>
+                        <ul>
+                            <li><span>Type:</span> <?php echo $product[0]->product_gender; ?></li>
+                            <li><span>Brand:</span> <?php echo ucwords($brand[0]->name); ?></li>
+                            <li><span>Tags:</span> <?php echo $product[0]->product_tags; ?></li>
+                            <?php
+                                // Get category name
+                                $category = DB::table('category')->where('id',''. $product[0]->product_category .'')->get()[0];
+                                $sub_category = DB::table('sub_category')->where('id',''. $product[0]->product_sub_category .'')->get()[0];
+
+                            ?>
+                            <li><span>Category:</span> <a href="<?php echo url('/'); ?>/products/category/<?php echo $category->id; ?>"><?php echo $category->name; ?></a></li>
+                            <li><span>Sub Category:</span> <a href="<?php echo url('/'); ?>/products/category/<?php echo $sub_category->id; ?>"><?php echo $sub_category->name; ?></a></li>
+                        </ul>
+                    </div>
+                </div>
                 <div class="pricingCont clearfix">
                     <form action="<?php echo url('/'); ?>/products/addToCart" method="post" id="addProductToCart">
                     <div class="infoByItself clearfix">
-                        <h3>$<?php echo $product[0]->product_price; ?></h3>
-                        <div class="sizeSelect">
-                            <?php
+                        <h3 class="priceTxt">$<?php echo $product[0]->product_price; ?></h3>
+                        <?php
                                 // Get sizes for this product from DB
                                 $sizing = DB::table('product_sizing')->where('product_id',''. $product_id .'')->get();
 
                                 $sizes = '';
-                            ?>
+
+                        ?>
+                        <div class="sizeSelect">
                             <div class="buttonInner href black">
-                                <h3 class=""><span class="sizeText">Select a size</span> <span><i class="fas fa-angle-down"></i></span></h3>
+                                <h3 class="" style="text-align: center;    margin-top: 10px;"><span class="sizeText">Select a variant</span> <span><i class="fas fa-angle-down"></i></span></h3>
                             </div>
                             <div class="buttonDropdown">
                                 <ul>
@@ -135,39 +162,22 @@ if(count($product) == 0){
                          }
                     ?>
                 </div>
-                <div class="descriptionMain">
-                    <h3>Description</h3>
-                    <div class="mainDescription">
-                        <p><?php echo $product[0]->product_desc; ?></p>
-                        <ul>
-                            <li><span>Gender:</span> <?php echo ucwords($product[0]->product_gender); ?></li>
-                            <li><span>Tags:</span> <?php echo $product[0]->product_tags; ?></li>
-                            <?php
-                                // Get category name
-                                $category = DB::table('category')->where('id',''. $product[0]->product_category .'')->get()[0];
-                                $sub_category = DB::table('sub_category')->where('id',''. $product[0]->product_sub_category .'')->get()[0];
-
-                            ?>
-                            <li><span>Category:</span> <a href="<?php echo url('/'); ?>/products/category/<?php echo $category->id; ?>"><?php echo $category->name; ?></a></li>
-                            <li><span>Sub Category:</span> <a href="<?php echo url('/'); ?>/products/category/<?php echo $sub_category->id; ?>"><?php echo $sub_category->name; ?></a></li>
-                        </ul>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
     <div class="relatedProducts">
         <div class="topArea col-lg-12">
-            <h3>You might also like these...</h3>
+            <h3>Related Products</h3>
         </div>
         <div class="showRelated col-lg-12">
+            <div class="row">
             <?php
             $products = DB::table('products')->where('product_brands', 'like', '%'. $product[0]->product_brands .'%')->get();
 
             foreach($products as $product2){
             $brand2 = DB::table('brands')->where('id',''. $product2->product_brands .'')->get();
             ?>
-                <div class="productBox col-lg-4">
+                <div class="productBox col-lg-3">
                     <a href="/products/single/<?php echo $product2->id; ?>">
                         <div class="innerProductBox">
                             <div class="topProductBox">
@@ -176,7 +186,8 @@ if(count($product) == 0){
                             <div class="bottomProductBox">
                                 <div class="innerBottomProductBox">
                                     <h3><a href="/products/single/<?php echo $product2->id; ?>"><?php echo $product2->product_title; ?></a></h3>
-                                    <h4><a href="/products/brands/<?php echo $brand2[0]->name; ?>"><?php echo $brand2[0]->name; ?></a></h4>
+                                    <h4><a href="/products/brands/<?php echo $brand2[0]->name; ?>"><?php echo $brand2[0]->name; ?></a> &middot; #sku1234</h4>
+                                    <p><?php echo (strlen($product2->product_desc) > 100) ? substr($product2->product_desc, 0, 100) . '...' : $product2->product_desc; ?></p>
                                     <h5>$<?php echo $product2->product_price; ?></h5>
                                 </div>
                             </div>
@@ -186,6 +197,7 @@ if(count($product) == 0){
             <?php
             }
             ?>
+            </div>
         </div>
     </div>
 </div>

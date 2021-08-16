@@ -10,7 +10,7 @@ $headerFunctions = new HeaderFunctions();
             <div class="inner-top-header container">
                 <div class="row">
                     <div class="branding col col-lg-1">
-                        <h3>AEP</h3>
+                        <h3><a href="{{ route('home.index') }}">AEP</a></h3>
                     </div>
                     <div class="nav-links col col-lg-2">
                         <ul>
@@ -24,10 +24,10 @@ $headerFunctions = new HeaderFunctions();
                             <input type="search" name="search" placeholder="Search" />
                         </div>
                     </div>
-                    <div class="nav-btns col col-lg-2">
-                        <a href="{{ route('cart.index') }}"><i class="fas fa-shopping-cart"></i></a>
-                        <a href="{{ route('account.index') }}">Account</a>
-                        <a href="{{ route('logout.index') }}">Logout</a>
+                    <div class="nav-btns col col-lg-3">
+                        <a class="shoppingCartBtn" href="{{ route('cart.index') }}"><i class="fas fa-shopping-cart"></i></a>
+                        <a style="background: white;border: 1px solid #333;color: #333;" class="navBtn" href="{{ route('account.index') }}">Account</a>
+                        <a class="navBtn" href="{{ route('logout.index') }}">Logout</a>
                     </div>
                 </div>
             </div>

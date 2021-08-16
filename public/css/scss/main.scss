@@ -8,6 +8,80 @@ body{
   //display: none;
 }
 
+// Footer
+.copyright{
+  background: #242424;
+  padding: 15px;
+  
+  h4{
+    text-align: center;
+    font-size: 16px;
+
+    color: white;
+    padding: 0px;
+    margin: 0px;
+  }
+}
+.mainFooter{
+  background: #F4F4F4;
+  padding: 40px;
+
+  margin-top: 30px;
+
+  .innerFooter{
+
+    .row{
+
+      .logoRight{
+        
+        .image{
+          width: 100%;
+          height: 330px;
+
+          background: #D8D8D8;
+        }
+      }
+
+      .leftNavigation{
+
+        .row{
+
+          .linkHold{
+            padding-left: 0px;
+
+            h3{
+              font-size: 16px;
+              margin-bottom: 10px;
+
+              font-weight: bold;
+              text-align: center;
+            }
+
+            ul{
+              margin: 0px;
+              padding: 0px;
+
+              li{
+                list-style: none;
+                padding-bottom: 10px;
+
+                text-align: center;
+
+                a{
+                  color: #A4A4A4;
+                  text-decoration: none;
+
+                  text-align: center;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 // Header
 .header{
 
@@ -29,6 +103,11 @@ body{
               font-weight: 600;
 
               padding-top: 5px;
+
+              a{
+                text-decoration: none;
+                color: #333;
+              }
             }
           }
 
@@ -93,7 +172,30 @@ body{
           }
 
           .nav-btns{
+            
+            a.shoppingCartBtn{
+              color: #333;
+              padding-top: 10px;
 
+              font-size: 22px;
+
+              margin-right: 10px;
+            }
+              
+            a.navBtn{
+              border: 1px solid #333;
+              padding: 10px;
+              background: #333;
+
+              color: #fff;
+              border-radius: 3px;
+
+              text-decoration: none;
+
+              position: relative;
+              top: -2px;
+              right: -12px;
+            }
           }
         }
       }

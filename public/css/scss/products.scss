@@ -4,6 +4,67 @@ $mainBlack: #262624;
   padding-bottom: 100px;
 }
 
+.productBox{
+
+  .innerProductBox{
+    border: 2px solid #F4F4F4;
+    border-radius: 6px;
+
+    .topProductBox{
+
+      .innerProductImage{
+        width: 100%;
+      }
+    }
+    .bottomProductBox{
+
+      .innerBottomProductBox{
+        background: white;
+        padding: 20px;
+        text-align: left;
+        border-top: 2px solid #F4F4F4;
+
+        h3{
+          font-size: 1.3em;
+          font-weight: bold;
+
+          a{
+            color: #333;
+
+            font-weight: bold;
+            text-decoration: none;
+          }
+        }
+
+        h4{
+          font-size: 1.0em;
+          color: #aaa;
+
+          a{
+            color: #aaa;
+            font-weight: 400;
+            text-decoration: none;
+          }
+        }
+
+        p{
+          color: #A4A4A4;
+        }
+
+        h5{
+          font-size: 1.2em;
+          margin-bottom: 0px;
+
+          a{
+            color: #333;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}
+
 .sub_cat_card{
   cursor: pointer;
 
@@ -23,6 +84,8 @@ $mainBlack: #262624;
 
   padding-left: 18px;
   padding-right: 20px;
+
+  .topSection{
 
   .leftCont{
 
@@ -64,25 +127,29 @@ $mainBlack: #262624;
       padding-bottom: 25px;
 
       h4{
-        font-size: 1.2em;
+        font-size: 1.0em;
 
         margin-top: 0px;
         margin-bottom: 0px;
 
-        text-align: center;
+        text-align: left;
+
+        color: #aaa;
 
         a{
           color: #aaa;
+          text-decoration: none;
         }
       }
 
       h3{
-        font-size: 2.2em;
+        font-size: 1.5em;
+        font-weight: bold;
         color: #000;
 
         margin-top: 4px;
 
-        text-align: center;
+        text-align: left;
 
         @media screen and (max-width: 1050px) {
           margin-top: 25px;
@@ -102,13 +169,13 @@ $mainBlack: #262624;
 
       .pricingCont{
         padding-bottom: 13px;
-        border-bottom: 1px solid #eee;
+        //border-bottom: 1px solid #eee;
 
-        h3{
-          color: #e74c3c;
-          margin-top: 15px;
+        h3.priceTxt{
+          color: #333;
+          margin-top: 25px;
 
-          text-align: center;
+          text-align: left;
         }
 
         h4{
@@ -249,7 +316,8 @@ $mainBlack: #262624;
         .mainDescription{
 
           p{
-
+            line-height: 1.9em;
+            color: #A4A4A4;
           }
 
           ul{
@@ -268,10 +336,11 @@ $mainBlack: #262624;
       }
     }
   }
+}
 
   .relatedProducts{
     margin-top: 35px;
-    border-top: 1px solid #eee;
+    //border-top: 1px solid #eee;
 
     .topArea{
       padding-top: 40px;
@@ -281,7 +350,7 @@ $mainBlack: #262624;
         font-size: 1.8em;
         font-weight: 500;
 
-        text-align: center;
+        text-align: left;
 
         color: $mainBlack;
       }
@@ -406,6 +475,8 @@ hr{
 .productBox{
 
   .innerProductBox{
+    border: 2px solid #F4F4F4;
+    border-radius: 6px;
 
     .topProductBox{
 
@@ -416,33 +487,45 @@ hr{
     .bottomProductBox{
 
       .innerBottomProductBox{
-        text-align: center;
+        background: white;
+        padding: 20px;
+        text-align: left;
+        border-top: 2px solid #F4F4F4;
 
         h3{
-          font-size: 1.8em;
+          font-size: 1.3em;
+          font-weight: bold;
 
           a{
-            color: $mainBlack;
+            color: #333;
 
-            font-weight: 500;
+            font-weight: bold;
+            text-decoration: none;
           }
         }
 
         h4{
-          font-size: 1.2em;
+          font-size: 1.0em;
+          color: #aaa;
 
           a{
             color: #aaa;
             font-weight: 400;
+            text-decoration: none;
           }
+        }
+
+        p{
+          color: #A4A4A4;
         }
 
         h5{
           font-size: 1.2em;
+          margin-bottom: 0px;
 
           a{
             color: $mainBlack;
-            font-weight: 600;
+            font-weight: bold;
           }
         }
       }

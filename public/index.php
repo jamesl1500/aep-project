@@ -5,6 +5,14 @@ use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
 
+/* Define cookies */
+setcookie('user_ip', $_SERVER['REMOTE_ADDR'], time() + (86400 * 7));
+
+if(!isset($_COOKIE['user_cart'])) 
+{
+    setcookie('user_cart', json_encode(array('user_id' => $_SERVER['REMOTE_ADDR'], 'user_products' => array())), time() + (86400 * 7));
+}
+
 /*
 |--------------------------------------------------------------------------
 | Check If The Application Is Under Maintenance

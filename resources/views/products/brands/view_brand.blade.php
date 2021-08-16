@@ -24,7 +24,6 @@ if(!empty($brand_info)){
         </div>
     </div>
     <div class="container allProducts">
-        <ul>
             <?php
             use App\Libraries\ProductsSystem;
 
@@ -38,24 +37,26 @@ if(!empty($brand_info)){
             // Get brand
             $brand = DB::table('brands')->where('id',''. $product->product_brands .'')->get();
             ?>
-                <li class="col-lg-3">
-                    <div class="innerProduct">
-                        <div class="topProductImage" style="background: url(<?php echo url("/"); ?>/images/<?php echo $product->product_photo; ?>);background-position: center;background-size: cover;"></div>
-                        <div class="bottomProduct">
-                            <div class="topName">
-                                <h3><a href="/products/single/<?php echo $product->id; ?>"><?php echo $product->product_title; ?></a></h3>
-                                <div class="bottomInfo">
-                                    <span class="price">$<?php echo $product->product_price; ?></span>
-                                    <span class="brand"><a href="/products/brands/<?php echo $brand[0]->name; ?>"><?php echo $brand[0]->name; ?></a></span>
+                <div class="productBox col-lg-3">
+                    <a href="/products/single/<?php echo $product->id; ?>">
+                        <div class="innerProductBox">
+                            <div class="topProductBox">
+                                <img class="innerProductImage" src="<?php echo url("/"); ?>/images/<?php echo $product->product_photo; ?>"/>
+                            </div>
+                            <div class="bottomProductBox">
+                                <div class="innerBottomProductBox">
+                                    <h3><a href="/products/single/<?php echo $product->id; ?>"><?php echo $product->product_title; ?></a></h3>
+                                    <h4><a href="/products/brands/<?php echo $brand[0]->name; ?>"><?php echo $brand[0]->name; ?></a></h4>
+                                    <p><?php echo (strlen($product->product_desc) > 100) ? substr($product->product_desc, 0, 100) . '...' : $product2->product_desc; ?></p>
+                                    <h5>$<?php echo $product->product_price; ?></h5>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </li>
+                    </a>
+                </div>
             <?php
             }
             }
             ?>
-        </ul>
     </div>
 @endsection

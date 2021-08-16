@@ -41,7 +41,7 @@ if(count($category_info) == 0)
                     foreach($sub_categories as $sub_category)
                     {
                     ?>
-                    <div class="sub_cat_card col-lg-3" onClick="window.location.assign('/products/category/<?php echo $sub_category->id; ?>');">
+                    <div style="background: white;padding-right:0px;padding-left:0px;" class="sub_cat_card col-lg-3" onClick="window.location.assign('/products/category/<?php echo $sub_category->id; ?>');">
                         <div class="inner_cat_card">
                            <span><?php echo $sub_category->name; ?></span>
                         </div>
@@ -71,7 +71,7 @@ if(count($category_info) == 0)
             // Get brand
             $brand = DB::table('brands')->where('id',''. $product->product_brands .'')->get();
             ?>
-                <div class="productBox col-lg-4">
+                <div class="productBox col-lg-3">
                     <a href="/products/single/<?php echo $product->id; ?>">
                         <div class="innerProductBox">
                             <div class="topProductBox">
@@ -81,6 +81,7 @@ if(count($category_info) == 0)
                                 <div class="innerBottomProductBox">
                                     <h3><a href="/products/single/<?php echo $product->id; ?>"><?php echo $product->product_title; ?></a></h3>
                                     <h4><a href="/products/brands/<?php echo $brand[0]->name; ?>"><?php echo $brand[0]->name; ?></a></h4>
+                                    <p><?php echo (strlen($product->product_desc) > 100) ? substr($product->product_desc, 0, 100) . '...' : $product2->product_desc; ?></p>
                                     <h5>$<?php echo $product->product_price; ?></h5>
                                 </div>
                             </div>

@@ -95,12 +95,12 @@
                                                     <input type="text" name="product_price" id="product_price" placeholder="Product Price">
                                                 </div>
                                                 <div class="inputMain">
-                                                    <h3>Product Gender</h3>
+                                                    <h3>Product Type</h3>
                                                     <select name="product_gender">
-                                                        <option>Select a gender</option>
-                                                        <option value="male">Male</option>
-                                                        <option value="female">Female</option>
-                                                        <option value="unisex">Unisex</option>
+                                                        <option>Select a type</option>
+                                                        <option value="male">Unit Only</option>
+                                                        <option value="female">Bundle</option>
+                                                        <option value="unisex">Unit & Battery</option>
                                                     </select>
                                                 </div>
                                                 <div class="inputMain">
