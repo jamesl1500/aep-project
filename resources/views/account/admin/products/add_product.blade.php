@@ -87,6 +87,18 @@
                                                     <textarea type="text" name="product_desc" id="product_desc" placeholder="Product Description"></textarea>
                                                 </div>
                                                 <div class="inputMain">
+                                                    <h3>Key features, includes & Specs</h3>
+                                                    <textarea type="text" name="product_key_features" id="product_key_features" placeholder="Product Keyfeatures, Includes & Specs"></textarea>
+                                                </div>
+                                                <div class="inputMain">
+                                                    <h3>Root Brothers SKU</h3>
+                                                    <input type="text" name="product_sku_root" id="product_sku_root" placeholder="Root Brothers SKU" />
+                                                </div>
+                                                <div class="inputMain">
+                                                    <h3>Manufacturer SKU</h3>
+                                                    <input type="text" name="product_sku" id="product_sku" placeholder="Manufacturers SKU" />
+                                                </div>
+                                                <div class="inputMain">
                                                     <h3>Product Tags</h3>
                                                     <input type="text" name="product_tags" id="product_tags" placeholder="Product Tags">
                                                 </div>
@@ -98,9 +110,9 @@
                                                     <h3>Product Type</h3>
                                                     <select name="product_gender">
                                                         <option>Select a type</option>
-                                                        <option value="male">Unit Only</option>
-                                                        <option value="female">Bundle</option>
-                                                        <option value="unisex">Unit & Battery</option>
+                                                        <option value="Unit Only">Unit Only</option>
+                                                        <option value="Bundle">Bundle</option>
+                                                        <option value="Unit & Battery">Unit & Battery</option>
                                                     </select>
                                                 </div>
                                                 <div class="inputMain">

@@ -7,6 +7,20 @@ $brand_info = DB::table('brands')->where('name',''. $brand .'')->get()[0];
 if(!empty($brand_info)){
     header('location: /');
 }
+
+if($brand_info->name == "DeWALT"){
+    $color = "#febd17";
+    $text_color = "#333";
+}else if($brand_info->name == "Milwaukee"){
+    $color = "#db011c";
+    $text_color = "#fff";
+}else if($brand_info->name == "Makita"){
+    $color = "#008290";
+    $text_color = "#fff";
+}else if($brand_info->name == "Greenlee"){
+    $color = "#7ac436";
+    $text_color = "#fff";
+}
 ?>
 @section('cpn', $cpn ?? '' )
 @section('wn', $wn ?? '' )
@@ -14,16 +28,17 @@ if(!empty($brand_info)){
 @extends('layouts.store')
 
 @section('website_content')
-    <div class="mainProductBanner">
+    <div class="mainProductBanner" style="background: <?php echo $color; ?>;">
         <div class="innerProductBanner container">
-            <div class="brand_image col-lg-2">
-                <img src="<?php echo url('images'); ?>/<?php echo $brand_info->image; ?>" />
+            <div class="brand_image col-lg-6" style="margin: 0% auto;text-align: center;padding: 0px;">
+                <img style="display: none;" src="<?php echo url('images'); ?>/<?php echo $brand_info->image; ?>" />
             </div>
-            <h3><?php echo $brand_info->name; ?></h3>
-            <p><?php echo $brand_info->desc; ?></p>
+            <h3 style="color: <?php echo $text_color; ?>;"><?php echo $brand_info->name; ?></h3>
+            <p style="color: <?php echo $text_color; ?>;"><?php echo $brand_info->desc; ?></p>
         </div>
     </div>
     <div class="container allProducts">
+        <div class="row">
             <?php
             use App\Libraries\ProductsSystem;
 
@@ -47,8 +62,9 @@ if(!empty($brand_info)){
                                 <div class="innerBottomProductBox">
                                     <h3><a href="/products/single/<?php echo $product->id; ?>"><?php echo $product->product_title; ?></a></h3>
                                     <h4><a href="/products/brands/<?php echo $brand[0]->name; ?>"><?php echo $brand[0]->name; ?></a></h4>
-                                    <p><?php echo (strlen($product->product_desc) > 100) ? substr($product->product_desc, 0, 100) . '...' : $product2->product_desc; ?></p>
+                                    <p><?php echo (strlen($product->product_desc) > 100) ? substr($product->product_desc, 0, 100) . '...' : $product->product_desc; ?></p>
                                     <h5>$<?php echo $product->product_price; ?></h5>
+                                    <a class="btn-view" href="/products/single/<?php echo $product->id; ?>">View</a>
                                 </div>
                             </div>
                         </div>
@@ -58,5 +74,6 @@ if(!empty($brand_info)){
             }
             }
             ?>
+        </div>
     </div>
 @endsection

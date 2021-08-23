@@ -88,7 +88,7 @@ if(Auth::check()){
                                 <h4 class="media-heading"><?php echo $product[0]->product_title; ?></h4>
                                 <p><?php echo substr($product[0]->product_desc, 0, 150); ?>...</p>
                                 <form action="{{ route('cart.removeProduct') }}" method="post">
-                                    <h5>Size: <?php echo $items->product_size_number; ?></h5>
+                                    <h5>Variant: <?php echo $items->product_size_number; ?></h5>
                                     <input type="hidden" name="cid" value="<?php echo $items->id; ?>" />
                                     {{ csrf_field() }}
                                     <button class="btn btn-danger">Remove from Cart</button>

@@ -58,6 +58,7 @@ if(count($category_info) == 0)
         </div>
     </div>
     <div class="container allProducts">
+        <div class="row" style="padding: 0px;">
             <?php
             use App\Libraries\ProductsSystem;
 
@@ -81,8 +82,9 @@ if(count($category_info) == 0)
                                 <div class="innerBottomProductBox">
                                     <h3><a href="/products/single/<?php echo $product->id; ?>"><?php echo $product->product_title; ?></a></h3>
                                     <h4><a href="/products/brands/<?php echo $brand[0]->name; ?>"><?php echo $brand[0]->name; ?></a></h4>
-                                    <p><?php echo (strlen($product->product_desc) > 100) ? substr($product->product_desc, 0, 100) . '...' : $product2->product_desc; ?></p>
+                                    <p><?php echo (strlen($product->product_desc) > 100) ? substr($product->product_desc, 0, 100) . '...' : $product->product_desc; ?></p>
                                     <h5>$<?php echo $product->product_price; ?></h5>
+                                    <a class="btn-view" href="/products/single/<?php echo $product->id; ?>">View</a>
                                 </div>
                             </div>
                         </div>
@@ -92,5 +94,6 @@ if(count($category_info) == 0)
             }
             }
             ?>
+        </div>
     </div>
 @endsection

@@ -43,6 +43,7 @@
                                 <li><a href="{{ route('account.admin.manage_brands') }}">Manage Brands</a></li>
                                 <li><a href="{{ route('account.admin.manage_products') }}">Manage Products</a></li>
                                 <li><a href="{{ route('account.admin.manage_orders') }}">Manage Orders</a></li>
+                                <li><a href="{{ route('account.admin.manage_site_properties') }}">Manage Site</a></li>
                                 <li><a href="{{ route('account.admin.manage_users') }}">Manage Users</a></li>
                             </ul>
                         </div>

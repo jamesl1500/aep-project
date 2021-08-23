@@ -5,6 +5,30 @@ $(document).ready(function()
     var navbarDropdown = $(".hasDropdown");
     var sidebar = $(".sidebar");
     var website = $(".websiteBody");
+
+    $(document).on('keyup', '.searchBarMain', function(){
+
+    });
+
+    $('.modal').insertBefore($('body'));
+
+
+    //$('#shippingModal').modal();  
+    //$('#orderStatusChange').modal();  
+
+    $(document).on('click', '.searchBarBtn-index', function(){
+        if($(".searchBarMain-index").val() != "")
+        {
+            window.location.assign("/search?s=" + $(".searchBarMain-index").val());
+        }
+    });
+
+    $(document).on('click', '.searchBarBtn-header', function(){
+        if($(".searchBarMain-header").val() != "")
+        {
+            window.location.assign("/search?s=" + $(".searchBarMain-header").val());
+        }
+    });
     
     // Product size select
     $(document).on('click', '.selectSystem', function(){
@@ -69,6 +93,7 @@ $(document).ready(function()
     {
         mainOverlay.fadeIn();
     }
+
     mainWebsiteOverlay();
 
     // Navbar hover
@@ -108,21 +133,6 @@ $(document).ready(function()
            $(".over").fadeOut('fast');
         });
         return false;
-    });
-
-    $.fn.editable.defaults.params = function (params) {
-        params._token = $(".change").data("token");
-        return params;
-    };
-
-    $(".change").editable({
-        'source': [{value: 1, text: "Yes"}, {value: 0, text: "No"}]
-    });
-    $(".change2").editable({
-        'source': [{value: 0, text: "Yes"}, {value: 1, text: "No"}]
-    });
-    $(".change3").editable({
-        'source': [{value: 0, text: "Yes"}, {value: 1, text: "No"}]
     });
 
     // For product delete
@@ -429,5 +439,64 @@ $(document).ready(function()
         }
 
         return false;
+    });
+
+    $(document).on('click', '.adminActivate', function(e){
+        e.preventDefault();
+         
+         var id = $(this).data('id');
+         var href = $(this).attr('href');
+         
+         if(id != "")
+         {
+             $.post(href, {_token: $(this).data('token'), id: id}, function(data){
+                var obj = jQuery.parseJSON(data);
+ 
+                if(obj.code == 1){
+                    window.location.reload();
+                } else{
+                    alert(obj.status)
+                }
+             });
+         }
+         
+         return false;
+     });
+ 
+     $(document).on('click', '.adminDeactivate', function(e){
+         e.preventDefault();
+ 
+         var id = $(this).data('id');
+         var href = $(this).attr('href');
+ 
+         if(id != "")
+         {
+             $.post(href, {_token: $(this).data('token'), id: id}, function(data){
+                 var obj = jQuery.parseJSON(data);
+ 
+                 if(obj.code == 1){
+                     window.location.reload();
+                 } else{
+                     alert(obj.status)
+                 }
+             });
+         }
+ 
+         return false;
+     });
+
+     $.fn.editable.defaults.params = function (params) {
+        params._token = $(".change").data("token");
+        return params;
+    };
+
+    $(".change").editable({
+        'source': [{value: 1, text: "Yes"}, {value: 0, text: "No"}]
+    });
+    $(".change2").editable({
+        'source': [{value: 0, text: "Yes"}, {value: 1, text: "No"}]
+    });
+    $(".change3").editable({
+        'source': [{value: 0, text: "Yes"}, {value: 1, text: "No"}]
     });
 });

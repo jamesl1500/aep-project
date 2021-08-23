@@ -13,10 +13,10 @@ class CartController extends Controller
     public $wn; 
 
     // Curent page name
-    public $cpn = "Help";
+    public $cpn = "Cart";
 
     // Stylesheet
-    public $ss = "help.css";
+    public $ss = "cart.css";
 
     // Constructor
     public function __construct()

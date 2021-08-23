@@ -9,10 +9,22 @@ use Illuminate\Support\Facades\DB;
 
 class CheckoutController extends Controller
 {
-    public function __construct()
-    {
-        //$this->middleware('auth');
-    }
+// Website Name
+public $wn; 
+
+// Curent page name
+public $cpn = "Checkout";
+
+// Stylesheet
+public $ss = "checkout.css";
+
+// Constructor
+public function __construct()
+{
+
+    // Popular vars
+    $this->wn = env('APP_NAME');
+}
 
     //
     public function index()
@@ -24,14 +36,14 @@ class CheckoutController extends Controller
             {
                 return view('checkout', [
                     'braintree_customer_id' => auth()->user()->customer_id
-                ]);
+                ,'wn' => $this->wn, 'cpn' => $this->cpn, 'ss' => $this->ss]);
             } else {
                 return redirect("cart")->with('error', 'Your cart is not full yet');
             }
         }else{
             if(count(BasketHelper::fetchCart($_COOKIE['user_ip'])) >= 1)
             {
-                return view('checkout');
+                return view('checkout', ['wn' => $this->wn, 'cpn' => $this->cpn, 'ss' => $this->ss]);
             }else {
                 return redirect("cart")->with('error', 'Your cart is not full yet');
             }

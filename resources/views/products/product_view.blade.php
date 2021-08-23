@@ -61,7 +61,7 @@ if(count($product) == 0){
         <div class="rightCont col-lg-7 clearfix">
             <div class="topEverythingTitle">
                 <h3><?php echo $product[0]->product_title; ?></h3>
-                <h4><a href="<?php url('/'); ?>/products/brands/<?php echo $brand[0]->name; ?>"><?php echo $brand[0]->name; ?></a> &middot; #sku1234</h4>
+                <h4><a href="<?php url('/'); ?>/products/brands/<?php echo $brand[0]->name; ?>"><?php echo $brand[0]->name; ?></a> &middot; Root Brothers SKU: <?php echo $product[0]->product_sku_root; ?></h4>
             </div>
             <div class="bottomDetails">
                 <div class="descriptionMain">
@@ -80,6 +80,8 @@ if(count($product) == 0){
                             ?>
                             <li><span>Category:</span> <a href="<?php echo url('/'); ?>/products/category/<?php echo $category->id; ?>"><?php echo $category->name; ?></a></li>
                             <li><span>Sub Category:</span> <a href="<?php echo url('/'); ?>/products/category/<?php echo $sub_category->id; ?>"><?php echo $sub_category->name; ?></a></li>
+                            <li><span>Root Brothers SKU:</span> <?php echo $product[0]->product_sku_root; ?></li>
+                            <li><span>Manufacturer SKU:</span> <?php echo $product[0]->product_sku; ?></li>
                         </ul>
                     </div>
                 </div>
@@ -106,7 +108,7 @@ if(count($product) == 0){
                                         if($size->product_size_stock > 0)
                                         {
                                         ?>
-                                            <li class="selectSystem" data-value="<?php echo $size->id; ?>|<?php echo $size->product_sizing_id; ?>|<?php echo $size->product_id; ?>|<?php echo $size->product_size; ?>"><?php echo ucwords($product[0]->product_gender); ?> - <?php echo $size->product_size; ?> </li>
+                                            <li class="selectSystem" data-value="<?php echo $size->id; ?>|<?php echo $size->product_sizing_id; ?>|<?php echo $size->product_id; ?>|<?php echo $size->product_size; ?>"><?php echo $size->product_size; ?> </li>
                                         <?php
                                         }
                                     }
@@ -167,6 +169,14 @@ if(count($product) == 0){
     </div>
     <div class="relatedProducts">
         <div class="topArea col-lg-12">
+            <h3>Key features, and Specs</h3>
+        </div>
+        <div class="showRelated col-lg-12" style="font-size: 20px;">
+            <?php echo $product[0]->product_key_features; ?>
+        </div>
+    </div>
+    <div class="relatedProducts">
+        <div class="topArea col-lg-12">
             <h3>Related Products</h3>
         </div>
         <div class="showRelated col-lg-12">
@@ -189,6 +199,7 @@ if(count($product) == 0){
                                     <h4><a href="/products/brands/<?php echo $brand2[0]->name; ?>"><?php echo $brand2[0]->name; ?></a> &middot; #sku1234</h4>
                                     <p><?php echo (strlen($product2->product_desc) > 100) ? substr($product2->product_desc, 0, 100) . '...' : $product2->product_desc; ?></p>
                                     <h5>$<?php echo $product2->product_price; ?></h5>
+                                    <a class="btn-view" href="/products/single/<?php echo $product2->id; ?>">View</a>
                                 </div>
                             </div>
                         </div>

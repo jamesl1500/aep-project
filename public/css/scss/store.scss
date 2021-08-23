@@ -1,3 +1,69 @@
+.expand-column-wrapper {
+  height: 130px;
+  width: 100%;
+}
+
+.expand-column-wrapper .column {
+  padding: 1rem;
+  transition: all 0.5s ease-in-out;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+        flex: 1 1 0px;
+}
+
+.expand-column-wrapper .column:hover {
+  -webkit-flex-basis: 40%;
+      -ms-flex-preferred-size: 40%;
+          flex-basis: 40%;
+}
+
+.expand-column-wrapper .column:hover .expand-column-content {
+  opacity: 1;
+}
+
+.expand-column-wrapper .expand-column-content {
+  color: #fefefe;
+  font-weight: bold;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+}
+
+@media screen and (max-width: 39.9375em) {
+  .expand-column-wrapper {
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.expand-column-wrapper .column:nth-of-type(1) {
+  height: 130px;
+  background-size: cover;
+}
+
+.expand-column-wrapper .column:nth-of-type(2) {
+  height: 130px;
+  background-size: cover;
+}
+
+.expand-column-wrapper .column:nth-of-type(3) {
+  height: 130px;
+  background-size: cover;
+}
+
+.expand-column-wrapper .column:nth-of-type(4) {
+  height: 130px;
+  background-size: cover;
+}
+
+
 .productBox{
 
     .innerProductBox{
@@ -47,12 +113,29 @@
   
           h5{
             font-size: 1.2em;
+            font-weight: bold;
             margin-bottom: 0px;
   
             a{
               color: #333;
               font-weight: bold;
             }
+          }
+  
+          a.btn-view{
+            background: #000;
+            color: white;
+            padding: 5px;
+  
+            padding-right: 10px;
+            padding-left: 10px;
+  
+            border-radius: 3px;
+  
+            text-decoration: none;
+            float: right;
+  
+            margin-top: -30px;
           }
         }
       }
@@ -76,6 +159,8 @@
 
             .inner-search-bar{
                 text-align: center;
+                width: 450px;
+                margin: 0% auto;
 
                 input{
                   margin-top: 150px;
@@ -84,7 +169,7 @@
   
                   //border: 1px solid #eee;
                     border: none;
-                  padding: 5px;
+                  padding: 8px;
                   padding-left: 15px;
                   
                   outline: none;
@@ -117,38 +202,45 @@
             cursor: pointer;
         }
 
-        .dewalt{
-            background: #febd17!important;
-
-            text-align: center;
-            padding-top: 45px;
-        }
-
-        .milwaukee{
-            background: #db011c;
-
-            text-align: center;
-            padding-top: 25px;
-        }
-
-        .makita{
-            background: #008290;
-
-            text-align: center;
-            padding-top: 45px;
-
-            img{
-                width: 60%;
-            }
-        }
-
-        .greenlee{
-            background: #7ac436;
-
-            text-align: center;
-            padding-top: 45px;
-        }
+        
     }
+}
+
+.dewalt{
+  background: #febd17!important;
+
+  text-align: center;
+  padding-top: 35px;
+}
+
+.milwaukee{
+  background: #db011c;
+
+  text-align: center;
+  padding-top: 25px;
+}
+
+.makita{
+  background: #008290;
+
+  text-align: center;
+  padding-top: 45px;
+
+  img{
+      width: 60%;
+  }
+}
+
+.greenlee{
+  background: #fff;
+
+  text-align: center;
+  padding-top: 45px;
+
+  img{
+    width:70%;
+    margin-top: -0px;
+  }
 }
 
 .bottomContent{

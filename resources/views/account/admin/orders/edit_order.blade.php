@@ -72,11 +72,11 @@ $transaction = OrderingSystem::fetchOrderPaymentInfo($order[0]->order_transactio
                     <div class="innerContainer">
                         <div class="topPartMain" style="padding-bottom: 10px;border-bottom: 1px solid #eee;">
                             <h3>Manage Order</h3>
-                            <h4>Order ID: <?php echo $order_id; ?></h4>
+                            <p>Order ID: <?php echo $order_id; ?></p>
                         </div>
                         <div class="accountInfo">
                             <div class="innerInfo order">
-                                <div class="actions">
+                                <div class="actions" style="padding-top: 20px;">
                                     @if (session('success'))
                                         <br />
                                         <div class="alert alert-success">
@@ -90,10 +90,10 @@ $transaction = OrderingSystem::fetchOrderPaymentInfo($order[0]->order_transactio
                                         </div>
                                     @endif
                                     <h3>Actions</h3>
-                                    <div class="buttonHolds">
+                                    <div class="buttonHolds" style="">
                                         <button class="btn btn-success" id="openShippingModal" data-toggle="modal" data-target="#shippingModal">Mark as shipped</button>
                                         <button class="btn btn-default" id="openOrderStatusModal" data-toggle="modal" data-target="#orderStatusChange">Change order status</button>
-                                        <button class="btn btn-danger" id="openRefundModal" data-toggle="modal" data-target="#refundMake">Refund order</button>
+                                        <!-- <button class="btn btn-danger" id="openRefundModal" data-toggle="modal" data-target="#refundMake">Refund order</button> -->
                                     </div>
                                 </div>
                                 <hr>
@@ -204,15 +204,15 @@ $transaction = OrderingSystem::fetchOrderPaymentInfo($order[0]->order_transactio
                                     </div>
                                 </div>
                                 <hr />
-                                <h3>Payment Info</h3>
+                                {{--  <h3>Payment Info</h3>
                                 <div class="module payment_info">
                                     <div class="innerMod">
                                         <ul>
-                                            <li><b>Transaction ID:</b> <?php echo $transaction->id; ?></li>
-                                            <li><b>Status:</b> <?php echo $transaction->status; ?></li>
-                                            <li><b>Type:</b> <?php echo $transaction->type; ?></li>
-                                            <li><b>Currency:</b> <?php echo $transaction->currencyIsoCode; ?></li>
-                                            <li><b>Amount:</b> <span class="special-price">$<?php echo $transaction->amount; ?></span></li>
+                                            <li><b>Transaction ID:</b> <?php //echo $transaction->id; ?></li>
+                                            <li><b>Status:</b> <?php //echo $transaction->status; ?></li>
+                                            <li><b>Type:</b> <?php //echo $transaction->type; ?></li>
+                                            <li><b>Currency:</b> <?php //echo $transaction->currencyIsoCode; ?></li>
+                                            <li><b>Amount:</b> <span class="special-price">$<?php //echo $transaction->amount; ?></span></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -237,7 +237,7 @@ $transaction = OrderingSystem::fetchOrderPaymentInfo($order[0]->order_transactio
                                     <?php
                                     //print_r($transaction);
                                     ?>
-                                </pre>
+                                </pre>  --}}
                             </div>
                         </div>
                     </div>
@@ -247,12 +247,12 @@ $transaction = OrderingSystem::fetchOrderPaymentInfo($order[0]->order_transactio
     </div><br />
     <div class="modalHolder">
         <!-- Shipping -->
-        <div class="modal fade" style="margin-top: 100px;" tabindex="-1" id="shippingModal" role="dialog">
+        <div class="modal fade" style="background: rgba(0,0,0,.5);padding-top: 100px;" tabindex="-1" id="shippingModal" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <form action="{{ route('order.edit.markAsShipped') }}" method="post">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <button  style="display:none;" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title">Mark the order as "Shipped"</h4>
                         </div>
                         <div class="modal-body">
@@ -273,13 +273,13 @@ $transaction = OrderingSystem::fetchOrderPaymentInfo($order[0]->order_transactio
         </div><!-- /.modal -->
 
         <!-- Changing order status -->
-        <div class="modal fade" style="margin-top: 100px;" tabindex="-1" id="orderStatusChange" role="dialog">
+        <div class="modal fade" style="background: rgba(0,0,0,.5);padding-top: 100px;" tabindex="-1" id="orderStatusChange" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <form action="{{ route('order.edit.changeStatus') }}" method="post">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">Change order status</h4>
+                            <button type="button" style="display:none;" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" style="text-align: center;">Change order status</h4>
                         </div>
                         <div class="modal-body">
                             <label for="statusChange">Status</label>
@@ -308,12 +308,12 @@ $transaction = OrderingSystem::fetchOrderPaymentInfo($order[0]->order_transactio
         </div><!-- /.modal -->
 
         <!-- Changing shipping/billing info -->
-        <div class="modal fade" style="margin-top: 100px;" tabindex="-1" id="orderAddresses" role="dialog">
+        <div class="modal fade" style="background: rgba(0,0,0,.5);padding-top: 100px;" tabindex="-1" id="orderAddresses" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <form action="" method="post">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <button style="display:none;" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title">Change Billing/Shipping address</h4>
                         </div>
                         <div class="modal-body">
@@ -347,7 +347,7 @@ $transaction = OrderingSystem::fetchOrderPaymentInfo($order[0]->order_transactio
                         <div class="modal-footer">
                             {{ csrf_field() }}
                             <input type="hidden" name="order_id" value="<?php echo $order_id; ?>" />
-                            <input type="hidden" name="trans_id" value="<?php echo $transaction->id; ?>" />
+                            <input type="hidden" name="trans_id" value="<?php //echo $transaction->id; ?>" />
                             <a type="button" class="btn btn-default" data-dismiss="modal">Close</a>
                             <input type="submit" class="btn btn-primary" value="Process refund" />
                         </div>

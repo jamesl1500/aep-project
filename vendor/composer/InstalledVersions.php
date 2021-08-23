@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '25a1acf10c9ee99fbf21ac370a9e27c36cc03e5b',
+    'reference' => '1cb10d28a33628263e317ab76fd9db1e08664e4b',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -182,6 +182,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '7a8c6e56ab3ffcc538d05e8155bb42269abf1a0c',
+    ),
+    'easypost/easypost-php' => 
+    array (
+      'pretty_version' => '3.6.0',
+      'version' => '3.6.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '2c8adce0f9852bdac8d51232f1d9644fc1ae4f76',
     ),
     'egulias/email-validator' => 
     array (
@@ -693,7 +702,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '25a1acf10c9ee99fbf21ac370a9e27c36cc03e5b',
+      'reference' => '1cb10d28a33628263e317ab76fd9db1e08664e4b',
     ),
     'laravel/sail' => 
     array (

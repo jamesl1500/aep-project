@@ -16,9 +16,12 @@ if(Auth::check()){
 // Subtotal
 $subtotal = basketHelper::fetchCartSubTotal($cart);
 ?>
-@extends('layouts.app')
+@section('cpn', $cpn )
+@section('wn', $wn )
 
-@section('content')
+@extends('layouts.store')
+
+@section('website_content')
     <div class="mainProductBanner">
         <div class="innerProductBanner container">
             <h3>Checkout</h3>
@@ -51,6 +54,7 @@ $subtotal = basketHelper::fetchCartSubTotal($cart);
                 </div>
             @endif
             <form action="{{ route('order.create') }}" method="post">
+                <div class="row">
                 <div class="leftProducts col-lg-8 col-xs-12">
                     <div class="module user-info col-lg-6 col-md-6">
                         <div class="form-header">
@@ -90,7 +94,7 @@ $subtotal = basketHelper::fetchCartSubTotal($cart);
                             </div>
                         </div>
                     </div>
-                    <div class="module payment-info col-lg-12">
+                    <div style="display: none;" class="module payment-info col-lg-12">
                         <div class="form-header">
                             <h3>Payment</h3><br />
                             <div id="payment"></div>
@@ -175,6 +179,7 @@ $subtotal = basketHelper::fetchCartSubTotal($cart);
                         }
                         ?>
                     </div>
+                </div>
                 </div>
             </form>
         </div>

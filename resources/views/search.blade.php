@@ -44,7 +44,7 @@ $stylesheet = "products";
                     // Get brand
                     $brand = DB::table('brands')->where('id',''. $product->product_brands .'')->get();
                     ?>
-                        <div class="productBox col-lg-4">
+                        <div class="productBox col-lg-3">
                             <a href="/products/single/<?php echo $product->id; ?>">
                                 <div class="innerProductBox">
                                     <div class="topProductBox">
@@ -54,7 +54,9 @@ $stylesheet = "products";
                                         <div class="innerBottomProductBox">
                                             <h3><a href="/products/single/<?php echo $product->id; ?>"><?php echo $product->product_title; ?></a></h3>
                                             <h4><a href="/products/brands/<?php echo $brand[0]->name; ?>"><?php echo $brand[0]->name; ?></a></h4>
+                                            <p><?php echo (strlen($product->product_desc) > 100) ? substr($product->product_desc, 0, 100) . '...' : $product2->product_desc; ?></p>
                                             <h5>$<?php echo $product->product_price; ?></h5>
+                                            <a class="btn-view" href="/products/single/<?php echo $product->id; ?>">View</a>
                                         </div>
                                     </div>
                                 </div>
@@ -73,7 +75,7 @@ $stylesheet = "products";
                     <h3>Brands</h3>
                 </div>
                 <div class="moduleInner">
-                    <ul>
+                    <ul style="margin: 0px;padding: 0px;">
                         <?php
                         //use App\Libraries\ProductsSystem;
 

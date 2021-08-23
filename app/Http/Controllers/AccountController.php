@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AccountHasBeenActivated;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Libraries\AddressesHelper;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use App\Libraries\OrderingSystem;
 
@@ -403,6 +406,9 @@ class AccountController extends Controller
                         'product_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
                         'product_title' => 'required|unique:products|max:255',
                         'product_desc' => 'required',
+                        'product_key_features' => 'required',
+                        'product_sku_root' => 'required',
+                        'product_sku' => 'required',
                         'product_tags' => 'required',
                         'product_price' => 'required|numeric',
                         'product_gender' => 'required',
@@ -443,7 +449,10 @@ class AccountController extends Controller
                             'product_tags' => $request->product_tags,
                             'product_gender' => $request->product_gender,
                             'product_sizing' => $product_sizing_id,
-                            'product_dimensions' => json_encode($product_dimensions)
+                            'product_dimensions' => json_encode($product_dimensions),
+                            'product_sku' => $request->product_sku,
+                            'product_sku_root' => $request->product_sku_root,
+                            'product_key_features' => $request->product_key_features
                         ]
                     );
 
@@ -515,6 +524,29 @@ class AccountController extends Controller
     {
         // Update user
         DB::table('users')->where('id', '' . $request->id . '')->update(['type' => 'admin']);
+
+        echo json_encode(array('code' => '1'));
+
+    }
+
+    /* Activate access */
+    public function activate_user(Request $request)
+    {
+        // Update user
+        $user = DB::table('users')->where('id', $request->id)->get()[0];
+
+        DB::table('users')->where('id', '' . $request->id . '')->update(['is_active' => '1']);
+        Mail::to($user->email)->send(new AccountHasBeenActivated($request->id));
+
+        echo json_encode(array('code' => '1'));
+
+    }
+
+    /* Deactivate access */
+    public function deactivate_user(Request $request)
+    {
+        // Update user
+        DB::table('users')->where('id', '' . $request->id . '')->update(['is_active' => '0']);
 
         echo json_encode(array('code' => '1'));
 

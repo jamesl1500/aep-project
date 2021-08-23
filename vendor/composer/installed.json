@@ -1128,6 +1128,63 @@
             "install-path": "../dragonmantank/cron-expression"
         },
         {
+            "name": "easypost/easypost-php",
+            "version": "3.6.0",
+            "version_normalized": "3.6.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/EasyPost/easypost-php.git",
+                "reference": "2c8adce0f9852bdac8d51232f1d9644fc1ae4f76"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/EasyPost/easypost-php/zipball/2c8adce0f9852bdac8d51232f1d9644fc1ae4f76",
+                "reference": "2c8adce0f9852bdac8d51232f1d9644fc1ae4f76",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/php-token-stream": "3.*",
+                "phpunit/phpunit": "^8",
+                "squizlabs/php_codesniffer": "^3.0"
+            },
+            "time": "2021-06-10T21:43:16+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "EasyPost": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "EasyPost Developers",
+                    "email": "oss@easypost.com",
+                    "homepage": "https://www.easypost.com"
+                }
+            ],
+            "description": "EasyPost Shipping API Client Library for PHP",
+            "homepage": "https://github.com/EasyPost/easypost-php",
+            "keywords": [
+                "api",
+                "easypost",
+                "shipping"
+            ],
+            "support": {
+                "issues": "https://github.com/EasyPost/easypost-php/issues",
+                "source": "https://github.com/EasyPost/easypost-php/tree/v3.6.0"
+            },
+            "install-path": "../easypost/easypost-php"
+        },
+        {
             "name": "egulias/email-validator",
             "version": "2.1.25",
             "version_normalized": "2.1.25.0",

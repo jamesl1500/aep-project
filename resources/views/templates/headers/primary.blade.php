@@ -21,7 +21,8 @@ $headerFunctions = new HeaderFunctions();
                     </div>
                     <div class="search-bar col col-lg-6">
                         <div class="inner-search-bar">
-                            <input type="search" name="search" placeholder="Search" />
+                            <input type="text" class="searchBarMain-header" name="search" placeholder="Search" />
+                            <span class="searchBarBtn-header" style="cursor: pointer;margin-bottom: -35px;position: relative;top: -30px;left: -15px;float: right;"><i class="fas fa-search"></i></span>
                         </div>
                     </div>
                     <div class="nav-btns col col-lg-3">

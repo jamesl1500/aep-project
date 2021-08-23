@@ -78,7 +78,7 @@
                                                 <td>Image</td>
                                                 <td>Name</td>
                                                 <td>Price</td>
-                                                <td>Gender</td>
+                                                <td>Variant</td>
                                                 <td>Actions</td>
                                             </tr>
                                             </thead>

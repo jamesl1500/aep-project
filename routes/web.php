@@ -14,6 +14,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\HelpController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,6 +84,8 @@ Route::post('/account/admin/add_brand/process', [AccountController::class, 'add_
 Route::post('/account/admin/add_product/process', [AccountController::class, 'add_product_process']);
 Route::post('/account/admin/manage_site_properties/update', [AccountController::class, 'update_site_properties'])->name('account.admin.manage_site_properties.update');
 Route::post('/account/admin/manage_admin/revoke', [AccountController::class, 'revoke_admin'])->name('account.admin.manage_site_properties.revoke_admin');
+Route::post('/account/admin/manage_admin/activate_user', [AccountController::class, 'activate_user'])->name('account.admin.activate_user');
+Route::post('/account/admin/manage_admin/deactivate_user', [AccountController::class, 'deactivate_user'])->name('account.admin.deactivate_user');
 Route::post('/account/admin/manage_admin/make', [AccountController::class, 'make_admin'])->name('account.admin.manage_site_properties.make_admin');
 
 // Products
@@ -136,6 +139,4 @@ Route::post('/shipping/calculate', [CheckoutController::class, 'shipping'])->mid
 // Contact form
 Route::post('/contact/send', [ContactController::class, 'send'] )->middleware('auth')->name('contact.send');
 
-Route::get('/logout', function(){
-
-})->name('logout.index');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout.index');

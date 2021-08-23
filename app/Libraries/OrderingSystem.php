@@ -75,7 +75,7 @@ class OrderingSystem
             // Address
             $address = json_decode($order[0]->order_address, true);
 
-            // Now we have the info, lets process payment
+            /* // Now we have the info, lets process payment
             $result = Braintree_Transaction::sale([
                 'amount' => $order[0]->order_cost,
                 'paymentMethodNonce' => $payment['payment_method_nonce'],
@@ -107,9 +107,9 @@ class OrderingSystem
                     'postalCode' => $address['zip_code'],
                     'countryCodeAlpha2' => 'US'
                 ]
-            ]);
+            ]); */
 
-            if($result->success)
+            if(1 == 1)
             {
                 // Create shipment
                 $dimensions = array();
@@ -157,7 +157,7 @@ class OrderingSystem
 
                 // Now lets email both parties
                 Mail::to($payment['email'])->send(new OrderConfirmation($payment['order_id'], $payment['fullname']));
-                Mail::to('unmovablestore@gmail.com')->send(new OrderConfirmation($payment['order_id'], $payment['fullname']));
+                Mail::to('hello@jameslatten.com')->send(new OrderConfirmation($payment['order_id'], $payment['fullname']));
 
                 // Update product stock & empty cart
                 BasketHelper::emptyCart($order[0]->user_id);
@@ -197,7 +197,7 @@ class OrderingSystem
 
     static public function fetchOrderPaymentInfo($trans_id)
     {
-        return Braintree_Transaction::find($trans_id);
+        //return Braintree_Transaction::find($trans_id);
     }
 
     static public function changeStatus($order_id, $change)

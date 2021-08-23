@@ -54,12 +54,12 @@
                 <div class="rightInfoContainer col-lg-9">
                     <div class="innerContainer">
                         <div class="topPartMain" style="padding-bottom: 20px;border-bottom: 1px solid #eee;">
-                            <h3>Manage Admins</h3>
+                            <h3>Manage Users</h3>
                         </div><br />
                         <div class="accountInfo">
                             <?php
                             // For getting category
-                            $admins = DB::table('users')->where('type', 'admin')->get();
+                            $admins = DB::table('users')->where('is_active', '1')->get();
 
                             if(count($admins) > 0)
                             {
@@ -81,8 +81,11 @@
                                 <tr>
                                     <td class=""><?php echo ucwords($admin->name); ?></td>
                                     <td class=""><?php echo $admin->email; ?></td>
-                                    <td class=""><?php if($admin->type == "admin") { echo 'Current Admin'; } ?></td>
-                                    <td class=""><a class="adminRevoke" data-token="{{ csrf_token() }}" data-id="<?php echo $admin->id; ?>" href="{{ route('account.admin.manage_site_properties.revoke_admin') }}">Revoke</a></td>
+                                    <td class=""><?php if($admin->is_active == "1") { echo 'Activated'; } ?></td>
+                                    <td class="">
+                                        <a class="adminRevoke" data-token="{{ csrf_token() }}" data-id="<?php echo $admin->id; ?>" href="{{ route('account.admin.manage_site_properties.revoke_admin') }}">Revoke Admin Access</a> &middot; 
+                                        <a class="adminDeactivate" data-token="{{ csrf_token() }}" data-id="<?php echo $admin->id; ?>" href="{{ route('account.admin.deactivate_user') }}">Deactivate User</a>
+                                    </td>
                                 </tr>
                                 <?php
                                 }
@@ -92,15 +95,16 @@
                             <?php
                             }else{
                             ?>
-                            <h3 class="orderMsg">There are no admins</h3>
+                            <h3 class="orderMsg">There are no active users</h3>
                             <?php
                             }
                             ?>
                             <hr />
                             <div class="non-admins">
+                                <h3>Not activated</h3>
                                 <?php
                                 // For getting category
-                                $admins = DB::table('users')->where('type', 'client')->get();
+                                $admins = DB::table('users')->where('is_active', '0')->get();
 
                                 if(count($admins) > 0)
                                 {
@@ -122,8 +126,10 @@
                                     <tr>
                                         <td class=""><?php echo ucwords($admin->name); ?></td>
                                         <td class=""><?php echo $admin->email; ?></td>
-                                        <td class=""><?php if($admin->type == "client") { echo 'Not an Admin'; } ?></td>
-                                        <td class=""><a class="adminMake" data-token="{{ csrf_token() }}" data-id="<?php echo $admin->id; ?>" href="{{ route('account.admin.manage_site_properties.make_admin') }}">Make admin</a></td>
+                                        <td class=""><?php if($admin->is_active == "0") { echo 'Not activated'; } ?></td>
+                                        <td class="">
+                                            <a class="adminActivate" data-token="{{ csrf_token() }}" data-id="<?php echo $admin->id; ?>" href="{{ route('account.admin.activate_user') }}">Activate User</a>
+                                        </td>
                                     </tr>
                                     <?php
                                     }
@@ -133,7 +139,7 @@
                                 <?php
                                 }else{
                                 ?>
-                                <h3 class="orderMsg">There are no non-admins</h3>
+                                <h3 class="orderMsg">There are no deactivated users</h3>
                                 <?php
                                 }
                                 ?>
