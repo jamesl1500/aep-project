@@ -7,7 +7,7 @@ $headerFunctions = new HeaderFunctions();
 <header class="header primary-header solid-header">
     <div class="inner-header">
         <div class="top-header">
-            <div class="inner-top-header container">
+            <div class="inner-top-header container-fluid">
                 <div class="row">
                     <div class="branding col col-lg-1">
                         <h3><a href="{{ route('home.index') }}">AEP</a></h3>
@@ -34,7 +34,7 @@ $headerFunctions = new HeaderFunctions();
             </div>
         </div>
         <div class="sub-header">
-            <div class="inner-sub-header container">
+            <div class="inner-sub-header container-fluid">
                 <ul>
                     <?php
                         $categories = $headerFunctions->returnCategories();

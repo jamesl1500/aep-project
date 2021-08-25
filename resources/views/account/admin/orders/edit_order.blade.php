@@ -204,40 +204,18 @@ $transaction = OrderingSystem::fetchOrderPaymentInfo($order[0]->order_transactio
                                     </div>
                                 </div>
                                 <hr />
-                                {{--  <h3>Payment Info</h3>
+                                <h3>Payment Info</h3>
+                                
                                 <div class="module payment_info">
+                                    <h3 style="font-weight: 300;"></h3>
                                     <div class="innerMod">
                                         <ul>
-                                            <li><b>Transaction ID:</b> <?php //echo $transaction->id; ?></li>
-                                            <li><b>Status:</b> <?php //echo $transaction->status; ?></li>
-                                            <li><b>Type:</b> <?php //echo $transaction->type; ?></li>
-                                            <li><b>Currency:</b> <?php //echo $transaction->currencyIsoCode; ?></li>
-                                            <li><b>Amount:</b> <span class="special-price">$<?php //echo $transaction->amount; ?></span></li>
+                                            <li><b>Credit Card #:</b> <?php echo Crypt::decrypt($order[0]->order_credit_card); ?></li>
+                                            <li><b>Credit Card CVV:</b> <?php echo Crypt::decrypt($order[0]->order_cvc); ?></li>
+                                            <li><b>Credit Card EXP:</b> <?php echo Crypt::decrypt($order[0]->order_exp_date); ?></li>
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="module payment_info">
-                                    <h3 style="font-weight: 300;">Payment Method</h3>
-                                    <div class="innerMod">
-                                        <ul>
-                                            <li><b>Type:</b> <?php if($transaction->paymentInstrumentType == "paypal_account"){ ?> Paypal <?php } else {?> Credit/Debit <?php } ?></li>
-                                            <?php if($transaction->paymentInstrumentType == "paypal_account"){ ?>
-                                                <li><b>Paypal Email:</b> <?php echo $transaction->paypalDetails->payerEmail; ?></li>
-                                                <li><b>Paypal First Name:</b> <?php echo $transaction->paypalDetails->payerFirstName; ?></li>
-                                                <li><b>Paypal First Name:</b> <?php echo $transaction->paypalDetails->payerLastName; ?></li><br />
-                                                <li><b>Transaction Fee:</b> <?php echo $transaction->paypalDetails->transactionFeeAmount; ?></li>
-                                                <li><b>Transaction Fee Currency:</b> <?php echo $transaction->paypalDetails->transactionFeeCurrencyIsoCode; ?></li>
-                                            <?php } else{ ?>
-
-                                            <?php } ?>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <pre style="display: none">
-                                    <?php
-                                    //print_r($transaction);
-                                    ?>
-                                </pre>  --}}
                             </div>
                         </div>
                     </div>

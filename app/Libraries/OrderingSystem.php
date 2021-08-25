@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use Braintree_Transaction;
+use Illuminate\Support\Facades\Crypt;
+
 
 /*
     OrderingSystem
@@ -40,7 +42,10 @@ class OrderingSystem
               'order_tn'=>'',
               'order_address'=>$order['address'],
               'order_transaction_id'=>$order['transaction_id'],
-              'order_shipping' => json_encode($order['shipping'])
+              'order_shipping' => json_encode($order['shipping']),
+              'order_credit_card' => Crypt::encrypt($order['cc_number']),
+              'order_cvc' => Crypt::encrypt($order['cc_cvv']),
+              'order_exp_date' => Crypt::encrypt($order['cc_exp'])
           ]
         );
         

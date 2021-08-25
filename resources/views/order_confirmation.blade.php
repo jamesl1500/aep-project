@@ -17,9 +17,12 @@ $products = json_decode($order[0]->order_products, true);
 $shipping = json_decode($order[0]->order_shipping);
 
 ?>
-@extends('layouts.app')
+@section('cpn', $cpn )
+@section('wn', $wn )
 
-@section('content')
+@extends('layouts.store')
+
+@section('website_content')
     <div class="mainProductBanner">
         <div class="innerProductBanner container">
             <h3>Order Summary</h3>
@@ -32,7 +35,8 @@ $shipping = json_decode($order[0]->order_shipping);
     </div>
     <div class="bottomMain">
         <div class="innerPart container">
-            <div class="leftShipping col-lg-3 col-xs-12">
+            <div class="row">
+            <div class="leftShipping col-lg-6 col-xs-12">
                 <div class="module">
                     <h3>Shipping address</h3>
                     <div class="innerMod">
@@ -62,7 +66,7 @@ $shipping = json_decode($order[0]->order_shipping);
                     </div>
                 </div>
             </div>
-            <div class="orderInfoRight col-lg-9 col-xs-12">
+            <div class="orderInfoRight col-lg-6 col-xs-12">
                 <div class="module">
                     <h3>Order Information</h3>
                     <div class="innerMod">
@@ -121,9 +125,10 @@ $shipping = json_decode($order[0]->order_shipping);
                     </div>
                 </div>
             </div>
+            </div>
             <div class="buyTheseProducts col-lg-12 clearfix">
-                <h3>Check out these other products</h3>
-                <div class="bottomProducts">
+                <h3 class="fi">Check out these other products</h3>
+                <div class="bottomProducts row">
                     <?php
                     use App\Libraries\ProductsSystem;
 
@@ -138,7 +143,7 @@ $shipping = json_decode($order[0]->order_shipping);
                     // Get brand
                     $brand = DB::table('brands')->where('id',''. $product->product_brands .'')->get();
                     ?>
-                        <div class="productBox col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <div style="margin-bottom: 30px;" class="productBox col-lg-4 col-md-6 col-sm-6 col-xs-12">
                             <a href="/products/single/<?php echo $product->id; ?>">
                                 <div class="innerProductBox">
                                     <div class="topProductBox">
@@ -146,14 +151,14 @@ $shipping = json_decode($order[0]->order_shipping);
                                     </div>
                                     <div class="bottomProductBox">
                                         <div class="innerBottomProductBox">
-                                            <h3><a href="/products/single/<?php echo $product->id; ?>"><?php echo $product->product_title; ?></a></h3>
+                                            <h3><a href="/products/single/<?php echo $product->id; ?>"><?php echo (strlen($product->product_title) > 45) ? substr($product->product_title, 0, 45) . '...' : $product->product_title; ?></a></h3>
                                             <h4><a href="/products/brands/<?php echo $brand[0]->name; ?>"><?php echo $brand[0]->name; ?></a></h4>
                                             <h5>$<?php echo $product->product_price; ?></h5>
                                         </div>
                                     </div>
                                 </div>
                             </a>
-                        </div>
+                        </div><br /><br />
                     <?php
                     }
                     }

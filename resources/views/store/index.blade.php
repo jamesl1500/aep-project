@@ -28,18 +28,22 @@
     <div class="middleBrands">
         <div class="insideMiddleBrands row">
             <div class="row expand-column-wrapper">
-                <div class="column dewalt">
-                    <img src="https://www.dewalt.com/~/media/dewalt/images/global/54.png?h=35&w=129&la=en-US" />
-                </div>
-                <div class="column milwaukee">
-                    <img src="https://www.milwaukeetool.com/-/media/Feature/Identity/logo-milwaukee.png?sc_lang=en&mh=84&la=en&h=84&w=155&mw=155&hash=B2A6E2608CD542DAE95A96649C55D2E3" />
-                </div>
-                <div class="column makita">
-                    <img src="https://www.logolynx.com/images/logolynx/7e/7e10b719e79dfd4edfbbbb6cb2b59763.png" />
-                </div>
-                <div class="column greenlee">
-                    <img src="http://127.0.0.1:8001/images/1628636738.png" />
-                </div>
+                <?php
+                // For getting brands
+                $brands = DB::table('brands')->get();
+
+                if(count($brands) > 0)
+                {
+                foreach($brands as $brand)
+                {
+                ?>
+                    <div onClick="window.location.assign('/products/brands/<?php echo $brand->name; ?>');" class="column <?php echo strtolower($brand->name); ?>" style="cursor: pointer;background: <?php echo $brand->color; ?>;">
+                        <img src="<?php echo url('images'); ?>/<?php echo $brand->image; ?>" />
+                    </div>
+                <?php 
+                    }
+                }
+                ?>
               </div>
 {{--              <div class="brandHold dewalt col-lg-3" onClick="window.location.assign('/products/brands/DeWALT')">
                 <img src="https://www.dewalt.com/~/media/dewalt/images/global/54.png?h=35&w=129&la=en-US" />
@@ -74,7 +78,7 @@
                             // Get brand
                             $brand = DB::table('brands')->where('id',''. $product->product_brands .'')->get();
                         ?>
-                        <div class="productBox col-lg-3">
+                        <div class="productBox col-lg-3" style="margin-bottom: 30px;">
                             <a href="/products/single/<?php echo $product->id; ?>">
                                 <div class="innerProductBox">
                                     <div class="topProductBox">
@@ -82,9 +86,9 @@
                                     </div>
                                     <div class="bottomProductBox">
                                         <div class="innerBottomProductBox">
-                                            <h3><a href="/products/single/<?php echo $product->id; ?>"><?php echo $product->product_title; ?></a></h3>
+                                            <h3><a href="/products/single/<?php echo $product->id; ?>"><?php echo (strlen($product->product_title) > 35) ? substr($product->product_title, 0, 25) . '...' : $product->product_title; ?></a></h3>
                                             <h4><a href="/products/brands/<?php echo $brand[0]->name; ?>"><?php echo $brand[0]->name; ?></a></h4>
-                                            <p><?php echo (strlen($product->product_desc) > 100) ? substr($product->product_desc, 0, 100) . '...' : $product->product_desc; ?></p>
+                                            <p style="display: none;"><?php echo (strlen($product->product_desc) > 100) ? substr($product->product_desc, 0, 100) . '...' : $product->product_desc; ?></p>
                                             <h5>$<?php echo $product->product_price; ?></h5>
                                             <a class="btn-view" href="/products/single/<?php echo $product->id; ?>">View</a>
                                         </div>

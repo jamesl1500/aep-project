@@ -18,6 +18,21 @@ class OrderController extends Controller
     protected $order_id;
     protected $shipping = 5;
 
+    // Website Name
+    public $wn; 
+
+    // Curent page name
+    public $cpn = "Order Summary";
+
+    public $ss = "order_summary.css";
+
+    // Constructor
+    public function __construct()
+    {
+        // Popular vars
+        $this->wn = env('APP_NAME');
+    }
+
     public function changeStatus(Request $request)
     {
         if(Auth::check())
@@ -119,7 +134,10 @@ class OrderController extends Controller
                 'zip_code' => 'required|max:20',
                 'shipping' => 'required',
                 'fullname' => 'max:255',
-                'email' => 'max:255'
+                'email' => 'max:255',
+                'credit_card_number' => 'max:24',
+                'credit_card_cvv' => 'max:4',
+                'credit_card_exp_date' => 'max:10'
             ]);
 
             // Now make sure the basket is full
@@ -134,7 +152,7 @@ class OrderController extends Controller
             if(count(BasketHelper::fetchCart($id)) >= 1)
             {
                 // Make sure we have the payment thingy
-                if($request->payment_method_nonce)
+                if(1 == 1)
                 {
                     // Now lets make the order
                     $this->_order_id = bin2hex(random_bytes(32));
@@ -160,23 +178,27 @@ class OrderController extends Controller
                         'address' => json_encode($this->_address),
                         'user_id' => $id,
                         'transaction_id' => '',
-                        'shipping' => $shipping
+                        'shipping' => $shipping,
+                        'cc_number' => $request->credit_card_number,
+                        'cc_cvv' => $request->credit_card_cvv,
+                        'cc_exp' => $request->credit_card_exp_date 
+
                     ]);
 
                     // Check order
                     if($order)
                     {
                         // Now process payment
-                        $payment = $orderingSystem->payment([
+                        /* $payment = $orderingSystem->payment([
                             'order_id' => $this->_order_id,
                             'fullname' => $request->fullname,
                             'payment_method_nonce' => $request->payment_method_nonce,
                             'email' => $request->email,
                             'shipping' => $shipping
-                        ]);
+                        ]); */
 
                         // Check payment
-                        if($payment)
+                        if(1 == 1)
                         {
                             return redirect('order/' . $this->_order_id)->with('success', 'Your order has been placed!');
                         }else{
@@ -211,7 +233,7 @@ class OrderController extends Controller
                 if ($order[0]->user_id == $_COOKIE['user_ip'] or $order[0]->user_id == auth()->user()->id)
                 {
                     return view('order_confirmation', [
-                        'order_id' => $order_id
+                        'order_id' => $order_id, 'wn' => $this->wn, 'cpn' => $this->cpn, 'ss' => $this->ss
                     ]);
                 } else {
                     return redirect("/")->with('error', 'Must be logged in!');

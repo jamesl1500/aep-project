@@ -37,7 +37,7 @@ if(count($product) == 0){
             <img class="primaryImage" src="<?php echo url("/"); ?>/images/<?php echo $product[0]->product_photo; ?>" />
             <br /><br />
             <div class="thumbnails row">
-                <div class="col-sm-2 col-md-2 col-sm-2 col-xs-3" id="">
+                <div style="display: none;" class="col-sm-2 col-md-2 col-sm-2 col-xs-3" id="">
                     <a class="thumb thumbActive" data-src="<?php echo url("/"); ?>/images/<?php echo $product[0]->product_photo; ?>" id="">
                         <img src="<?php echo url("/"); ?>/images/<?php echo $product[0]->product_photo; ?>" style="" />
                     </a>
@@ -48,7 +48,7 @@ if(count($product) == 0){
                 foreach($thumbnails as $thumbnail)
                 {
                 ?>
-                <div class="col-sm-2 col-md-2 col-sm-2 col-xs-3" id="thumb<?php echo $thumbnail->id; ?>">
+                <div style="display: none;" class="col-sm-2 col-md-2 col-sm-2 col-xs-3" id="thumb<?php echo $thumbnail->id; ?>">
                     <a class="thumb" data-src="<?php echo url('images/thumbnails'); ?>/<?php echo $thumbnail->product_thumbnail; ?>" id="thumbMain<?php echo $thumbnail->id; ?>">
                         <img src="<?php echo url('images/thumbnails'); ?>/<?php echo $thumbnail->product_thumbnail; ?>" style="" />
                     </a>

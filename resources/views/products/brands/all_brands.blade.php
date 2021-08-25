@@ -22,8 +22,10 @@
             {
             ?>
             <li onClick="document.location.assign('<?php echo url('/'); ?>/products/brands/<?php echo $brand->name; ?>');">
-                <div class="brand_image" style="background-image: url(<?php echo url('images'); ?>/<?php echo $brand->image; ?>);"></div>
-                <h3>
+                <div class="brand_image" style="background: <?php echo $brand->color; ?>;text-align: center;">
+                    <img style="margin-top: 80px;width: 70%;" src="<?php echo url('images'); ?>/<?php echo $brand->image; ?>" />
+                </div>
+                <h3 style="padding-top: 30px;">
                     <?php echo $brand->name; ?>
                 </h3>
             </li>

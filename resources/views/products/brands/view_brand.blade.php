@@ -8,7 +8,7 @@ if(!empty($brand_info)){
     header('location: /');
 }
 
-if($brand_info->name == "DeWALT"){
+if($brand_info->name == "Dewalt"){
     $color = "#febd17";
     $text_color = "#333";
 }else if($brand_info->name == "Milwaukee"){
@@ -28,6 +28,11 @@ if($brand_info->name == "DeWALT"){
 @extends('layouts.store')
 
 @section('website_content')
+<style>
+    .copyright{
+        background: <?php echo $color; ?> !important;
+    }
+</style>
     <div class="mainProductBanner" style="background: <?php echo $color; ?>;">
         <div class="innerProductBanner container">
             <div class="brand_image col-lg-6" style="margin: 0% auto;text-align: center;padding: 0px;">

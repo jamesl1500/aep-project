@@ -56,7 +56,7 @@ $subtotal = basketHelper::fetchCartSubTotal($cart);
             <form action="{{ route('order.create') }}" method="post">
                 <div class="row">
                 <div class="leftProducts col-lg-8 col-xs-12">
-                    <div class="module user-info col-lg-6 col-md-6">
+                    <div class="module user-info col-lg-6 col-md-6"><br />
                         <div class="form-header">
                             <h3>Your Info</h3>
                             <div class="form-group">
@@ -68,7 +68,7 @@ $subtotal = basketHelper::fetchCartSubTotal($cart);
                                 <input type="email" name="email" class="form-control" placeholder="Email" value="<?php if(Auth::check()){ echo auth()->user()->email; } ?>">
                             </div>
                         </div>
-                    </div>
+                    </div><br/>
                     <div class="module shipping-address col-lg-6 col-md-6">
                         <div class="form-header">
                             <h3>Shipping Address</h3>
@@ -94,10 +94,21 @@ $subtotal = basketHelper::fetchCartSubTotal($cart);
                             </div>
                         </div>
                     </div>
-                    <div style="display: none;" class="module payment-info col-lg-12">
+                    <div class="module payment-info col-lg-6"><br />
                         <div class="form-header">
                             <h3>Payment</h3><br />
-                            <div id="payment"></div>
+                            <div class="form-group">
+                                <label for="fullname">Credit Card Number</label>
+                                <input type="text" id="credit_card_number" name="credit_card_number" class="form-control" placeholder="Credit Card Number" value="">
+                            </div>
+                            <div class="form-group">
+                                <label for="fullname">Credit Card CVV</label>
+                                <input type="text" id="credit_card_cvv" name="credit_card_cvv" class="form-control" placeholder="Credit Card CVV" value="">
+                            </div>
+                            <div class="form-group">
+                                <label for="fullname">Credit Card Exp Date</label>
+                                <input type="text" id="credit_card_exp_date" name="credit_card_exp_date" class="form-control" placeholder="Credit Card Exp Date" value="">
+                            </div>
                         </div>
                     </div>
                 </div>
