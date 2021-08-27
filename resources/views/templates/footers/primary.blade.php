@@ -19,11 +19,18 @@ $headerFunctions = new HeaderFunctions();
                             if($category['display_nav'] == 1)
                             {
                             ?>
-                            <div class="linkHold col-lg-3">
+                            <div class="linkHold col-lg-3" style="padding-bottom: 30px;">
                                 <h3><?php echo $category['name']; ?></h3>
                                 <ul>
-                                    
-                                    <li><a href="">Sub-Category</a></li>
+                                    <?php
+                                    $subs = DB::table('sub_category')->where('parent_cat',''. $category['id'] .'')->get();
+
+                                    foreach($subs as $sub){
+                                    ?>
+                                    <li><a href=""><?php echo $sub->name; ?></a></li>
+                                    <?php
+                                    }
+                                    ?>
                                 </ul>
                             </div><br />
                             <?php

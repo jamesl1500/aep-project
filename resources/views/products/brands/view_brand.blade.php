@@ -11,15 +11,23 @@ if(!empty($brand_info)){
 if($brand_info->name == "Dewalt"){
     $color = "#febd17";
     $text_color = "#333";
+    $nav_color = "#fff";
+    $nav_color_a = "#333";
 }else if($brand_info->name == "Milwaukee"){
     $color = "#db011c";
     $text_color = "#fff";
+    $nav_color = "#fff";
+    $nav_color_a = "#333";
 }else if($brand_info->name == "Makita"){
     $color = "#008290";
     $text_color = "#fff";
+    $nav_color = "#fff";
+    $nav_color_a = "#333";
 }else if($brand_info->name == "Greenlee"){
     $color = "#7ac436";
     $text_color = "#fff";
+    $nav_color = "#fff";
+    $nav_color_a = "#333";
 }
 ?>
 @section('cpn', $cpn ?? '' )
@@ -29,14 +37,26 @@ if($brand_info->name == "Dewalt"){
 
 @section('website_content')
 <style>
+    .nav-links ul li a{
+        color: <?php echo $nav_color; ?> !important;
+    }
+
+    .nav-links ul li.active a{
+        color: <?php echo $nav_color_a; ?> !important;
+    }
+
+    .top-header{
+        background: <?php echo $color; ?> !important;
+    }
+
     .copyright{
         background: <?php echo $color; ?> !important;
     }
 </style>
     <div class="mainProductBanner" style="background: <?php echo $color; ?>;">
         <div class="innerProductBanner container">
-            <div class="brand_image col-lg-6" style="margin: 0% auto;text-align: center;padding: 0px;">
-                <img style="display: none;" src="<?php echo url('images'); ?>/<?php echo $brand_info->image; ?>" />
+            <div class="brand_image col-lg-6" style="margin: 0% auto;padding-bottom: 30px;text-align: center;padding: 0px;">
+                <img src="<?php echo url('images'); ?>/<?php echo $brand_info->image; ?>" style="padding-bottom: 30px;width: 250px;"/>
             </div>
             <h3 style="color: <?php echo $text_color; ?>;"><?php echo $brand_info->name; ?></h3>
             <p style="color: <?php echo $text_color; ?>;"><?php echo $brand_info->desc; ?></p>
