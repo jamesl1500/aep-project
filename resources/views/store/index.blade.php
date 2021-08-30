@@ -17,7 +17,42 @@
     <div class="topHeroContent">
         <div class="innerCover">
             <div class="middleContent">
-                <h3>This belong to the hero statement and <br>this is the 2nd line</h3>
+                <?php
+                    $hero_images = DB::table('hero_banner_images')->get();
+                ?>
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                      <div class="cover"></div>
+                      <?php
+                        foreach($hero_images as $hero_image)
+                        {
+                        ?>
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" src="{{ asset("images/") }}/<?php echo $hero_image->hero_image_url; ?>" alt="First slide">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5 style="font-size: 3em;"><?php echo $hero_image->hero_image_title; ?></h5>
+                                <p style="font-size: 2em;"><?php echo $hero_image->hero_image_text; ?></p>
+                            </div>
+                        </div>
+                        <?php
+                        }
+                      ?>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </div>
+                <h3 style="display: none;">This belong to the hero statement and <br>this is the 2nd line</h3>
                 <div class="inner-search-bar">
                     <input type="search" class="searchBarMain-index" name="search" placeholder="Search" />
                     <span class="searchBarBtn-index" style="cursor: pointer;margin-bottom: -35px;position: relative;top: -32px;left: -15px;float: right;"><i class="fas fa-search"></i></span>
@@ -119,7 +154,7 @@
                             // Get brand
                             $brand = DB::table('brands')->where('id',''. $product->product_brands .'')->get();
                         ?>
-                        <div class="productBox col-lg-3">
+                        <div class="productBox col-lg-3" style="margin-bottom: 30px;">
                             <a href="/products/single/<?php echo $product->id; ?>">
                                 <div class="innerProductBox">
                                     <div class="topProductBox">
@@ -127,9 +162,9 @@
                                     </div>
                                     <div class="bottomProductBox">
                                         <div class="innerBottomProductBox">
-                                            <h3><a href="/products/single/<?php echo $product->id; ?>"><?php echo $product->product_title; ?></a></h3>
+                                            <h3><a href="/products/single/<?php echo $product->id; ?>"><?php echo (strlen($product->product_title) > 35) ? substr($product->product_title, 0, 25) . '...' : $product->product_title; ?></a></h3>
                                             <h4><a href="/products/brands/<?php echo $brand[0]->name; ?>"><?php echo $brand[0]->name; ?></a></h4>
-                                            <p><?php echo (strlen($product->product_desc) > 100) ? substr($product->product_desc, 0, 100) . '...' : $product->product_desc; ?></p>
+                                            <p style="display: none;"><?php echo (strlen($product->product_desc) > 100) ? substr($product->product_desc, 0, 100) . '...' : $product->product_desc; ?></p>
                                             <h5>$<?php echo $product->product_price; ?></h5>
                                             <a class="btn-view" href="/products/single/<?php echo $product->id; ?>">View</a>
                                         </div>
@@ -160,7 +195,7 @@
                             // Get brand
                             $brand = DB::table('brands')->where('id',''. $product->product_brands .'')->get();
                         ?>
-                        <div class="productBox col-lg-3">
+                        <div class="productBox col-lg-3" style="margin-bottom: 30px;">
                             <a href="/products/single/<?php echo $product->id; ?>">
                                 <div class="innerProductBox">
                                     <div class="topProductBox">
@@ -168,9 +203,9 @@
                                     </div>
                                     <div class="bottomProductBox">
                                         <div class="innerBottomProductBox">
-                                            <h3><a href="/products/single/<?php echo $product->id; ?>"><?php echo $product->product_title; ?></a></h3>
+                                            <h3><a href="/products/single/<?php echo $product->id; ?>"><?php echo (strlen($product->product_title) > 35) ? substr($product->product_title, 0, 25) . '...' : $product->product_title; ?></a></h3>
                                             <h4><a href="/products/brands/<?php echo $brand[0]->name; ?>"><?php echo $brand[0]->name; ?></a></h4>
-                                            <p><?php echo (strlen($product->product_desc) > 100) ? substr($product->product_desc, 0, 100) . '...' : $product->product_desc; ?></p>
+                                            <p style="display: none;"><?php echo (strlen($product->product_desc) > 100) ? substr($product->product_desc, 0, 100) . '...' : $product->product_desc; ?></p>
                                             <h5>$<?php echo $product->product_price; ?></h5>
                                             <a class="btn-view" href="/products/single/<?php echo $product->id; ?>">View</a>
                                         </div>

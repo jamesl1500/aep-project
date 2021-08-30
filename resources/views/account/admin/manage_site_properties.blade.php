@@ -93,7 +93,63 @@
                                                 <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}" />
                                                 <button type="submit" class="btn btn-primary">Submit</button>
                                             </form>
+                                        </div><br />
+                                        <div class="innerOrdersHold" style="padding-top: 20px;border-top: 1px solid #eee;">
+                                            @if (session('success'))
+                                                <div class="alert alert-success">
+                                                    {{ session('success') }}
+                                                </div>
+                                            @endif
+
+                                            <form action="{{ route('account.admin.manage_site_properties.upload_hero_image') }}" method="post" enctype="multipart/form-data" class="addHeroImage">
+                                                <?php
+                                                    $props = DB::table('site_props')->where('id', 1)->get();
+                                                ?>
+                                                <h3>Storefront Hero Images</h3>
+                                                <div class="innerHeroImage">
+                                                    <div class="currentPictures">
+                                                        <p style="font-weight: bold;">Current Images</p>
+                                                    <?php
+                                                        $hero_images = DB::table('hero_banner_images')->get();
+
+                                                        foreach($hero_images as $hero_image)
+                                                        {
+                                                        ?>
+                                                        <div class="hero-item" id="hero-<?php echo $hero_image->id; ?>" style="border-bottom: 1px solid #eee;margin-bottom:10px;">
+                                                            <img style="width: 250px;" class="d-block" src="{{ asset("images/") }}/<?php echo $hero_image->hero_image_url; ?>" alt="First slide">
+                                                            <div class="hero-item-inner" style="padding-top: 10px;">
+                                                                <h5 style="font-size: 20px;"><b>Hero Title:</b> <?php echo $hero_image->hero_image_title; ?></h5>
+                                                                <p style="font-size: 15px;"><b>Hero Text:</b> <?php echo $hero_image->hero_image_text; ?></p>
+                                                                <button data-token="{{  csrf_token() }}" data-hid="<?php echo $hero_image->id; ?>" data-link="{{ route('account.admin.manage_site_properties.delete_hero_image') }}" style="margin-bottom: 20px;" class="btn btn-danger delete_hero_image_btn">Delete Image</button>
+                                                            </div>
+                                                        </div>
+                                                        <?php
+                                                        }
+                                                    ?>
+                                                    </div>
+                                                    <div class="addNewHeroImage">
+                                                        <p style="font-weight: bold;">Add new image</p>
+                                                        <div class="innerAddNew">
+                                                                <div class="inputMain">
+                                                                    <h3>Hero Image</h3>
+                                                                    <input type="file" name="hero_image" id="hero_image" placeholder="Product Image" />
+                                                                </div>
+                                                                <div class="inputMain">
+                                                                    <h3>Hero Title</h3>
+                                                                    <input type="text" name="hero_title" id="hero_title" placeholder="Hero Title"/>
+                                                                </div>
+                                                                <div class="inputMain">
+                                                                    <h3>Hero Text</h3>
+                                                                    <input type="text" name="hero_text" id="hero_title" placeholder="Hero Title"/>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}" />
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </form>
                                         </div>
+                                    </div>
                                     </div>
                                 </div>
                             </div>

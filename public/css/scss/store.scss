@@ -149,7 +149,37 @@
     .innerCover{
 
         .middleContent{
-            padding-top: 200px;
+            //padding-top: 200px;
+
+            .carousel{
+
+              .carousel-inner{
+                height: 550px;
+
+                .cover{
+                  width: 100%;
+                  height: 550px;
+
+                  background: rgba(0,0,0,.4);
+
+                  position:relative;
+                  margin-bottom: -550px;
+
+                  z-index: 1;
+               }
+
+                .carousel-item{
+
+                  .carousel-caption{
+                    top: 200px;
+                  }
+
+                  img{
+
+                  }
+                }
+              }
+            }
 
             h3{
                 text-align: center;
@@ -158,9 +188,12 @@
             }
 
             .inner-search-bar{
+                position:relative;
+                top: -250px;
                 text-align: center;
                 width: 450px;
                 margin: 0% auto;
+                z-index: 100001;
 
                 input{
                   margin-top: 150px;

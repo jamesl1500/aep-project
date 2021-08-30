@@ -12,6 +12,26 @@ $(document).ready(function()
 
     $('.modal').insertBefore($('body'));
 
+    $(".delete_hero_image_btn").on('click', function(e){
+        e.preventDefault();
+
+        var pid = $(this).data('hid');
+        var link = $(this).data('link');
+        var token = $(this).data('token');
+
+        if(pid != "")
+        {
+            var c = confirm("Are you sure you want to delete this image?");
+
+            if(c == true)
+            {
+                $.post(link, {id: pid, _token: token}, function (data) {
+                    $("#hero-" + pid).fadeOut('slow');
+                });
+            }
+        }
+        return false;
+    });
 
     //$('#shippingModal').modal();  
     //$('#orderStatusChange').modal();  

@@ -493,6 +493,47 @@ class AccountController extends Controller
         }
     }
 
+    /* Upload hero image */
+    public function upload_hero_image(Request $request)
+    {
+        if (isset($_POST))
+        {
+            if (Auth::check())
+            {
+                if (auth()->user()->type == "admin")
+                {
+                    // Check values
+                    $request->validate([
+                        'hero_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+                        'hero_title' => 'required|max:25',
+                        'hero_text' => 'required|max:50',
+                    ]);
+
+                    // Insert the image
+                    $image_name = time() . '.' . $request->hero_image->getClientOriginalExtension();
+                    $request->hero_image->move(public_path('images'), $image_name);
+
+                    // Now insert
+                    DB::table('hero_banner_images')->insert(
+                        [
+                            'hero_image_title' => $request->hero_title,
+                            'hero_image_text' => $request->hero_text,
+                            'hero_image_url' => $image_name,
+                        ]
+                    );
+
+                    return redirect("account/admin/manage_site_properties")->with('success', 'Hero image added successfully!');
+                }else {
+                    return redirect("login")->with('error', 'Must be an admin');
+                }
+            }else {
+                return redirect("login")->with('error', 'Must be logged in!');
+            }
+        }else {
+            return redirect("account/admin/manage_site_properties")->with('error', 'Invalid Request, Please try again!');
+        }
+    }
+
     /* Update site props */
     public function update_site_properties(Request $request)
     {
@@ -547,6 +588,16 @@ class AccountController extends Controller
     {
         // Update user
         DB::table('users')->where('id', '' . $request->id . '')->update(['is_active' => '0']);
+
+        echo json_encode(array('code' => '1'));
+
+    }
+
+    /* Deactivate access */
+    public function delete_hero_image(Request $request)
+    {
+        // Update user
+        DB::table('hero_banner_Images')->where('id', '' . $request->id . '')->delete();
 
         echo json_encode(array('code' => '1'));
 

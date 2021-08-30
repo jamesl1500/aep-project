@@ -72,7 +72,7 @@ if(count($category_info) == 0)
             // Get brand
             $brand = DB::table('brands')->where('id',''. $product->product_brands .'')->get();
             ?>
-                <div class="productBox col-lg-3">
+                <div class="productBox col-lg-3" style="margin-bottom: 30px;">
                     <a href="/products/single/<?php echo $product->id; ?>">
                         <div class="innerProductBox">
                             <div class="topProductBox">
@@ -80,9 +80,9 @@ if(count($category_info) == 0)
                             </div>
                             <div class="bottomProductBox">
                                 <div class="innerBottomProductBox">
-                                    <h3><a href="/products/single/<?php echo $product->id; ?>"><?php echo $product->product_title; ?></a></h3>
+                                    <h3><a href="/products/single/<?php echo $product->id; ?>"><?php echo (strlen($product->product_title) > 35) ? substr($product->product_title, 0, 25) . '...' : $product->product_title; ?></a></h3>
                                     <h4><a href="/products/brands/<?php echo $brand[0]->name; ?>"><?php echo $brand[0]->name; ?></a></h4>
-                                    <p><?php echo (strlen($product->product_desc) > 100) ? substr($product->product_desc, 0, 100) . '...' : $product->product_desc; ?></p>
+                                    <p style="display: none;"><?php echo (strlen($product->product_desc) > 100) ? substr($product->product_desc, 0, 100) . '...' : $product->product_desc; ?></p>
                                     <h5>$<?php echo $product->product_price; ?></h5>
                                     <a class="btn-view" href="/products/single/<?php echo $product->id; ?>">View</a>
                                 </div>
