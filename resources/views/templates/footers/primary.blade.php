@@ -20,14 +20,14 @@ $headerFunctions = new HeaderFunctions();
                             {
                             ?>
                             <div class="linkHold col-lg-3" style="padding-bottom: 30px;">
-                                <h3><?php echo $category['name']; ?></h3>
+                                <h3 style="cursor: pointer;" onClick="window.location.assign('/products/category/<?php echo $category['id']; ?>');"><?php echo $category['name']; ?></h3>
                                 <ul>
                                     <?php
                                     $subs = DB::table('sub_category')->where('parent_cat',''. $category['id'] .'')->get();
 
                                     foreach($subs as $sub){
                                     ?>
-                                    <li><a href=""><?php echo $sub->name; ?></a></li>
+                                    <li><a href="/products/category/<?php echo $sub->id; ?>"><?php echo $sub->name; ?></a></li>
                                     <?php
                                     }
                                     ?>

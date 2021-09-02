@@ -18,7 +18,7 @@
         <div class="innerCover">
             <div class="middleContent">
                 <?php
-                    $hero_images = DB::table('hero_banner_images')->get();
+                    $hero_images = DB::table('hero_banner_images')->get()->toArray();
                 ?>
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
@@ -29,17 +29,29 @@
                     <div class="carousel-inner">
                       <div class="cover"></div>
                       <?php
-                        foreach($hero_images as $hero_image)
+                        for($x = 0; $x < count($hero_images); ++$x)
                         {
+                            if($x == 1){
                         ?>
                         <div class="carousel-item active">
-                            <img class="d-block w-100" src="{{ asset("images/") }}/<?php echo $hero_image->hero_image_url; ?>" alt="First slide">
+                            <img class="d-block w-100" src="{{ asset("images/") }}/<?php echo $hero_images[$x]->hero_image_url; ?>" alt="First slide">
                             <div class="carousel-caption d-none d-md-block">
-                                <h5 style="font-size: 3em;"><?php echo $hero_image->hero_image_title; ?></h5>
-                                <p style="font-size: 2em;"><?php echo $hero_image->hero_image_text; ?></p>
+                                <h5 style="font-size: 3em;"><?php echo $hero_images[$x]->hero_image_title; ?></h5>
+                                <p style="font-size: 2em;"><?php echo $hero_images[$x]->hero_image_text; ?></p>
                             </div>
                         </div>
                         <?php
+                            }else{
+                                ?>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="{{ asset("images/") }}/<?php echo $hero_images[$x]->hero_image_url; ?>" alt="First slide">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h5 style="font-size: 3em;"><?php echo $hero_images[$x]->hero_image_title; ?></h5>
+                                        <p style="font-size: 2em;"><?php echo $hero_images[$x]->hero_image_text; ?></p>
+                                    </div>
+                                </div>
+                                <?php
+                            }
                         }
                       ?>
                     </div>

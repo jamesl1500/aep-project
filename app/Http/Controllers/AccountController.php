@@ -597,7 +597,7 @@ class AccountController extends Controller
     public function delete_hero_image(Request $request)
     {
         // Update user
-        DB::table('hero_banner_Images')->where('id', '' . $request->id . '')->delete();
+        DB::table('hero_banner_images')->where('id', '' . $request->id . '')->delete();
 
         echo json_encode(array('code' => '1'));
 
