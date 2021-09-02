@@ -125,6 +125,18 @@ if(Auth::check() && count($product) == 0){
                                                     <input type="text" name="product_tags" id="product_tags" placeholder="Product Tags" value="<?php echo $product[0]->product_tags; ?>">
                                                 </div>
                                                 <div class="inputMain">
+                                                    <h3>Key features, includes & Specs</h3>
+                                                    <textarea type="text" name="product_key_features" id="product_key_features" placeholder="Product Keyfeatures, Includes & Specs"><?php echo $product[0]->product_key_features; ?></textarea>
+                                                </div>
+                                                <div class="inputMain">
+                                                    <h3>Root Brothers SKU</h3>
+                                                    <input type="text" name="product_sku_root" id="product_sku_root" placeholder="Root Brothers SKU" value="<?php echo $product[0]->product_sku_root; ?>"/>
+                                                </div>
+                                                <div class="inputMain">
+                                                    <h3>Manufacturer SKU</h3>
+                                                    <input type="text" name="product_sku" id="product_sku" placeholder="Manufacturers SKU" value="<?php echo $product[0]->product_sku; ?>"/>
+                                                </div>
+                                                <div class="inputMain">
                                                     <h3>Product Price</h3>
                                                     <input type="text" name="product_price" id="product_price" placeholder="Product Price" value="<?php echo $product[0]->product_price; ?>">
                                                 </div>
@@ -193,13 +205,13 @@ if(Auth::check() && count($product) == 0){
                                                     </select>
                                                 </div>
                                                 <div class="inputMain">
-                                                    <h3>Product Sizes</h3>
-                                                    <a class="addSize btn btn-success">Add size</a><br /><br />
+                                                    <h3>Product Variants</h3>
+                                                    <a class="addSize btn btn-success">Add Variant</a><br /><br />
                                                     <table id="productSizeHold" class="table table-striped table-bordered">
                                                         <thead>
                                                         <tr>
                                                             <td>Show</td>
-                                                            <td>Size</td>
+                                                            <td>Variant</td>
                                                             <td>Stock</td>
                                                         </tr>
                                                         </thead>

@@ -90,7 +90,10 @@ class ProductsController extends Controller
                     'weight' => 'required|numeric',
                     'length' => 'required|numeric',
                     'width' => 'required|numeric',
-                    'height' => 'required|numeric'
+                    'height' => 'required|numeric',
+                    'product_key_features' => 'required',
+                    'product_sku_root' => 'required',
+                    'product_sku' => 'required'
                 ]);
             }else{
                 $request->validate([
@@ -107,7 +110,10 @@ class ProductsController extends Controller
                     'weight' => 'required|numeric',
                     'length' => 'required|numeric',
                     'width' => 'required|numeric',
-                    'height' => 'required|numeric'
+                    'height' => 'required|numeric',
+                    'product_key_features' => 'required',
+                    'product_sku_root' => 'required',
+                    'product_sku' => 'required'
                 ]);
 
                 // Validate image
@@ -204,7 +210,10 @@ class ProductsController extends Controller
                     'product_category' => $request->product_category,
                     'product_sub_category' => $request->product_sub_category,
                     'product_brands' => $request->product_brand,
-                    'product_dimensions' => json_encode($product_dimensions)
+                    'product_dimensions' => json_encode($product_dimensions),
+                    'product_key_features' => $request->product_key_features,
+                    'product_sku_root' => $request->product_sku_root,
+                    'product_sku' => $request->product_sku
                 ]);
 
             // Return MSG
