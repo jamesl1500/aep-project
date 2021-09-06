@@ -21,6 +21,7 @@
                             <li><a href="{{ route('account.index') }}">Account Dashboard</a></li>
                             <li class="active"><a href="{{ route('account.account_addresses') }}">Account Addresses</a></li>
                             <li><a href="{{ route('account.order_history') }}">Order History</a></li>
+                            <li><a href="{{ route('account.payment_methods') }}">Payment Methods</a></li>
                         </ul>
                     </div>
                 </div>
@@ -39,6 +40,7 @@
                             <li><a href="{{ route('account.admin.manage_products') }}">Manage Products</a></li>
                             <li><a href="{{ route('account.admin.manage_orders') }}">Manage Orders</a></li>
                             <li><a href="{{ route('account.admin.manage_site_properties') }}">Manage Site</a></li>
+                            <li><a href="{{ route('account.admin.manage_users') }}">Manage Users</a></li>
                         </ul>
                     </div>
                 </div>

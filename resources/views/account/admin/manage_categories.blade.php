@@ -21,6 +21,7 @@
                                 <li><a href="{{ route('account.index') }}">Account Dashboard</a></li>
                                 <li><a href="{{ route('account.account_addresses') }}">Account Addresses</a></li>
                                 <li><a href="{{ route('account.order_history') }}">Order History</a></li>
+                                <li><a href="{{ route('account.payment_methods') }}">Payment Methods</a></li>
                             </ul>
                         </div>
                     </div>
@@ -80,6 +81,7 @@
                                                     <td>Hidden</td>
                                                     <td>Special</td>
                                                     <td>Navbar</td>
+                                                    <td>Actions</td>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -87,8 +89,8 @@
                                                 foreach ($categories as $category)
                                                 {
                                                 ?>
-                                                <tr>
-                                                    <td class=""><?php echo $category->name; ?></td>
+                                                <tr id="category-<?php echo $category->id; ?>">
+                                                    <td class=""><a href="#" id="name" class="changeCatName" data-token="{{ csrf_token() }}" data-type="text" data-pk="<?php echo $category->id; ?>" data-url="/account/manage_categories/updateCatName" data-title="Change Category Name"><?php echo $category->name; ?></a></td>
                                                     <td class="">
                                                         <?php
                                                             if($category->status == 1)
@@ -131,6 +133,9 @@
                                                             }
                                                         ?>
                                                     </td>
+                                                    <td class="">
+                                                        <a href="#" class="deleteCategory" data-token="{{ csrf_token() }}" data-link="{{ route('account.admin.category.deleteCategory') }}" data-catid='<?php echo $category->id; ?>'>Delete</a>
+                                                    </td>
                                                 </tr>
                                                 <?php
                                                 }
@@ -164,6 +169,7 @@
                                                     <td>Hidden</td>
                                                     <td>Special</td>
                                                     <td>Navbar</td>
+                                                    <td>Actions</td>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -171,8 +177,8 @@
                                                 foreach ($sub_categories as $sub_category)
                                                 {
                                                 ?>
-                                                <tr>
-                                                    <td class=""><?php echo $sub_category->name; ?></td>
+                                                <tr id="sub_category-<?php echo $sub_category->id; ?>">
+                                                    <td class=""><a href="#" id="name" class="changeSubCatName" data-token="{{ csrf_token() }}" data-type="text" data-pk="<?php echo $sub_category->id; ?>" data-url="/account/manage_categories/updateSubCatName" data-title="Change Sub Category Name"><?php echo $sub_category->name; ?></a></td>
                                                     <?php
                                                         $parent_category = DB::table('category')->where('id', ''.$sub_category->parent_cat.'')->get()[0];
                                                     ?>
@@ -219,6 +225,9 @@
                                                         }
                                                         ?>
                                                     </td>
+                                                    <td class="">
+                                                        <a href="#" class="deleteSubCategory" data-token="{{ csrf_token() }}" data-link="{{ route('account.admin.category.deleteSubCategory') }}" data-catid='<?php echo $sub_category->id; ?>'>Delete</a>
+                                                    </td>
                                                 </tr>
                                                 <?php
                                                 }
@@ -228,7 +237,7 @@
                                             <?php
                                             }else{
                                             ?>
-                                            <h3 class="orderMsg">There are no categories</h3>
+                                            <h3 class="orderMsg">There are no sub categories</h3>
                                             <?php
                                             }
                                             ?>

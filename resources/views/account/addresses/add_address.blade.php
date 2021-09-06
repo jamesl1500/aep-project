@@ -20,6 +20,7 @@
                             <li><a href="/account">Account Dashboard</a></li>
                             <li class="active"><a href="/account/account_addresses">Account Addresses</a></li>
                             <li><a href="/account/order_history">Order History</a></li>
+                            <li><a href="{{ route('account.payment_methods') }}">Payment Methods</a></li>
                         </ul>
                     </div>
                 </div>

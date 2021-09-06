@@ -47,6 +47,10 @@ Route::get('/account', [AccountController::class, 'index'])->name('account.index
 Route::get('/account/order_history', [AccountController::class, 'order_history'])->name('account.order_history');
 Route::get('/account/account_addresses', [AccountController::class, 'account_addresses'])->name('account.account_addresses');
 Route::get('/account/add_address', [AccountController::class, 'add_new_address'])->name('account.add_new_address');
+Route::get('/account/payment_methods', [AccountController::class, 'payment_methods'])->name('account.payment_methods');
+Route::post('/account/payment_methods/makePrimary', [AccountController::class, 'makePrimaryPaymentMethod'])->name('account.payment_methods.makePrimary');
+Route::post('/account/payment_methods/deleteMethod', [AccountController::class, 'deletePaymentMethod'])->name('account.payment_methods.deletePaymentMethod');
+Route::post('/account/payment_methods/addMethod', [AccountController::class, 'addMethod'])->name('account.payment_methods.addMethod');
 
 // Admin
 Route::get('/account/admin/manage_categories', [AccountController::class, 'manage_categories'])->name('account.admin.manage_categories');
@@ -89,6 +93,10 @@ Route::post('/account/admin/manage_admin/revoke', [AccountController::class, 're
 Route::post('/account/admin/manage_admin/activate_user', [AccountController::class, 'activate_user'])->name('account.admin.activate_user');
 Route::post('/account/admin/manage_admin/deactivate_user', [AccountController::class, 'deactivate_user'])->name('account.admin.deactivate_user');
 Route::post('/account/admin/manage_admin/make', [AccountController::class, 'make_admin'])->name('account.admin.manage_site_properties.make_admin');
+Route::post('/account/admin/manage_admin/deleteCategory', [AccountController::class, 'deleteCategory'])->name('account.admin.category.deleteCategory');
+Route::post('/account/admin/manage_admin/deleteSubCategory', [AccountController::class, 'deleteSubCategory'])->name('account.admin.category.deleteSubCategory');
+Route::post('/account/manage_categories/updateCatName', [AccountController::class, 'updateCatName'])->name('account.admin.category.updateCatName');
+Route::post('/account/manage_categories/updateSubCatName', [AccountController::class, 'updateSubCatName'])->name('account.admin.category.updateSubCatName');
 
 // Products
 Route::get('/products', [ProductsController::class, 'all_products'])->middleware('auth')->name("products.all_products");

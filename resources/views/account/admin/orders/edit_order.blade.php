@@ -42,6 +42,7 @@ $transaction = OrderingSystem::fetchOrderPaymentInfo($order[0]->order_transactio
                                 <li><a href="{{ route('account.index') }}">Account Dashboard</a></li>
                                 <li><a href="{{ route('account.account_addresses') }}">Account Addresses</a></li>
                                 <li><a href="{{ route('account.order_history') }}">Order History</a></li>
+                                <li><a href="{{ route('account.payment_methods') }}">Payment Methods</a></li>
                             </ul>
                         </div>
                     </div>

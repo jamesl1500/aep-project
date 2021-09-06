@@ -74,12 +74,12 @@ if(count($product) == 0){
                             <li><span>Tags:</span> <?php echo $product[0]->product_tags; ?></li>
                             <?php
                                 // Get category name
-                                $category = DB::table('category')->where('id',''. $product[0]->product_category .'')->get()[0];
-                                $sub_category = DB::table('sub_category')->where('id',''. $product[0]->product_sub_category .'')->get()[0];
+                                $category = @DB::table('category')->where('id',''. $product[0]->product_category .'')->get()[0];
+                                $sub_category = @DB::table('sub_category')->where('id',''. $product[0]->product_sub_category .'')->get()[0];
 
                             ?>
-                            <li><span>Category:</span> <a href="<?php echo url('/'); ?>/products/category/<?php echo $category->id; ?>"><?php echo $category->name; ?></a></li>
-                            <li><span>Sub Category:</span> <a href="<?php echo url('/'); ?>/products/category/<?php echo $sub_category->id; ?>"><?php echo $sub_category->name; ?></a></li>
+                            <li><span>Category:</span> <a href="<?php echo url('/'); ?>/products/category/<?php echo @$category->id; ?>"><?php echo @$category->name; ?></a></li>
+                            <li><span>Sub Category:</span> <a href="<?php echo url('/'); ?>/products/category/<?php echo @$sub_category->id; ?>"><?php echo @$sub_category->name; ?></a></li>
                             <li><span>Root Brothers SKU:</span> <?php echo $product[0]->product_sku_root; ?></li>
                             <li><span>Manufacturer SKU:</span> <?php echo $product[0]->product_sku; ?></li>
                         </ul>

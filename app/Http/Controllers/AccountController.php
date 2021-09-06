@@ -10,6 +10,7 @@ use App\Libraries\AddressesHelper;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use App\Libraries\OrderingSystem;
+use Illuminate\Support\Facades\Crypt;
 
 class AccountController extends Controller
 {
@@ -40,6 +41,11 @@ class AccountController extends Controller
     public function order_history()
     {
         return view('account.order_history', ['wn' => $this->wn, 'cpn' => $this->cpn, 'ss' => $this->ss]);
+    }
+
+    public function payment_methods()
+    {
+        return view('account.payment_methods', ['wn' => $this->wn, 'cpn' => $this->cpn, 'ss' => $this->ss]);
     }
 
     public function account_addresses()
@@ -602,4 +608,122 @@ class AccountController extends Controller
         echo json_encode(array('code' => '1'));
 
     }
+
+    public function deleteCategory(Request $request)
+    {
+        // Update user
+        DB::table('category')->where('id', '' . $request->id . '')->delete();
+
+        echo json_encode(array('code' => '1'));
+
+    }
+
+    public function deleteSubCategory(Request $request)
+    {
+        // Update user
+        DB::table('sub_category')->where('id', '' . $request->id . '')->delete();
+
+        echo json_encode(array('code' => '1'));
+
+    }
+
+    public function updateCatName(Request $request)
+    {
+        if (isset($_POST))
+        {
+            if (Auth::check())
+            {
+                if (auth()->user()->type == "admin")
+                {
+                    DB::table('category')->where('id', $request->pk)->update(['name' => $request->value]);
+                    return redirect("account/admin/manage_categories")->with('success', 'Category updated!');
+                }
+            }
+        }
+    }
+
+    public function updateSubCatName(Request $request)
+    {
+        if (isset($_POST))
+        {
+            if (Auth::check())
+            {
+                if (auth()->user()->type == "admin")
+                {
+                    DB::table('sub_category')->where('id', $request->pk)->update(['name' => $request->value]);
+                    return redirect("account/admin/manage_categories")->with('success', 'Sub Category updated!');
+                }
+            }
+        }
+    }
+
+    public function makePrimaryPaymentMethod(Request $request)
+    {
+        if (isset($_POST))
+        {
+            if (Auth::check())
+            {
+                if (auth()->user()->type == "admin")
+                {
+                    DB::table('payment_methods')->where(['is_primary' => 'yes', 'user_id' => Auth::id()])->update(['is_primary' => "no"]);
+                    DB::table('payment_methods')->where('id', $request->pid)->update(['is_primary' => "yes"]);
+                    echo json_encode(array('code' => '1'));
+                }
+            }
+        }
+    }
+
+    public function addMethod(Request $request)
+    {
+        if (isset($_POST))
+        {
+            if (Auth::check())
+            {
+                // Make sure its an admin
+                if (auth()->user()->type == "admin")
+                {
+                    if ($request->credit_card_number != "" && $request->credit_card_cvv != "" && $request->credit_card_exp_date != "")
+                    {
+                        // Now insert
+                        DB::table('payment_methods')->insert(
+                            [
+                                'user_id' => Auth::id(),
+                                'cc_number' => Crypt::encrypt($request->credit_card_number),
+                                'cc_exp_date' => Crypt::encrypt($request->credit_card_exp_date),
+                                'cc_cvc_number' => Crypt::encrypt($request->credit_card_cvv),
+                                'is_primary' => 'no',
+                            ]
+                        );
+
+                        return redirect("account/payment_methods")->with('success', 'Payment Method added successfully!');
+                    } else {
+                        return redirect("account/payment_methods")->with('error', 'Please fill in all fields!');
+                    }
+                } else {
+                    return redirect("login")->with('error', 'Must be an admin');
+                }
+            } else {
+                return redirect("login")->with('error', 'Must be logged in!');
+            }
+        } else {
+            return redirect("account/payment_methods")->with('error', 'Invalid Request, Please try again!');
+        }
+    }
+
+    public function deletePaymentMethod(Request $request)
+    {
+        if (isset($_POST))
+        {
+            if (Auth::check())
+            {
+                if (auth()->user()->type == "admin")
+                {
+                    DB::table('payment_methods')->where('id', '' . $request->pid . '')->delete();
+                    echo json_encode(array('code' => '1'));
+                }
+            }
+        }
+    }
 }
+
+    /* Update site props */

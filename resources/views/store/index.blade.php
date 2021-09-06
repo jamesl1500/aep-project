@@ -31,7 +31,7 @@
                       <?php
                         for($x = 0; $x < count($hero_images); ++$x)
                         {
-                            if($x == 1){
+                            if($x == 0){
                         ?>
                         <div class="carousel-item active">
                             <img class="d-block w-100" src="{{ asset("images/") }}/<?php echo $hero_images[$x]->hero_image_url; ?>" alt="First slide">

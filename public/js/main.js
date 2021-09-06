@@ -15,7 +15,7 @@ $(document).ready(function()
     $(".delete_hero_image_btn").on('click', function(e){
         e.preventDefault();
 
-        var pid = $(this).data('hid');
+        var pid = $(this).data('catid');
         var link = $(this).data('link');
         var token = $(this).data('token');
 
@@ -27,6 +27,48 @@ $(document).ready(function()
             {
                 $.post(link, {id: pid, _token: token}, function (data) {
                     $("#hero-" + pid).fadeOut('slow');
+                });
+            }
+        }
+        return false;
+    });
+
+    $(".deleteCategory").on('click', function(e){
+        e.preventDefault();
+
+        var pid = $(this).data('catid');
+        var link = $(this).data('link');
+        var token = $(this).data('token');
+
+        if(pid != "")
+        {
+            var c = confirm("Are you sure you want to delete this category?");
+
+            if(c == true)
+            {
+                $.post(link, {id: pid, _token: token}, function (data) {
+                    $("#category-" + pid).fadeOut('slow');
+                });
+            }
+        }
+        return false;
+    });
+
+    $(".deleteSubCategory").on('click', function(e){
+        e.preventDefault();
+
+        var pid = $(this).data('catid');
+        var link = $(this).data('link');
+        var token = $(this).data('token');
+
+        if(pid != "")
+        {
+            var c = confirm("Are you sure you want to delete this category?");
+
+            if(c == true)
+            {
+                $.post(link, {id: pid, _token: token}, function (data) {
+                    $("#sub_category-" + pid).fadeOut('slow');
                 });
             }
         }
@@ -298,6 +340,7 @@ $(document).ready(function()
 
     // Manage orders
     $(".order-table").DataTable();
+
     
     // Checkout
     var address_1 = $("#address_one");
@@ -505,10 +548,60 @@ $(document).ready(function()
          return false;
      });
 
+     $(document).on('click', '.makePrimaryPayment', function(e){
+        e.preventDefault();
+
+        var id = $(this).data('pid');
+        var href = $(this).attr('href');
+
+        if(id != "")
+        {
+            $.post(href, {_token: $(this).data('token'), pid: id}, function(data){
+                var obj = jQuery.parseJSON(data);
+
+                if(obj.code == 1){
+                    window.location.reload();
+                } else{
+                    alert(obj.status)
+                }
+            });
+        }
+
+        return false;
+    });
+
+        // For product delete
+        $(".deletePaymentMethod").on('click', function(e){
+            e.preventDefault();
+    
+            var pid = $(this).data('pid');
+            var token = $(this).data('token');
+            var href = $(this).attr('href');
+    
+            if(pid != "" && token != "")
+            {
+                var c = confirm("Are you sure you want to delete this payment method?");
+    
+                if(c == true)
+                {
+                    $.post(href, {_token: token, pid: pid}, function (data) {
+                        $("#method-" + pid).fadeOut('slow');
+                    });
+                }
+            }
+            return false;
+        });
+
      $.fn.editable.defaults.params = function (params) {
-        params._token = $(".change").data("token");
+        params._token = $(this).data("token");
         return params;
     };
+
+    $.fn.editable.defaults.mode = 'inline';
+
+
+    $(".changeCatName").editable();
+    $(".changeSubCatName").editable();
 
     $(".change").editable({
         'source': [{value: 1, text: "Yes"}, {value: 0, text: "No"}]
