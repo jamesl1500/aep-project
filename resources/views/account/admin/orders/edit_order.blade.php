@@ -211,13 +211,18 @@ $transaction = OrderingSystem::fetchOrderPaymentInfo($order[0]->order_transactio
                                     <h3 style="font-weight: 300;"></h3>
                                     <div class="innerMod">
                                         <?php
-                                        $payment_method = DB::table("payment_methods")->where('user_id', $order[0]->user_id)->get();
+                                        $payment_method = DB::table("payment_methods")->where(['user_id' => $order[0]->user_id, 'is_primary' => 'yes'])->get();
+
+                                        if(count($payment_method) > 0){
                                         ?>
                                         <ul>
                                             <li><b>Credit Card #:</b> <?php echo Crypt::decrypt($payment_method[0]->cc_number); ?></li>
                                             <li><b>Credit Card CVV:</b> <?php echo Crypt::decrypt($payment_method[0]->cc_cvc_number); ?></li>
                                             <li><b>Credit Card EXP:</b> <?php echo Crypt::decrypt($payment_method[0]->cc_exp_date); ?></li>
                                         </ul>
+                                        <?php }else{ ?>
+                                            <h3>Customer has no set payment methods</h3>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>
