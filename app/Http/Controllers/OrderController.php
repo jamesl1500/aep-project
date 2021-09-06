@@ -179,9 +179,9 @@ class OrderController extends Controller
                         'user_id' => $id,
                         'transaction_id' => '',
                         'shipping' => $shipping,
-                        'cc_number' => $request->credit_card_number,
-                        'cc_cvv' => $request->credit_card_cvv,
-                        'cc_exp' => $request->credit_card_exp_date 
+                        //'cc_number' => $request->credit_card_number,
+                        //'cc_cvv' => $request->credit_card_cvv,
+                        //'cc_exp' => $request->credit_card_exp_date 
 
                     ]);
 

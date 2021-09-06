@@ -43,9 +43,9 @@ class OrderingSystem
               'order_address'=>$order['address'],
               'order_transaction_id'=>$order['transaction_id'],
               'order_shipping' => json_encode($order['shipping']),
-              'order_credit_card' => Crypt::encrypt($order['cc_number']),
-              'order_cvc' => Crypt::encrypt($order['cc_cvv']),
-              'order_exp_date' => Crypt::encrypt($order['cc_exp'])
+              //'order_credit_card' => Crypt::encrypt($order['cc_number']),
+              //'order_cvc' => Crypt::encrypt($order['cc_cvv']),
+              //'order_exp_date' => Crypt::encrypt($order['cc_exp'])
           ]
         );
         
@@ -158,7 +158,7 @@ class OrderingSystem
                 
 
                 // Now update the order with new stuff
-                DB::table('orders')->where('order_id', $payment['order_id'])->update(['order_transaction_id' => $result->transaction->id, 'order_status'=> 'paid']);
+                DB::table('orders')->where('order_id', $payment['order_id'])->update(['order_transaction_id' => '', 'order_status'=> 'unpaid']);
 
                 // Now lets email both parties
                 Mail::to($payment['email'])->send(new OrderConfirmation($payment['order_id'], $payment['fullname']));

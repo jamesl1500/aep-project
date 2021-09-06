@@ -94,7 +94,7 @@ $subtotal = basketHelper::fetchCartSubTotal($cart);
                             </div>
                         </div>
                     </div>
-                    <div class="module payment-info col-lg-6"><br />
+                    <div style="display: none;" class="module payment-info col-lg-6"><br />
                         <div class="form-header">
                             <h3>Payment</h3><br />
                             <div class="form-group">
