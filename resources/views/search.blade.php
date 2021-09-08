@@ -34,6 +34,7 @@ $stylesheet = "products";
                     <h3>Products</h3>
                 </div>
                 <div class="moduleInner">
+                    <div class="row">
                     <?php
                     //use App\Libraries\ProductsSystem;
 
@@ -47,7 +48,7 @@ $stylesheet = "products";
                     // Get brand
                     $brand = DB::table('brands')->where('id',''. $product->product_brands .'')->get();
                     ?>
-                        <div class="productBox col-lg-4">
+                        <div class="productBox col-lg-4" style="margin-bottom: 30px;">
                             <a href="/products/single/<?php echo $product->id; ?>">
                                 <div class="innerProductBox">
                                     <div class="topProductBox">
@@ -55,9 +56,8 @@ $stylesheet = "products";
                                     </div>
                                     <div class="bottomProductBox">
                                         <div class="innerBottomProductBox">
-                                            <h3><a href="/products/single/<?php echo $product->id; ?>"><?php echo $product->product_title; ?></a></h3>
+                                            <h3><a href="/products/single/<?php echo $product->id; ?>"><?php echo (strlen($product->product_title) > 35) ? substr($product->product_title, 0, 25) . '...' : $product->product_title; ?></a></h3>
                                             <h4><a href="/products/brands/<?php echo $brand[0]->name; ?>"><?php echo $brand[0]->name; ?></a></h4>
-                                            <p><?php echo (strlen($product->product_desc) > 100) ? substr($product->product_desc, 0, 100) . '...' : $product->product_desc; ?></p>
                                             <h5>$<?php echo $product->product_price; ?></h5>
                                             <a class="btn-view" href="/products/single/<?php echo $product->id; ?>">View</a>
                                         </div>
@@ -71,6 +71,7 @@ $stylesheet = "products";
                         echo "No products could be found";
                     }
                     ?>
+                    </div>
                 </div>
             </div><br /><hr />
             <div class="searchModule products">
