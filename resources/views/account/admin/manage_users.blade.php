@@ -61,7 +61,7 @@
                         <div class="accountInfo">
                             <?php
                             // For getting category
-                            $admins = DB::table('users')->where('is_active', '1')->get();
+                            $admins = DB::table('users')->where('activated', '1')->get();
 
                             if(count($admins) > 0)
                             {
@@ -106,7 +106,7 @@
                                 <h3>Not activated</h3>
                                 <?php
                                 // For getting category
-                                $admins = DB::table('users')->where('is_active', '0')->get();
+                                $admins = DB::table('users')->where('activated', '0')->get();
 
                                 if(count($admins) > 0)
                                 {
