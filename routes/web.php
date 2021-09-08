@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 // Controller
+use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\OrderController;
@@ -26,6 +27,8 @@ use App\Http\Controllers\LoginController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom'); 
 
 // Auth
 Route::get('/', [GateKeeperController::class, 'index'])->name('gatekeeper.index');
