@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class StoreController extends Controller
 {
@@ -36,7 +38,17 @@ class StoreController extends Controller
         $this->cpn = "Store";
 
         // Show face
-        return view('store.index', ['wn' => $this->wn, 'cpn' => $this->cpn, 'ss' => 'store.css']);
+        if(Auth::user()->is_active == 1)
+        {
+            return view('store.index', ['wn' => $this->wn, 'cpn' => $this->cpn, 'ss' => 'store.css']);
+        }else{
+            session_start();
+            unset($_SESSION['aep_session']);
+    
+            Auth::logout();
+
+            return redirect('/login')->withErrors('You must be activated to view this page');
+        }
     }
 
     /**
