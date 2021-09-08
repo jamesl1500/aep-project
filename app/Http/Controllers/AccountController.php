@@ -582,7 +582,7 @@ class AccountController extends Controller
         // Update user
         $user = DB::table('users')->where('id', $request->id)->get()[0];
 
-        DB::table('users')->where('id', '' . $request->id . '')->update(['is_active' => '1']);
+        DB::table('users')->where('id', '' . $request->id . '')->update(['activated' => '1']);
         Mail::to($user->email)->send(new AccountHasBeenActivated($request->id));
 
         echo json_encode(array('code' => '1'));
@@ -593,7 +593,7 @@ class AccountController extends Controller
     public function deactivate_user(Request $request)
     {
         // Update user
-        DB::table('users')->where('id', '' . $request->id . '')->update(['is_active' => '0']);
+        DB::table('users')->where('id', '' . $request->id . '')->update(['activated' => '0']);
 
         echo json_encode(array('code' => '1'));
 

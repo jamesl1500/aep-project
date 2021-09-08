@@ -29,6 +29,7 @@ use App\Http\Controllers\LoginController;
 */
 
 Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom'); 
+Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom'); 
 
 // Auth
 Route::get('/', [GateKeeperController::class, 'index'])->name('gatekeeper.index');

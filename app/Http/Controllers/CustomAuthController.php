@@ -9,6 +9,8 @@ use App\Models\User;
 use App\Mail\NewUserAlert;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
+
 
 
 class CustomAuthController extends Controller
@@ -26,14 +28,24 @@ class CustomAuthController extends Controller
             'email' => 'required',
             'password' => 'required',
         ]);
+
+        $user = DB::table('users')->where('email', $request->email)->get();
    
-        $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard')
-                        ->withSuccess('Signed in');
+        if(count($user) == 1)
+        {
+            if($user[0]->activated == '1')
+            {
+                $credentials = $request->only('email', 'password');
+                if (Auth::attempt($credentials)) {
+                    return redirect()->intended('store')
+                                ->withSuccess('Signed in');
+                }
+            }else{
+                return redirect("login")->withErrors('Your account isnt activated');
+            }
         }
   
-        return redirect("login")->withSuccess('Login details are not valid');
+        return redirect("login")->withErrors('Login details are not valid');
     }
 
 
@@ -66,7 +78,7 @@ class CustomAuthController extends Controller
         'name' => $data['name'],
         'email' => $data['email'],
         'password' => Hash::make($data['password']),
-        'is_active' => 0
+        'activated' => 0
       ]);
     }    
     
