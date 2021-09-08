@@ -29,7 +29,7 @@ if(count($product) == 0){
     @endif
 
     <div class="breadCrumbs">
-        <a style="color: #333;text-decoration: none;" href="{{  route('home.index') }}">Home</a> / <a style="color: #333;text-decoration: none;" href="<?php echo url('/'); ?>/products/category/<?php echo $category[0]->id; ?>"><?php echo $category[0]->name; ?></a>
+        <a style="color: #333;text-decoration: none;" href="{{  route('home.index') }}">Home</a> / <a style="color: #333;text-decoration: none;" href="<?php echo url('/'); ?>/products/category/<?php echo @$category[0]->id; ?>"><?php echo @$category[0]->name; ?></a>
     </div>
 
     <div class="topSection row clearfix">
