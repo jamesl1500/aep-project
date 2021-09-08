@@ -15,7 +15,7 @@ $(document).ready(function()
     $(".delete_hero_image_btn").on('click', function(e){
         e.preventDefault();
 
-        var pid = $(this).data('catid');
+        var pid = $(this).data('hid');
         var link = $(this).data('link');
         var token = $(this).data('token');
 

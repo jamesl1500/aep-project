@@ -10,7 +10,7 @@ class HelpController extends Controller
     public $wn; 
 
     // Curent page name
-    public $cpn = "Help";
+    public $cpn = "Support";
 
     // Stylesheet
     public $ss = "help.css";

@@ -511,8 +511,8 @@ class AccountController extends Controller
                     // Check values
                     $request->validate([
                         'hero_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
-                        'hero_title' => 'required|max:25',
-                        'hero_text' => 'required|max:50',
+                        'hero_title' => 'max:25',
+                        'hero_text' => 'max:50',
                     ]);
 
                     // Insert the image

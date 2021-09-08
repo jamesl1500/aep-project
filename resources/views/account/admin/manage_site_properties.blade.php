@@ -58,13 +58,8 @@
                                 <div class="quickOrderList">
                                     <div class="innerOrders">
                                         <div class="innerOrdersHold">
-                                            @if (session('success'))
-                                                <div class="alert alert-success">
-                                                    {{ session('success') }}
-                                                </div>
-                                            @endif
 
-                                            <form action="{{ route('account.admin.manage_site_properties.update') }}" id="editSiteProperties" method="post" enctype="multipart/form-data">
+                                            <form style="display: none;" action="{{ route('account.admin.manage_site_properties.update') }}" id="editSiteProperties" method="post" enctype="multipart/form-data">
                                                 <?php
                                                     $props = DB::table('site_props')->where('id', 1)->get();
                                                 ?>
@@ -95,7 +90,7 @@
                                                 <button type="submit" class="btn btn-primary">Submit</button>
                                             </form>
                                         </div><br />
-                                        <div class="innerOrdersHold" style="padding-top: 20px;border-top: 1px solid #eee;">
+                                        <div class="innerOrdersHold" style="padding-top: 20px;">
                                             @if (session('success'))
                                                 <div class="alert alert-success">
                                                     {{ session('success') }}

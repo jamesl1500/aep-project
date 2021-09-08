@@ -42,7 +42,7 @@ class OrderingSystem
               'order_tn'=>'',
               'order_address'=>$order['address'],
               'order_transaction_id'=>$order['transaction_id'],
-              'order_shipping' => json_encode($order['shipping']),
+              'order_shipping' => 'No shipping selected',
               //'order_credit_card' => Crypt::encrypt($order['cc_number']),
               //'order_cvc' => Crypt::encrypt($order['cc_cvv']),
               //'order_exp_date' => Crypt::encrypt($order['cc_exp'])
@@ -80,40 +80,6 @@ class OrderingSystem
             // Address
             $address = json_decode($order[0]->order_address, true);
 
-            /* // Now we have the info, lets process payment
-            $result = Braintree_Transaction::sale([
-                'amount' => $order[0]->order_cost,
-                'paymentMethodNonce' => $payment['payment_method_nonce'],
-                'options' => [
-                    'submitForSettlement' => True
-                ],
-                'customer' => [
-                  'firstName' => $firstname,
-                  'lastName' => $lastname,
-                  'email' => $payment['email']
-                ],
-                'billing' => [
-                    'firstName' => $firstname,
-                    'lastName' => $lastname,
-                    'streetAddress' => $address['address1'],
-                    'extendedAddress' => $address['address2'],
-                    'locality' => $address['city'],
-                    'region' => $address['state'],
-                    'postalCode' => $address['zip_code'],
-                    'countryCodeAlpha2' => 'US'
-                ],
-                'shipping' => [
-                    'firstName' => $firstname,
-                    'lastName' => $lastname,
-                    'streetAddress' => $address['address1'],
-                    'extendedAddress' => $address['address2'],
-                    'locality' => $address['city'],
-                    'region' => $address['state'],
-                    'postalCode' => $address['zip_code'],
-                    'countryCodeAlpha2' => 'US'
-                ]
-            ]); */
-
             if(1 == 1)
             {
                 // Create shipment
@@ -132,37 +98,13 @@ class OrderingSystem
                     // Add to array
                     $dimensions[] = array('parcel' => $d);
                 }
-
-                // Make shipment
-                /*\EasyPost\EasyPost::setApiKey('FGET2SomNVI1rR1mXQajRQ');
-
-                $to_address = \EasyPost\Address::create(array(
-                    'street1' => $address['address1'],
-                    'street' => $address['address2'],
-                    'city' => $address['city'],
-                    'state' => $address['state'],
-                    'zip' => $address['zip_code'],
-                ));
-                $from_address = \EasyPost\Address::create(array(
-                    'street1' => '2914 york dr',
-                    'street' => '',
-                    'city' => 'lorain',
-                    'state' => 'Ohio',
-                    'zip' => '44053',
-                ));
-                $shipment = \EasyPost\Order::create(array(
-                    'from_address' => $to_address,
-                    'to_address' => $from_address,
-                    'shipments' => $dimensions
-                ));*/
                 
-
                 // Now update the order with new stuff
                 DB::table('orders')->where('order_id', $payment['order_id'])->update(['order_transaction_id' => '', 'order_status'=> 'unpaid']);
 
                 // Now lets email both parties
                 Mail::to($payment['email'])->send(new OrderConfirmation($payment['order_id'], $payment['fullname']));
-                Mail::to('hello@jameslatten.com')->send(new OrderConfirmation($payment['order_id'], $payment['fullname']));
+                Mail::to('james@sitelyftstudios.com')->cc("jon@myriadcs.net")->send(new OrderConfirmation($payment['order_id'], $payment['fullname']));
 
                 // Update product stock & empty cart
                 BasketHelper::emptyCart($order[0]->user_id);

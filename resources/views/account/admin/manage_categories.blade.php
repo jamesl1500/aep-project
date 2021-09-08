@@ -180,9 +180,12 @@
                                                 <tr id="sub_category-<?php echo $sub_category->id; ?>">
                                                     <td class=""><a href="#" id="name" class="changeSubCatName" data-token="{{ csrf_token() }}" data-type="text" data-pk="<?php echo $sub_category->id; ?>" data-url="/account/manage_categories/updateSubCatName" data-title="Change Sub Category Name"><?php echo $sub_category->name; ?></a></td>
                                                     <?php
-                                                        $parent_category = DB::table('category')->where('id', ''.$sub_category->parent_cat.'')->get()[0];
+                                                        $parent_category = DB::table('category')->where('id', ''.$sub_category->parent_cat.'')->get();
+
+                                                        if(count($parent_category) > 0)
+                                                        {
                                                     ?>
-                                                    <td class=""><?php echo $parent_category->name; ?></td>
+                                                    <td class=""><?php echo $parent_category[0]->name; ?></td>
                                                     <td class="">
                                                         <?php
                                                         if($sub_category->status == 1)
@@ -230,6 +233,7 @@
                                                     </td>
                                                 </tr>
                                                 <?php
+                                                    }
                                                 }
                                                 ?>
                                                 </tbody>

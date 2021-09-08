@@ -65,7 +65,7 @@
                     </a>
                   </div>
                 <h3 style="display: none;">This belong to the hero statement and <br>this is the 2nd line</h3>
-                <div class="inner-search-bar">
+                <div class="inner-search-bar" style="display: none;">
                     <input type="search" class="searchBarMain-index" name="search" placeholder="Search" />
                     <span class="searchBarBtn-index" style="cursor: pointer;margin-bottom: -35px;position: relative;top: -32px;left: -15px;float: right;"><i class="fas fa-search"></i></span>
                 </div>
@@ -125,7 +125,7 @@
                             // Get brand
                             $brand = DB::table('brands')->where('id',''. $product->product_brands .'')->get();
                         ?>
-                        <div class="productBox col-lg-3" style="margin-bottom: 30px;">
+                        <div class="productBox col-lg-3 col-sm-6 col-xs-12" style="margin-bottom: 30px;">
                             <a href="/products/single/<?php echo $product->id; ?>">
                                 <div class="innerProductBox">
                                     <div class="topProductBox">
@@ -166,7 +166,7 @@
                             // Get brand
                             $brand = DB::table('brands')->where('id',''. $product->product_brands .'')->get();
                         ?>
-                        <div class="productBox col-lg-3" style="margin-bottom: 30px;">
+                        <div class="productBox col-lg-3 col-sm-6 col-xs-12" style="margin-bottom: 30px;">
                             <a href="/products/single/<?php echo $product->id; ?>">
                                 <div class="innerProductBox">
                                     <div class="topProductBox">
@@ -207,7 +207,7 @@
                             // Get brand
                             $brand = DB::table('brands')->where('id',''. $product->product_brands .'')->get();
                         ?>
-                        <div class="productBox col-lg-3" style="margin-bottom: 30px;">
+                        <div class="productBox col-lg-3 col-sm-6 col-xs-12" style="margin-bottom: 30px;">
                             <a href="/products/single/<?php echo $product->id; ?>">
                                 <div class="innerProductBox">
                                     <div class="topProductBox">

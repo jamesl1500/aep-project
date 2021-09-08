@@ -7,7 +7,7 @@
     <div class="accountMainContainer">
         <div class="bannerMainTop">
             <div class="innerBanner">
-                <h3>Account Settings</h3>
+                <h3>Settings</h3>
             </div>
         </div>
         <div class="bottomMainContainer container">

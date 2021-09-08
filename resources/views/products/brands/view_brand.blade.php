@@ -55,11 +55,11 @@ if($brand_info->name == "Dewalt"){
 </style>
     <div class="mainProductBanner" style="background: <?php echo $color; ?>;">
         <div class="innerProductBanner container">
-            <div class="brand_image col-lg-6" style="margin: 0% auto;padding-bottom: 30px;text-align: center;padding: 0px;">
-                <img src="<?php echo url('images'); ?>/<?php echo $brand_info->image; ?>" style="padding-bottom: 30px;width: 250px;"/>
+            <div class="brand_image col-lg-6" style="margin: 0% auto;padding-bottom: 0px;text-align: center;padding: 0px;">
+                <img src="<?php echo url('images'); ?>/<?php echo $brand_info->image; ?>" style="padding-bottom: 0px;width: 250px;"/>
             </div>
-            <h3 style="color: <?php echo $text_color; ?>;"><?php echo $brand_info->name; ?></h3>
-            <p style="color: <?php echo $text_color; ?>;"><?php echo $brand_info->desc; ?></p>
+            <h3 style="display: none;color: <?php echo $text_color; ?>;"><?php echo $brand_info->name; ?></h3>
+            <p style="display: none;color: <?php echo $text_color; ?>;"><?php echo $brand_info->desc; ?></p>
         </div>
     </div>
     <div class="container allProducts">

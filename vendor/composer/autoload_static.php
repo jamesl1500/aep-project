@@ -137,6 +137,7 @@ class ComposerStaticInit359dd356a1ad9e1f3f7b963d7c3cead3
             'PhpParser\\' => 10,
             'PhpOption\\' => 10,
             'ParagonIE\\ConstantTime\\' => 23,
+            'PHPMailer\\PHPMailer\\' => 20,
         ),
         'O' => 
         array (
@@ -500,6 +501,10 @@ class ComposerStaticInit359dd356a1ad9e1f3f7b963d7c3cead3
         array (
             0 => __DIR__ . '/..' . '/paragonie/constant_time_encoding/src',
         ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
+        ),
         'Opis\\Closure\\' => 
         array (
             0 => __DIR__ . '/..' . '/opis/closure/src',
@@ -841,6 +846,12 @@ class ComposerStaticInit359dd356a1ad9e1f3f7b963d7c3cead3
         'App\\Libraries\\HeaderFunctions' => __DIR__ . '/../..' . '/app/Libraries/HeaderFunctions.php',
         'App\\Libraries\\OrderingSystem' => __DIR__ . '/../..' . '/app/Libraries/OrderingSystem.php',
         'App\\Libraries\\ProductsSystem' => __DIR__ . '/../..' . '/app/Libraries/ProductsSystem.php',
+        'App\\Mail\\AccountHasBeenActivated' => __DIR__ . '/../..' . '/app/Mail/AccountHasBeenActivated.php',
+        'App\\Mail\\ContactForm' => __DIR__ . '/../..' . '/app/Mail/ContactForm.php',
+        'App\\Mail\\NewUserAlert' => __DIR__ . '/../..' . '/app/Mail/NewUserAlert.php',
+        'App\\Mail\\OrderConfirmation' => __DIR__ . '/../..' . '/app/Mail/OrderConfirmation.php',
+        'App\\Mail\\OrderShipped' => __DIR__ . '/../..' . '/app/Mail/OrderShipped.php',
+        'App\\Mail\\WaitForActivation' => __DIR__ . '/../..' . '/app/Mail/WaitForActivation.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -4646,6 +4657,11 @@ class ComposerStaticInit359dd356a1ad9e1f3f7b963d7c3cead3
         'Opis\\Closure\\SecurityProvider' => __DIR__ . '/..' . '/opis/closure/src/SecurityProvider.php',
         'Opis\\Closure\\SelfReference' => __DIR__ . '/..' . '/opis/closure/src/SelfReference.php',
         'Opis\\Closure\\SerializableClosure' => __DIR__ . '/..' . '/opis/closure/src/SerializableClosure.php',
+        'PHPMailer\\PHPMailer\\Exception' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/Exception.php',
+        'PHPMailer\\PHPMailer\\OAuth' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/OAuth.php',
+        'PHPMailer\\PHPMailer\\PHPMailer' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/PHPMailer.php',
+        'PHPMailer\\PHPMailer\\POP3' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/POP3.php',
+        'PHPMailer\\PHPMailer\\SMTP' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/SMTP.php',
         'PHPUnit\\Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',
         'PHPUnit\\Framework\\ActualValueIsNotAnObjectException' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Exception/ActualValueIsNotAnObjectException.php',
         'PHPUnit\\Framework\\Assert' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert.php',

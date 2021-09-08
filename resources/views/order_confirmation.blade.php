@@ -86,14 +86,14 @@ $shipping = json_decode($order[0]->order_shipping);
                         </ul>
                     </div>
                 </div>
-                <div class="module clearfix">
+                <div class="module clearfix" style="display: none;">
                     <h3>Shipping information</h3>
                     <div class="innerMod">
                         <ul>
-                            <li><b>Carrier:</b> <?php echo $shipping[2]; ?></li>
-                            <li><b>Method:</b> <?php echo $shipping[1]; ?></li>
-                            <li><b>Price:</b> $<?php echo $shipping[3]; ?></li>
-                            <li><b>Est Delivery:</b> <?php echo $shipping[5]; ?> Day(s)</li>
+                            <li><b>Carrier:</b> <?php //echo $shipping[2]; ?></li>
+                            <li><b>Method:</b> <?php //echo $shipping[1]; ?></li>
+                            <li><b>Price:</b> $<?php //echo $shipping[3]; ?></li>
+                            <li><b>Est Delivery:</b> <?php //echo $shipping[5]; ?> Day(s)</li>
                         </ul>
                     </div>
                 </div>

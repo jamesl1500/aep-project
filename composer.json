@@ -16,6 +16,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
         "livewire/livewire": "^2.5",
+        "phpmailer/phpmailer": "^6.5",
         "vanilo/framework": "^2.1"
     },
     "require-dev": {

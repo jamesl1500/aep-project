@@ -128,11 +128,8 @@ class OrderController extends Controller
         {
             // Validation
             $validation = $request->validate([
-                'address_one' => 'required|max:255',
-                'city' => 'required|max:255',
-                'state' => 'required|max:255',
-                'zip_code' => 'required|max:20',
-                'shipping' => 'required',
+                'shipping_address' => 'required|max:255',
+                'shipping' => '',
                 'fullname' => 'max:255',
                 'email' => 'max:255',
                 'credit_card_number' => 'max:24',
@@ -151,21 +148,24 @@ class OrderController extends Controller
             // Run stuff
             if(count(BasketHelper::fetchCart($id)) >= 1)
             {
-                // Make sure we have the payment thingy
-                if(1 == 1)
+                // Find address
+
+                $address = DB::table("account_addresses")->where("id", $request->shipping_address)->get();
+
+                if(count($address) > 0)
                 {
                     // Now lets make the order
                     $this->_order_id = bin2hex(random_bytes(32));
                     $this->_address = [
-                        'address1' => $request->address_one,
-                        'address2' => $request->address_two,
-                        'city' => $request->city,
-                        'state' => $request->state,
-                        'zip_code' => $request->zip_code
+                        'address1' => $address[0]->address_one,
+                        'address2' => $address[0]->address_two,
+                        'city' => $address[0]->city,
+                        'state' => $address[0]->state,
+                        'zip_code' => $address[0]->zip_code
                     ];
                     
                     // Explode shipping
-                    $shipping = explode('|', $request->shipping);
+                    //$shipping = explode('|', $request->shipping);
 
                     // Initiate
                     $orderingSystem = new OrderingSystem();
@@ -174,11 +174,11 @@ class OrderController extends Controller
                     $order = $orderingSystem->create([
                         'hash' => $this->_order_id,
                         'status' => 'unpaid',
-                        'total' => BasketHelper::fetchCartSubTotal(BasketHelper::fetchCart($id)) + $shipping[3],
+                        'total' => BasketHelper::fetchCartSubTotal(BasketHelper::fetchCart($id)),
                         'address' => json_encode($this->_address),
                         'user_id' => $id,
                         'transaction_id' => '',
-                        'shipping' => $shipping,
+                        //'shipping' => $shipping,
                         //'cc_number' => $request->credit_card_number,
                         //'cc_cvv' => $request->credit_card_cvv,
                         //'cc_exp' => $request->credit_card_exp_date 
@@ -189,28 +189,27 @@ class OrderController extends Controller
                     if($order)
                     {
                         // Now process payment
-                        /* $payment = $orderingSystem->payment([
+                        $payment = $orderingSystem->payment([
                             'order_id' => $this->_order_id,
                             'fullname' => $request->fullname,
                             'payment_method_nonce' => $request->payment_method_nonce,
                             'email' => $request->email,
-                            'shipping' => $shipping
-                        ]); */
+                        ]); 
 
                         // Check payment
-                        if(1 == 1)
+                        if($payment)
                         {
                             return redirect('order/' . $this->_order_id)->with('success', 'Your order has been placed!');
                         }else{
                             // Error
-                            return redirect("checkout")->with('error', 'There was an error while processing your payment, try again');
+                            return redirect("checkout")->with('error', 'This is an invalid address!');
                         }
                     }else{
                         // Error
                         return redirect("checkout")->with('error', 'There was an error while creating your order, try again');
                     }
                 }else{
-                    return redirect("checkout")->with('error', 'Please enter your payment info.');
+                    return redirect("checkout")->with('error', 'This is an invalid address!');
                 }
             }else{
                 return redirect("cart")->with('error', 'Your cart can\'t be empty!');

@@ -72,26 +72,27 @@ $subtotal = basketHelper::fetchCartSubTotal($cart);
                     <div class="module shipping-address col-lg-6 col-md-6">
                         <div class="form-header">
                             <h3>Shipping Address</h3>
-                            <div class="form-group">
-                                <label for="fullname">Address 1</label>
-                                <input type="text" id="address_one" name="address_one" class="form-control" placeholder="Address One" value="">
-                            </div>
-                            <div class="form-group">
-                                <label for="fullname">Address 2</label>
-                                <input type="text" id="address_two" name="address_two" class="form-control" placeholder="Address Two" value="">
-                            </div>
-                            <div class="form-group">
-                                <label for="fullname">City</label>
-                                <input type="text" id="city" name="city" class="form-control" placeholder="City" value="">
-                            </div>
-                            <div class="form-group">
-                                <label for="fullname">State</label>
-                                <input type="text" id="state" name="state" class="form-control" placeholder="State" value="">
-                            </div>
-                            <div class="form-group">
-                                <label for="fullname">Zip Code</label>
-                                <input type="text" id="zip_code" name="zip_code" class="form-control" placeholder="zip_code" value="">
-                            </div>
+                                <?php
+                                $address = DB::table("account_addresses")->where("user_id", Auth::user()->id)->get();
+
+                                if(count($address) > 0){
+                                    ?>
+                                    <select name="shipping_address" id="shipping_address">
+                                        <?php
+                                            foreach($address as $a){
+                                        ?>
+                                            <option value="<?php echo $a->id; ?>"><?php echo $a->address_one; ?><?php if($a->address_two != ""){ echo ', ' . $a->address_two; }; ?>, <?php echo $a->city; ?>, <?php echo $a->state; ?> <?php echo $a->zip_code; ?></option>
+                                        <?php
+                                            }
+                                        ?>
+                                    </select>
+                                    <?php
+                                }else{
+                                    ?>
+                                        <h4>You need to add an address to your account before placing your order</h4>
+                                    <?php
+                                }
+                                ?>
                         </div>
                     </div>
                     <div style="display: none;" class="module payment-info col-lg-6"><br />
@@ -113,7 +114,7 @@ $subtotal = basketHelper::fetchCartSubTotal($cart);
                     </div>
                 </div>
                 <div class="rightSummary col-lg-4 col-xs-12">
-                    <div class="card">
+                    <div class="card" style="display: none;">
                         <div class="card-header">
                             <h4>Shipping Options</h4>
                         </div>
