@@ -74,7 +74,7 @@ class OrderingSystem
                 $lastname = explode(" ", $payment['fullname'])[1];
             }else{
                 $firstname = explode(" ", $payment['fullname'])[0];
-                $lastname = explode(" ", $payment['fullname'])[1] . ' ' . explode(" ", $payment['fullname'])[2];
+                $lastname = explode(" ", $payment['fullname'])[0] . ' ' . explode(" ", $payment['fullname'])[1];
             }
 
             // Address

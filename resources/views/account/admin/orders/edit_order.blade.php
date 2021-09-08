@@ -101,7 +101,19 @@ $transaction = OrderingSystem::fetchOrderPaymentInfo($order[0]->order_transactio
                                 <h3>Customer Information</h3>
                                 <div class="module customer">
                                     <div class="innerMod">
+                                        <?php
+                                            $user = DB::table('users')->where('id', $order[0]->user_id)->get();
 
+                                            if(count($user) > 0)
+                                            {
+                                        ?>
+                                        <ul>
+                                            <li><b>Name:</b> <?php echo $user[0]->name; ?></li>
+                                            <li><b>Email:</b> <?php echo $user[0]->email; ?></li>
+                                        </ul>
+                                        <?php
+                                            }
+                                        ?>
                                     </div>
                                 </div>
                                 <div class="module shipping_address">
@@ -188,21 +200,7 @@ $transaction = OrderingSystem::fetchOrderPaymentInfo($order[0]->order_transactio
                                             ?>
                                         </div>
                                     </div>
-                                    <div class="module">
-                                        <h3 style="margin-top: 0px;">Shipping</h3>
-                                        <div class="innerMod">
-                                            <?php
-                                            // Shipping
-                                            $shipping = json_decode($order[0]->order_shipping);
-                                            ?>
-                                            <ul>
-                                                <li><b>Carrier:</b> <?php echo $shipping[2]; ?></li>
-                                                <li><b>Method:</b> <?php echo $shipping[1]; ?></li>
-                                                <li><b>Price:</b> $<?php echo $shipping[3]; ?></li>
-                                                <li><b>Est Delivery:</b> <?php echo $shipping[5]; ?> Day(s)</li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                
                                 </div>
                                 <hr />
                                 <h3>Payment Info</h3>
